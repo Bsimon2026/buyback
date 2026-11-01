@@ -1,0 +1,29 @@
+# Render blueprint — one-click deploy of the complete platform.
+#
+#   1. Push this repo to GitHub (done: Bsimon2026/buyback)
+#   2. Render dashboard → New → Blueprint → pick the repo → Apply
+#
+# One web service, one persistent disk. The SQLite database lives on the disk at
+# /var/data/buyback.db, so orders, payments and inventory survive restarts and redeploys.
+services:
+  - type: web
+    name: indubaicity
+    runtime: node
+    plan: starter              # $7/mo — the free plan has no disk
+    region: frankfurt          # closest to the UAE of Render's regions
+    branch: main
+    buildCommand: "echo 'no build step — zero dependencies'"
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    autoDeploy: true           # every push to main redeploys
+    envVars:
+      - key: NODE_VERSION
+        value: 24.18.0         # node:sqlite needs 22.5+
+      - key: DATA_DIR
+        value: /var/data
+      - key: DB_FILE
+        value: /var/data/buyback.db
+    disk:
+      name: buyback-data
+      mountPath: /var/data
+      sizeGB: 1                # $0.25/GB/mo — the database is a few MB
