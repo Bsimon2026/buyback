@@ -1,0 +1,404 @@
+[
+ {
+  "model": "Apple iPhone 15",
+  "variant": "128GB",
+  "refurbPriceAED": 1564,
+  "lowAED": 1500,
+  "highAED": 1605,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=renewed+iphone+15+128gb"
+  ],
+  "sourceNotes": "amazon.ae Amazon Renewed '(Refurbished) iPhone 15 (128 GB)' listings, 5 colour variants AED 1,500-1,605",
+  "confidence": "high"
+ },
+ {
+  "model": "Apple iPhone 15",
+  "variant": "256GB",
+  "refurbPriceAED": 1742,
+  "lowAED": 1675,
+  "highAED": 1755,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=refurbished+iphone+15+256gb"
+  ],
+  "sourceNotes": "amazon.ae renewed iPhone 15 256GB listings (Pink/Black/Green, US dual-eSIM + intl)",
+  "confidence": "high"
+ },
+ {
+  "model": "Apple iPhone 14",
+  "variant": "128GB",
+  "refurbPriceAED": 1220,
+  "lowAED": 1070,
+  "highAED": 1290,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=renewed+iphone+14+128gb"
+  ],
+  "sourceNotes": "amazon.ae renewed iPhone 14 128GB (Blue/Midnight/Starlight/Purple, 'Apple (Refurbished)' 128 GB)",
+  "confidence": "high"
+ },
+ {
+  "model": "Apple iPhone 13",
+  "variant": "128GB",
+  "refurbPriceAED": 965,
+  "lowAED": 947,
+  "highAED": 1030,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=renewed+iphone+13+128gb"
+  ],
+  "sourceNotes": "amazon.ae 'Apple (Refurbished) iPhone 13 (128GB)' Midnight/Pink/Starlight",
+  "confidence": "high"
+ },
+ {
+  "model": "Apple iPhone 12",
+  "variant": "128GB",
+  "refurbPriceAED": 810,
+  "lowAED": 802,
+  "highAED": 818,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=renewed+iphone+12+128gb"
+  ],
+  "sourceNotes": "amazon.ae 'Apple (Refurbished) iPhone 12 (128GB)' Blue/Green",
+  "confidence": "medium"
+ },
+ {
+  "model": "Samsung Galaxy S24",
+  "variant": "256GB",
+  "refurbPriceAED": 1351,
+  "lowAED": 1319,
+  "highAED": 1689,
+  "sourceUrls": [
+   "https://www.amazon.ae/SAMSUNG-Refurbished-Galaxy-Android-Smartphone/dp/B0FDR6Z246",
+   "https://www.amazon.ae/SAMSUNG-Refurbished-Galaxy-Android-Smartphone/dp/B0F4NM357Y",
+   "https://www.fonezone.ae/products/samsung-galaxy-s24-2025"
+  ],
+  "sourceNotes": "amazon.ae '(Refurbished) Galaxy S24, 256GB' Violet/Gray + fonezone.ae Galaxy S24 refurb AED 1,650.65",
+  "confidence": "high"
+ },
+ {
+  "model": "Samsung Galaxy S23",
+  "variant": "256GB",
+  "refurbPriceAED": 1192,
+  "lowAED": 1140,
+  "highAED": 1264,
+  "sourceUrls": [
+   "https://www.fonezone.ae/products/samsung-galaxy-s23-8gb-ram-256gb-phantom-black-international-version-5g-mobile-phone-dual-sim",
+   "https://www.fonezone.ae/products/samsung-galaxy-s23-256gb-8gb-ram-phantom-black-excellent"
+  ],
+  "sourceNotes": "fonezone.ae (UAE refurb store) S23 256GB listings; amazon.ae only had a 128GB renewed S23 at AED 1,400",
+  "confidence": "medium"
+ },
+ {
+  "model": "Samsung Galaxy A54",
+  "variant": "128GB",
+  "refurbPriceAED": 833,
+  "lowAED": 799,
+  "highAED": 867,
+  "sourceUrls": [
+   "https://www.amazon.ae/SAMSUNG-Renewed-A54-Awesome-International/dp/B0CWVFYFRB",
+   "https://www.phonebay.ae/products/samsung-galaxy-a54"
+  ],
+  "sourceNotes": "amazon.ae '(Renewed) Galaxy A54 5G 128GB' AED 867 + phonebay.ae refurb A54 AED 799",
+  "confidence": "medium"
+ },
+ {
+  "model": "OnePlus 12",
+  "variant": "256GB",
+  "refurbPriceAED": null,
+  "lowAED": null,
+  "highAED": null,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=oneplus+12",
+   "https://gdstrade.com/products/oneplus-12-5g-refurbished"
+  ],
+  "sourceNotes": "NOT FOUND: amazon.ae has no renewed OnePlus 12 (48 results, 0 renewed); fonezone.ae stocks only OnePlus 12R; gdstrade.com lists a refurbished OnePlus 12 but it is sold out with price hidden (AED 0.00)",
+  "confidence": "none"
+ },
+ {
+  "model": "OnePlus Nord 3",
+  "variant": "128GB",
+  "refurbPriceAED": null,
+  "lowAED": null,
+  "highAED": null,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=oneplus+nord+3+5g"
+  ],
+  "sourceNotes": "NOT FOUND for 128GB: amazon.ae only had '(Refurbished) Nord 3 5G 256GB/16GB' at AED 1,199; no 128GB refurb listing anywhere reached",
+  "confidence": "none"
+ },
+ {
+  "model": "Xiaomi 14",
+  "variant": "256GB",
+  "refurbPriceAED": null,
+  "lowAED": null,
+  "highAED": null,
+  "sourceUrls": [
+   "https://exphone.ae/products/xiaomi-14-512gb-jade-green",
+   "https://www.amazon.ae/s?k=xiaomi+14"
+  ],
+  "sourceNotes": "NOT FOUND for 256GB: exphone.ae stocks only the 512GB refurb variant; amazon.ae renewed results were Redmi models, not Xiaomi 14",
+  "confidence": "none"
+ },
+ {
+  "model": "Xiaomi Redmi Note 13 Pro",
+  "variant": "128GB",
+  "refurbPriceAED": 751,
+  "lowAED": 751,
+  "highAED": 751,
+  "sourceUrls": [
+   "https://www.fonezone.ae/products/xiaomi-redmi-note-13-pro-2023"
+  ],
+  "sourceNotes": "fonezone.ae 'Xiaomi Redmi Note 13 Pro 5G 2023' refurb AED 750.71 (storage not stated in title - single listing)",
+  "confidence": "low"
+ },
+ {
+  "model": "Vivo X100",
+  "variant": "256GB",
+  "refurbPriceAED": null,
+  "lowAED": null,
+  "highAED": null,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=vivo+x100",
+   "https://ae.opensooq.com/en/find?term=vivo%20x100"
+  ],
+  "sourceNotes": "NOT FOUND: no UAE refurbished X100 listing on amazon.ae (48 results, 0 renewed), fonezone/phonebay/techorigins catalogues (4,700+ SKUs) or OpenSooq UAE search",
+  "confidence": "none"
+ },
+ {
+  "model": "Vivo V29",
+  "variant": "128GB",
+  "refurbPriceAED": null,
+  "lowAED": null,
+  "highAED": null,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=vivo+v29+refurbished"
+  ],
+  "sourceNotes": "NOT FOUND: fonezone.ae V-series stock stops at V27/V25/V23; amazon.ae returned 0 renewed V29",
+  "confidence": "none"
+ },
+ {
+  "model": "Oppo Reno 11",
+  "variant": "128GB",
+  "refurbPriceAED": 899,
+  "lowAED": 899,
+  "highAED": 899,
+  "sourceUrls": [
+   "https://www.phonebay.ae/products/oppo-reno-11"
+  ],
+  "sourceNotes": "phonebay.ae refurbished OPPO Reno 11 AED 899 (single listing, storage not stated)",
+  "confidence": "low"
+ },
+ {
+  "model": "Oppo F25 Pro",
+  "variant": "128GB",
+  "refurbPriceAED": null,
+  "lowAED": null,
+  "highAED": null,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=oppo+f25+pro+refurbished"
+  ],
+  "sourceNotes": "NOT FOUND: no renewed/refurbished F25 Pro in any UAE source reached",
+  "confidence": "none"
+ },
+ {
+  "model": "Realme 12 Pro",
+  "variant": "128GB",
+  "refurbPriceAED": null,
+  "lowAED": null,
+  "highAED": null,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=realme+12+pro+refurbished"
+  ],
+  "sourceNotes": "NOT FOUND: fonezone.ae Realme stock has no 12 Pro; amazon.ae 0 renewed",
+  "confidence": "none"
+ },
+ {
+  "model": "Realme Narzo 60",
+  "variant": "128GB",
+  "refurbPriceAED": null,
+  "lowAED": null,
+  "highAED": null,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=realme+narzo+60"
+  ],
+  "sourceNotes": "NOT FOUND for base Narzo 60: closest is fonezone.ae 'Narzo 60X 5G 128GB' refurb at AED 415.07 - different model, not used",
+  "confidence": "none"
+ },
+ {
+  "model": "Google Pixel 8",
+  "variant": "128GB",
+  "refurbPriceAED": 1049,
+  "lowAED": 899,
+  "highAED": 1199,
+  "sourceUrls": [
+   "https://exphone.ae/products/google-pixel-8",
+   "https://www.phonebay.ae/products/google-pixel-8"
+  ],
+  "sourceNotes": "exphone.ae Pixel 8 128GB refurb AED 899 (conditions shown 'not available' at time of check) + phonebay.ae AED 1,199",
+  "confidence": "medium"
+ },
+ {
+  "model": "Google Pixel 7a",
+  "variant": "128GB",
+  "refurbPriceAED": 749,
+  "lowAED": 749,
+  "highAED": 749,
+  "sourceUrls": [
+   "https://exphone.ae/products/google-pixel-7a",
+   "https://www.phonebay.ae/products/google-pixel-7a"
+  ],
+  "sourceNotes": "exphone.ae Pixel 7A 128GB refurb AED 749 + phonebay.ae AED 749 (independent stores, same price)",
+  "confidence": "high"
+ },
+ {
+  "model": "Motorola Edge 40",
+  "variant": "256GB",
+  "refurbPriceAED": null,
+  "lowAED": null,
+  "highAED": null,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=motorola+edge+40+refurbished"
+  ],
+  "sourceNotes": "NOT FOUND: only brand-new Edge 40 256GB at Virgin Megastore UAE; no refurb listing found",
+  "confidence": "none"
+ },
+ {
+  "model": "Nothing Phone (2)",
+  "variant": "256GB",
+  "refurbPriceAED": 1278,
+  "lowAED": 1278,
+  "highAED": 1278,
+  "sourceUrls": [
+   "https://www.fonezone.ae/products/nothing-phone-2-256gb-12gb-ram-white"
+  ],
+  "sourceNotes": "fonezone.ae Nothing Phone 2 256GB/12GB refurb AED 1,277.70",
+  "confidence": "medium"
+ },
+ {
+  "model": "Honor Magic 6 Lite",
+  "variant": "256GB",
+  "refurbPriceAED": null,
+  "lowAED": null,
+  "highAED": null,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=honor+magic+6+lite"
+  ],
+  "sourceNotes": "NOT FOUND: only new-unit listings (Fruugo AE, gsmarena price pages); no UAE refurb stocking found",
+  "confidence": "none"
+ },
+ {
+  "model": "Apple MacBook Air M2",
+  "variant": "8GB/256GB",
+  "refurbPriceAED": 2975,
+  "lowAED": 2500,
+  "highAED": 3494,
+  "sourceUrls": [
+   "https://www.techorigins.ae/products/macbook-air-m2-2022-13-6-8gb-256gb-ssd-starlight",
+   "https://www.amazon.ae/s?k=renewed+macbook+air+m2+256gb",
+   "https://techorigins.ae/products.json?limit=250"
+  ],
+  "sourceNotes": "techorigins.ae 13.6\" M2 8/256 refurb AED 2,500; amazon.ae renewed 2022 M2 8/256 AED 2,975 and 3,494 | NOTE: techorigins.ae storefront was returning Cloudflare error 1000 when re-checked 2026-10-31; price captured from its live Shopify feed (products.json) on the same day",
+  "confidence": "medium"
+ },
+ {
+  "model": "Apple MacBook Pro 14 M3",
+  "variant": "16GB/512GB",
+  "refurbPriceAED": null,
+  "lowAED": null,
+  "highAED": null,
+  "sourceUrls": [
+   "https://www.techorigins.ae/products/macbook-pro-14-m3-core-16gb-1tb-refurbished-laptop",
+   "https://www.amazon.ae/s?k=macbook+pro+14+inch+m3+refurbished",
+   "https://techorigins.ae/products.json?limit=250"
+  ],
+  "sourceNotes": "NOT FOUND for the exact 16GB/512GB config: UAE refurb stock is 16GB/1TB (techorigins.ae AED 4,990-5,600) or M3 Pro 18GB/512GB (AED 5,350); amazon.ae renewed had M1 Pro only | NOTE: techorigins.ae storefront was returning Cloudflare error 1000 when re-checked 2026-10-31; price captured from its live Shopify feed (products.json) on the same day",
+  "confidence": "none"
+ },
+ {
+  "model": "Dell XPS 13",
+  "variant": "16GB/512GB",
+  "refurbPriceAED": 1777,
+  "lowAED": 1500,
+  "highAED": 2150,
+  "sourceUrls": [
+   "https://www.techorigins.ae/products/dell-xps-13-9310-core-i7-11th-gen-16gb-512gb-ssd-13-4-inch-touch-refurbished-laptop-tech-origins-uae",
+   "https://www.amazon.ae/s?k=renewed+dell+xps+13",
+   "https://techorigins.ae/products.json?limit=250"
+  ],
+  "sourceNotes": "techorigins.ae XPS 13 9310 i7 16/512 refurb AED 1,675; amazon.ae renewed XPS 13 16/512 from AED 1,500-2,150 across generations | NOTE: techorigins.ae storefront was returning Cloudflare error 1000 when re-checked 2026-10-31; price captured from its live Shopify feed (products.json) on the same day",
+  "confidence": "medium"
+ },
+ {
+  "model": "Dell Inspiron 15",
+  "variant": "8GB/512GB",
+  "refurbPriceAED": 1155,
+  "lowAED": 800,
+  "highAED": 1510,
+  "sourceUrls": [
+   "https://www.techorigins.ae/products/dell-inspiron-3520-core-i3-12th-gen-8gb-512gb-ssd-15-6-inch-refurbished-laptop",
+   "https://www.amazon.ae/s?k=renewed+dell+inspiron+15",
+   "https://techorigins.ae/products.json?limit=250"
+  ],
+  "sourceNotes": "techorigins.ae Inspiron 3520 i3 8/512 refurb AED 800; amazon.ae renewed Inspiron 3520 i5 8/512 AED 1,510 (CPU drives the spread) | NOTE: techorigins.ae storefront was returning Cloudflare error 1000 when re-checked 2026-10-31; price captured from its live Shopify feed (products.json) on the same day",
+  "confidence": "medium"
+ },
+ {
+  "model": "HP Pavilion 15",
+  "variant": "8GB/512GB",
+  "refurbPriceAED": 1895,
+  "lowAED": 1735,
+  "highAED": 2054,
+  "sourceUrls": [
+   "https://www.fonezone.ae/products/hp-pavilion-15-15-6-sceen-12th-gen-i5-8gb-ram-512gb-ssd-blue"
+  ],
+  "sourceNotes": "fonezone.ae HP Pavilion 15 i5-12th 8GB/512GB refurb AED 1,735 and 2,054 (colour variants)",
+  "confidence": "medium"
+ },
+ {
+  "model": "Lenovo ThinkPad E14",
+  "variant": "8GB/512GB",
+  "refurbPriceAED": 999,
+  "lowAED": 999,
+  "highAED": 999,
+  "sourceUrls": [
+   "https://www.amazon.ae/s?k=lenovo+thinkpad+e14+renewed"
+  ],
+  "sourceNotes": "amazon.ae '(Renewed) ThinkPad E14 Gen 1 i5-10210U 512GB SSD' AED 999; fonezone/techorigins E14 units are 16GB/256GB (AED 850-1,100)",
+  "confidence": "low"
+ },
+ {
+  "model": "Lenovo IdeaPad Slim 3",
+  "variant": "8GB/512GB",
+  "refurbPriceAED": null,
+  "lowAED": null,
+  "highAED": null,
+  "sourceUrls": [
+   "https://rekart.ae/product/lenovo-ideapad-slim-3-15abr8-15-6-silver-7th-gen-16gb-ram-512gb-ssd-non-touch-english-key"
+  ],
+  "sourceNotes": "NOT FOUND for 8GB/512GB: rekart.ae lists a renewed Slim 3 15ABR8 but only 16GB/512GB and the price is JS-gated; amazon.ae/fonezone/techorigins had no Slim 3 refurb",
+  "confidence": "none"
+ },
+ {
+  "model": "Asus Vivobook 15",
+  "variant": "8GB/512GB",
+  "refurbPriceAED": 719,
+  "lowAED": 719,
+  "highAED": 1299,
+  "sourceUrls": [
+   "https://allware.com/product/renewed-asus-vivobook-e15301-156-ryzen-5-3500u-8gb-ddr4-512gb-ssd/1222847",
+   "https://www.amazon.ae/s?k=asus+vivobook+15+renewed"
+  ],
+  "sourceNotes": "allware.com Renewed Vivobook E15301 15.6\" Ryzen 5 3500U 8GB/512GB AED 719 (exact config); amazon.ae renewed Vivobook X512DA is 8GB/256GB at AED 1,299 (config differs, shown as high). Wide spread - treat as indicative",
+  "confidence": "low"
+ },
+ {
+  "model": "Acer Aspire 5",
+  "variant": "8GB/512GB",
+  "refurbPriceAED": 2649,
+  "lowAED": 2649,
+  "highAED": 2649,
+  "sourceUrls": [
+   "https://www.jarir.com/ae-en/acer-aspire-5-renewed-laptops-631726.html"
+  ],
+  "sourceNotes": "Jarir Bookstore UAE 'Renewed Grade A' Aspire 5 14\" i5-1335U 8GB/512GB AED 2,649 (single retail refurb source; premium grade A pricing)",
+  "confidence": "low"
+ }
+]

@@ -1,0 +1,314 @@
+{
+ "generatedAt": "2026-10-31",
+ "rule": "buy price = round(70% of the refurbished retail median, to nearest AED 10)",
+ "method": "Refurbished/renewed asking prices read live on 2026-10-31 in AED. Sources: amazon.ae Amazon Renewed, fonezone.ae, phonebay.ae, techorigins.ae, exphone.ae, jarir.com (Renewed Grade A), allware.com. No brand-new prices used, no currency conversion needed.",
+ "verifiedBy": "6 of 20 prices re-checked against the raw scraped catalogues (data/prices/*.json) and matched exactly",
+ "devices": [
+  {
+   "model": "Apple iPhone 15",
+   "variant": "128GB",
+   "category": "mobile",
+   "refurb": 1564,
+   "buy": 1090,
+   "confidence": "high",
+   "note": "amazon.ae renewed 1,500-1,605"
+  },
+  {
+   "model": "Apple iPhone 15",
+   "variant": "256GB",
+   "category": "mobile",
+   "refurb": 1742,
+   "buy": 1220,
+   "confidence": "high",
+   "note": "amazon.ae renewed 1,675-1,755"
+  },
+  {
+   "model": "Apple iPhone 14",
+   "variant": "128GB",
+   "category": "mobile",
+   "refurb": 1220,
+   "buy": 850,
+   "confidence": "high",
+   "note": "amazon.ae renewed 1,070-1,290"
+  },
+  {
+   "model": "Apple iPhone 13",
+   "variant": "128GB",
+   "category": "mobile",
+   "refurb": 965,
+   "buy": 680,
+   "confidence": "high",
+   "note": "amazon.ae renewed 947-1,030"
+  },
+  {
+   "model": "Apple iPhone 12",
+   "variant": "128GB",
+   "category": "mobile",
+   "refurb": 810,
+   "buy": 570,
+   "confidence": "medium",
+   "note": "amazon.ae renewed 802-818"
+  },
+  {
+   "model": "Samsung Galaxy S24",
+   "variant": "256GB",
+   "category": "mobile",
+   "refurb": 1351,
+   "buy": 950,
+   "confidence": "high",
+   "note": "amazon.ae renewed 1,319-1,351; fonezone 1,651"
+  },
+  {
+   "model": "Samsung Galaxy S23",
+   "variant": "256GB",
+   "category": "mobile",
+   "refurb": 1192,
+   "buy": 830,
+   "confidence": "medium",
+   "note": "fonezone.ae refurb listings"
+  },
+  {
+   "model": "Samsung Galaxy A54",
+   "variant": "128GB",
+   "category": "mobile",
+   "refurb": 833,
+   "buy": 580,
+   "confidence": "medium",
+   "note": "amazon.ae renewed 867; phonebay 799"
+  },
+  {
+   "model": "Xiaomi Redmi Note 13 Pro",
+   "variant": "128GB",
+   "category": "mobile",
+   "refurb": 751,
+   "buy": 530,
+   "confidence": "low",
+   "note": "single fonezone.ae listing"
+  },
+  {
+   "model": "Oppo Reno 11",
+   "variant": "128GB",
+   "category": "mobile",
+   "refurb": 899,
+   "buy": 630,
+   "confidence": "low",
+   "note": "single phonebay.ae listing"
+  },
+  {
+   "model": "Google Pixel 8",
+   "variant": "128GB",
+   "category": "mobile",
+   "refurb": 1049,
+   "buy": 730,
+   "confidence": "medium",
+   "note": "exphone 899 / phonebay 1,199"
+  },
+  {
+   "model": "Google Pixel 7a",
+   "variant": "128GB",
+   "category": "mobile",
+   "refurb": 749,
+   "buy": 520,
+   "confidence": "high",
+   "note": "exphone + phonebay both 749 — verified"
+  },
+  {
+   "model": "Nothing Phone (2)",
+   "variant": "256GB",
+   "category": "mobile",
+   "refurb": 1278,
+   "buy": 890,
+   "confidence": "medium",
+   "note": "fonezone.ae 1,277.70 — verified"
+  },
+  {
+   "model": "Apple MacBook Air M2",
+   "variant": "8GB / 256GB",
+   "category": "laptop",
+   "refurb": 2975,
+   "buy": 2080,
+   "confidence": "medium",
+   "note": "techorigins 2,500 (verified); amazon renewed up to 3,494"
+  },
+  {
+   "model": "Dell XPS 13",
+   "variant": "16GB / 512GB",
+   "category": "laptop",
+   "refurb": 1777,
+   "buy": 1240,
+   "confidence": "medium",
+   "note": "techorigins 1,674.99 (verified); amazon renewed to 2,150"
+  },
+  {
+   "model": "Dell Inspiron 15",
+   "variant": "8GB / 512GB",
+   "category": "laptop",
+   "refurb": 1155,
+   "buy": 810,
+   "confidence": "medium",
+   "note": "spread 800-1,510 by CPU generation"
+  },
+  {
+   "model": "HP Pavilion 15",
+   "variant": "8GB / 512GB",
+   "category": "laptop",
+   "refurb": 1895,
+   "buy": 1330,
+   "confidence": "medium",
+   "note": "fonezone 1,735 / 2,054 — verified"
+  },
+  {
+   "model": "Lenovo ThinkPad E14",
+   "variant": "8GB / 512GB",
+   "category": "laptop",
+   "refurb": 999,
+   "buy": 700,
+   "confidence": "low",
+   "note": "single amazon.ae renewed listing (Gen 1)"
+  },
+  {
+   "model": "Asus Vivobook 15",
+   "variant": "8GB / 512GB",
+   "category": "laptop",
+   "refurb": 719,
+   "buy": 500,
+   "confidence": "low",
+   "note": "allware.com renewed, single config"
+  },
+  {
+   "model": "Acer Aspire 5",
+   "variant": "8GB / 512GB",
+   "category": "laptop",
+   "refurb": 2649,
+   "buy": 1850,
+   "confidence": "low",
+   "note": "single Jarir grade-A renewed listing — high for an Aspire 5, re-quote before launch"
+  },
+  {
+   "model": "OnePlus 12",
+   "variant": "256GB",
+   "category": "mobile",
+   "refurb": null,
+   "buy": 1550,
+   "confidence": "none",
+   "note": "NO refurb listing found — seeded estimate, verify before launch"
+  },
+  {
+   "model": "OnePlus Nord 3",
+   "variant": "128GB",
+   "category": "mobile",
+   "refurb": null,
+   "buy": 750,
+   "confidence": "none",
+   "note": "only 256GB refurb found (1,199) — seeded estimate for 128GB"
+  },
+  {
+   "model": "Xiaomi 14",
+   "variant": "256GB",
+   "category": "mobile",
+   "refurb": null,
+   "buy": 1400,
+   "confidence": "none",
+   "note": "only 512GB refurb found — seeded estimate"
+  },
+  {
+   "model": "Vivo X100",
+   "variant": "256GB",
+   "category": "mobile",
+   "refurb": null,
+   "buy": 1500,
+   "confidence": "none",
+   "note": "no UAE refurb stock — seeded estimate"
+  },
+  {
+   "model": "Vivo V29",
+   "variant": "128GB",
+   "category": "mobile",
+   "refurb": null,
+   "buy": 700,
+   "confidence": "none",
+   "note": "no UAE refurb stock — seeded estimate"
+  },
+  {
+   "model": "Oppo F25 Pro",
+   "variant": "128GB",
+   "category": "mobile",
+   "refurb": null,
+   "buy": 380,
+   "confidence": "none",
+   "note": "no UAE refurb stock — seeded estimate"
+  },
+  {
+   "model": "Realme 12 Pro",
+   "variant": "128GB",
+   "category": "mobile",
+   "refurb": null,
+   "buy": 600,
+   "confidence": "none",
+   "note": "no UAE refurb stock — seeded estimate"
+  },
+  {
+   "model": "Realme Narzo 60",
+   "variant": "128GB",
+   "category": "mobile",
+   "refurb": null,
+   "buy": 320,
+   "confidence": "none",
+   "note": "only 60X variant found — seeded estimate"
+  },
+  {
+   "model": "Motorola Edge 40",
+   "variant": "256GB",
+   "category": "mobile",
+   "refurb": null,
+   "buy": 700,
+   "confidence": "none",
+   "note": "new-only stock — seeded estimate"
+  },
+  {
+   "model": "Honor Magic 6 Lite",
+   "variant": "256GB",
+   "category": "mobile",
+   "refurb": null,
+   "buy": 650,
+   "confidence": "none",
+   "note": "new-only stock — seeded estimate"
+  },
+  {
+   "model": "Apple MacBook Pro 14 M3",
+   "variant": "16GB / 512GB",
+   "category": "laptop",
+   "refurb": null,
+   "buy": 4400,
+   "confidence": "none",
+   "note": "UAE refurb only carries 16GB/1TB — seeded estimate for 16/512"
+  },
+  {
+   "model": "Lenovo IdeaPad Slim 3",
+   "variant": "8GB / 512GB",
+   "category": "laptop",
+   "refurb": null,
+   "buy": 800,
+   "confidence": "none",
+   "note": "only 16GB/512GB refurb found — seeded estimate"
+  },
+  {
+   "model": "Apple iPhone 14",
+   "variant": "256GB",
+   "category": "mobile",
+   "refurb": null,
+   "buy": 1400,
+   "confidence": "none",
+   "note": "not researched — seeded estimate"
+  },
+  {
+   "model": "Apple iPhone 13",
+   "variant": "256GB",
+   "category": "mobile",
+   "refurb": null,
+   "buy": 1150,
+   "confidence": "none",
+   "note": "not researched — seeded estimate"
+  }
+ ]
+}

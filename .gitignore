@@ -1,0 +1,13 @@
+node_modules/
+*.log
+.DS_Store
+
+# runtime database and its WAL files — never committed
+/data/*
+!/data/prices/
+/data/prices/*.db*
+_tmp/
+_preview/
+_demo/
+.vercel/
+buyback-platform-*.zip

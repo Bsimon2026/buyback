@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BuyBack — Admin</title>
+<link rel="stylesheet" href="/assets/styles.css">
+<style>
+  /* admin runs dark on the new palette */
+  :root{
+    --bg:var(--ink); --bg-2:var(--ink-2); --card:var(--ink-2); --card-2:var(--ink-3);
+    --line:#232C3A; --line-2:#2E3949; --text:var(--on-ink); --muted:var(--on-ink-muted); --dim:#7C8695;
+    --accent:var(--gold-2); --radius:16px; --radius-sm:10px; --shadow:0 18px 44px rgba(0,0,0,.35);
+    --on-ink:var(--paper); --on-ink-muted:#A9A498; --gold-2:#D8B25C;
+    --font:var(--sans);
+  }
+  /* dark primitives re-stated for the admin surface */
+  .card{background:var(--card);border:1px solid var(--line);box-shadow:none;color:var(--on-ink)}
+  .kpi .val{color:var(--on-ink)}
+  .kpi .val.green{color:#8FE3AE}
+  .kpi .val.blue{color:var(--gold-2)}
+  input,select,textarea{background:var(--bg-2);color:var(--text);border-color:var(--line)}
+  input:focus,select:focus{border-color:var(--gold-2);box-shadow:0 0 0 3px rgba(216,178,92,.14)}
+  .btn{background:var(--card-2);color:var(--text);border:1px solid var(--line-2)}
+  .btn:hover{background:#222C3A}
+  .btn.primary{background:var(--gold-2);border-color:var(--gold-2);color:#171207}
+  .btn.primary:hover{filter:brightness(1.05)}
+  .btn.ghost{background:transparent;border-color:var(--line)}
+  .btn.danger{background:#2A1416;border-color:#52242A;color:#ffb4b4}
+  .badge{background:#1C2534;color:var(--muted);border-color:var(--line-2)}
+  .badge.info{background:rgba(216,178,92,.14);color:var(--gold-2);border-color:rgba(216,178,92,.32)}
+  .badge.ok{background:rgba(34,197,94,.12);color:#7EE2A4;border-color:rgba(34,197,94,.3)}
+  .badge.warn{background:rgba(245,158,11,.12);color:#F7C76A;border-color:rgba(245,158,11,.3)}
+  .badge.bad{background:rgba(239,68,68,.12);color:#FCA5A5;border-color:rgba(239,68,68,.3)}
+  table td{border-color:var(--line)}
+  th{color:var(--dim)}
+  .nav.on{background:rgba(216,178,92,.12);border-color:rgba(216,178,92,.3);color:var(--gold-2)}
+  .sec-title{color:var(--gold)}
+  body{background:var(--bg);color:var(--on-ink)}
+  .tagline{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:6px}
+  .kpi .val{font-family:var(--display);letter-spacing:-.02em}
+  .app{display:grid;grid-template-columns:222px 1fr;min-height:100vh}
+  @media(max-width:860px){.app{grid-template-columns:1fr}.side{display:none}}
+  .side{border-right:1px solid var(--line);background:var(--bg-2);padding:18px 12px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px;padding:6px 10px 18px}
+  .brand span.dot{width:24px;height:24px;border-radius:7px;background:linear-gradient(140deg,#22c55e,#0ea5e9);
+    display:grid;place-items:center;color:#04140a;font-weight:900;font-size:13px}
+  .nav{display:block;text-align:left;padding:10px 12px;border-radius:10px;border:1px solid transparent;background:none;
+    color:var(--muted);font-weight:600;font-size:14px;width:100%}
+  .nav:hover{background:rgba(255,255,255,.03);color:var(--text)}
+  .nav.on{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.25);color:#c9f7da}
+  .main{padding:22px 26px 60px;max-width:1400px;width:100%}
+  .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px;flex-wrap:wrap}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+  .kpi{padding:16px 18px}
+  .kpi .lab{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--dim);font-weight:700}
+  .kpi .val{font-size:26px;font-weight:800;letter-spacing:-.03em;margin-top:6px}
+  .kpi .val.green{color:#7ee2a4}.kpi .val.blue{color:#8ed9fb}
+  .kpi .foot{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .tbl-wrap{overflow:auto;border-radius:var(--radius)}
+  .pill-form{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .pill-form input,.pill-form select{width:auto;min-width:150px;padding:8px 10px;font-size:13.5px}
+  .detail{display:grid;grid-template-columns:1fr 330px;gap:20px;align-items:start}
+  @media(max-width:1000px){.detail{grid-template-columns:1fr}}
+  .kv{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:13.5px}
+  .kv dt{color:var(--dim)}.kv dd{margin:0}
+  .chips{display:flex;gap:7px;flex-wrap:wrap}
+  .chip{border:1px solid var(--line);background:var(--bg-2);border-radius:8px;padding:6px 11px;font-size:13px}
+  .chip.sel{background:rgba(34,197,94,.16);border-color:var(--accent);color:#c9f7da;font-weight:600}
+  .chip.bad.sel{background:rgba(239,68,68,.16);border-color:var(--danger);color:#fca5a5}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .seg button{background:var(--bg-2);border:0;color:var(--muted);padding:7px 13px;font-size:13px;font-weight:600}
+  .seg button.on{background:rgba(56,189,248,.16);color:#bfeaff}
+  .login{min-height:100vh;display:grid;place-items:center;padding:20px}
+  .login .card{width:100%;max-width:380px;padding:26px}
+  .money{font-variant-numeric:tabular-nums;font-weight:600}
+  .tag{font-size:11.5px;color:var(--dim)}
+  .sec-title{font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--dim);font-weight:700;margin:22px 0 10px}
+  .notice{font-size:13px;padding:10px 12px;border-radius:10px;border:1px solid rgba(245,158,11,.28);
+    background:rgba(245,158,11,.07);color:#f7c76a}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginWrap" class="login hidden">
+  <div class="card">
+    <div class="brand" style="padding-left:0"><span class="dot">B</span> BuyBack Admin</div>
+    <p class="muted" style="font-size:13.5px;margin:0 0 18px">Staff sign-in. Access is role-scoped and audit-logged.</p>
+    <label class="field"><span>Email</span><input id="lEmail" value="admin@indubaicity.com" autocomplete="username"></label>
+    <label class="field"><span>Password</span><input id="lPass" type="password" value="admin123" autocomplete="current-password"></label>
+    <button class="btn primary" style="width:100%" onclick="login()">Sign in</button>
+    <div id="lErr" class="err"></div>
+    <p class="tag" style="margin-top:16px">Seeded: admin@indubaicity.com / admin123 · inspector@indubaicity.com / insp1234 · finance@indubaicity.com / fin12345</p>
+  </div>
+</div>
+
+<div id="appWrap" class="app hidden">
+  <aside class="side">
+    <div class="brand"><span class="dot">B</span> BuyBack</div>
+    <button class="nav on" data-tab="dashboard">Dashboard</button>
+    <button class="nav" data-tab="orders">Orders</button>
+    <button class="nav" data-tab="inventory">Inventory</button>
+    <button class="nav" data-tab="prices">Price master</button>
+    <button class="nav" data-tab="reports">Reports</button>
+    <button class="nav" data-tab="settings">Settings</button>
+    <button class="nav" data-tab="audit">Audit log</button>
+    <div style="flex:1"></div>
+    <div style="padding:10px 12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)">
+      <div id="whoami" style="margin-bottom:8px"></div>
+      <button class="btn sm ghost" style="width:100%" onclick="logout()">Sign out</button>
+    </div>
+  </aside>
+  <main class="main">
+    <div class="topbar">
+      <div><h1 id="pageTitle" style="font-size:22px">Dashboard</h1>
+        <div class="tagline" id="pageSub"></div></div>
+      <div class="row">
+        <span class="badge info" id="curBadge">—</span>
+        <button class="btn sm" onclick="render()">Refresh</button>
+      </div>
+    </div>
+    <div id="view"></div>
+  </main>
+</div>
+
+<script src="/assets/admin.js"></script>
+</body>
+</html>

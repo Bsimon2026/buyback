@@ -1,0 +1,11 @@
+{
+  "name": "buyback-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Mobile & laptop buyback platform: customer quote flow, inspection, offers, payments, inventory, repairs, resale P&L. Zero dependencies.",
+  "engines": { "node": ">=22.5" },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node scripts/e2e.mjs"
+  }
+}

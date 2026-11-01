@@ -1,0 +1,32 @@
+/* long-form legal pages */
+.legal{background:var(--paper)}
+.legal-top{border-bottom:1px solid var(--ink)}
+.legal-top .wrap{display:flex;align-items:center;justify-content:space-between;height:70px}
+.legal-hero{border-bottom:1px solid var(--rule);padding:54px 0 40px}
+.legal-hero h1{font-size:clamp(30px,4vw,52px);letter-spacing:-.045em;line-height:.98;max-width:22ch;margin-top:18px}
+.legal-hero p{margin-top:16px;color:var(--muted);font-size:15.5px;max-width:64ch}
+.legal-body{display:grid;grid-template-columns:250px 1fr;gap:56px;padding:48px 0 80px;align-items:start}
+@media(max-width:900px){.legal-body{grid-template-columns:1fr;gap:24px;padding:32px 0 60px}}
+.toc{position:sticky;top:88px;border-top:1px solid var(--ink);padding-top:16px}
+.toc a{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muted);padding:5px 0;
+  border-bottom:1px solid var(--rule)}
+.toc a:hover{color:var(--ink)}
+.toc span{display:block;margin-bottom:10px}
+.legal-text{max-width:78ch;counter-reset:sec}
+.legal-text section{padding-bottom:34px;margin-bottom:34px;border-bottom:1px solid var(--rule)}
+.legal-text section:last-child{border-bottom:0;margin-bottom:0}
+.legal-text h2{font-size:20px;letter-spacing:-.02em;margin-bottom:12px;display:grid;grid-template-columns:36px 1fr;gap:12px}
+.legal-text h2 i{font-family:var(--mono);font-size:11px;font-style:normal;color:var(--red);letter-spacing:.08em;padding-top:5px}
+.legal-text h3{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:0;margin:18px 0 8px}
+.legal-text p{font-size:15px;line-height:1.65;color:var(--ink-3);margin-bottom:12px}
+.legal-text ul{margin:0 0 14px;padding-left:20px}
+.legal-text li{font-size:15px;line-height:1.65;color:var(--ink-3);margin-bottom:7px}
+.legal-text strong{font-weight:600;color:var(--ink)}
+.legal-text .box{border:1px solid var(--rule);background:var(--paper-2);padding:16px 18px;border-radius:2px;margin:16px 0}
+.legal-text .box p:last-child{margin-bottom:0}
+.entity{font-family:var(--mono);font-size:12.5px;line-height:2;color:var(--ink-3);border-top:1px solid var(--ink);
+  padding-top:14px;margin-top:14px}
+.entity b{font-weight:600;color:var(--ink)}
+.rtl{display:block;direction:rtl;text-align:right;font-size:14px}
+.legal-foot{border-top:1px solid var(--rule);padding:26px 0 40px;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.legal-foot a{color:var(--ink);border-bottom:1px solid var(--rule)}
