@@ -115,6 +115,33 @@ function collectPrices(brands) {
   return out;
 }
 
+/* The price list is one pool, filtered by a chip in the landing markup.
+   Filtering happens in place so the rows can carry their own transitions. */
+let priceFilterCat = 'all';
+let featuredPool = [];
+
+function paintPrices() {
+  const grid = $('priceGrid');
+  if (!grid) return;
+  const list = featuredPool.filter((f) => priceFilterCat === 'all' || f.category === priceFilterCat);
+  grid.innerHTML = list.length ? list.map((f) => `
+    <button class="l-row">
+      <span class="name">${esc(f.brand)} ${esc(f.model)}</span>
+      <span class="var">${esc(f.variant)}</span>
+      <span class="amt">${esc(f.basePrice.formatted)}</span>
+      <span class="go">Quote &rarr;</span>
+    </button>`).join('')
+    : `<p class="ledger-note">No devices in this list right now — ask us for a quote on any model.</p>`;
+  grid.querySelectorAll('.l-row').forEach((el, i) => {
+    el.addEventListener('click', () => startFromPrice(list[i]));
+  });
+}
+
+window.applyPriceFilter = function (f) {
+  priceFilterCat = f === 'mobile' || f === 'laptop' ? f : 'all';
+  paintPrices();
+};
+
 async function renderFeatured() {
   const grid = $('priceGrid'), tape = $('tapeRows');
   if (!grid) return;
@@ -136,13 +163,6 @@ async function renderFeatured() {
   if ($('heroPaid') && topPhone) $('heroPaid').textContent = topPhone.basePrice.formatted;
   if ($('cashFigure') && topAny) $('cashFigure').textContent = topAny.basePrice.formatted;
 
-  grid.innerHTML = pool.slice(0, 8).map((f, i) => `
-    <button class="l-row" data-fi="${i}">
-      <span class="name">${esc(f.brand)} ${esc(f.model)}</span>
-      <span class="var">${esc(f.variant)}</span>
-      <span class="amt">${esc(f.basePrice.formatted)}</span>
-      <span class="go">Quote &rarr;</span>
-    </button>`).join('');
   if (tape) {
     tape.innerHTML = pool.slice(0, 5).map((f) => `
       <div class="tape-row">
@@ -150,9 +170,9 @@ async function renderFeatured() {
         <span class="val">${esc(f.basePrice.formatted)}</span>
       </div>`).join('');
   }
-  grid.querySelectorAll('.l-row').forEach((el) => {
-    el.addEventListener('click', () => startFromPrice(pool[Number(el.dataset.fi)]));
-  });
+  featuredPool = [...pool, ...all.filter((x) => !pool.includes(x))
+    .sort((a, b) => b.basePrice.minor - a.basePrice.minor)].slice(0, 12);
+  paintPrices();
   renderFeatured.pool = pool;
 }
 
