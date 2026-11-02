@@ -636,11 +636,9 @@ async function handle(req, res, url, body, ip, auth) {
                VALUES (?,?,?,?,?,?)`, v.id, minor, code, now(), a.id, `currency conversion from ${old} @ ${rate}`);
           converted++;
         }
-        for (const o of all('SELECT o.id, o.adj_value, o.adj_kind FROM question_options o')) {
-          if (o.adj_kind !== 'flat') continue;
-          const raw = money.toMinor(money.toMajor(o.adj_value, old) * rate, code);
-          run('UPDATE question_options SET adj_value = ? WHERE id = ?', money.roundToStep(raw, code, 1), o.id);
-        }
+        // question_options are NOT rewritten: each row carries its own currency and is converted
+        // at quote time. Rewriting them here rounded twice (old→new→old) and permanently drifted
+        // the deductions — a AED3,000 screen deduction came back as AED3,010.
         run('INSERT INTO fx_rates (base_code,quote_code,rate,as_of) VALUES (?,?,?,?)', code, old, 1 / rate, now());
         run('INSERT INTO fx_rates (base_code,quote_code,rate,as_of) VALUES (?,?,?,?)', old, code, rate, now());
       }
@@ -678,8 +676,9 @@ async function handle(req, res, url, body, ip, auth) {
           q.code, category, q.label, q.section || 'cosmetic', Number(q.sort) || 99);
         const qid = Number(rq.lastInsertRowid);
         q.options.forEach((o, i) => run(
-          `INSERT INTO question_options (question_id,code,label,adj_kind,adj_value,grade,sort) VALUES (?,?,?,?,?,?,?)`,
-          qid, o.code, o.label, o.adjKind || 'flat', Math.round(Number(o.adjValue) || 0), o.grade || null, i));
+          `INSERT INTO question_options (question_id,code,label,adj_kind,adj_value,currency,grade,sort) VALUES (?,?,?,?,?,?,?,?)`,
+          qid, o.code, o.label, o.adjKind || 'flat', Math.round(Number(o.adjValue) || 0),
+          o.currency || getSetting('base_currency'), o.grade || null, i));
         audit('questions', String(qid), 'create', 'code', null, q.code, 'added from admin', a.id, a.name, ip);
         created.push(q.code);
       }

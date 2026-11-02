@@ -1,6 +1,6 @@
 {
   "source": "https://revibe.me/collections/refurbished-iphones-uae/products.json?limit=250",
-  "fetchedAt": "2026-11-02T12:06:28.668Z",
+  "fetchedAt": "2026-11-02T13:40:01.794Z",
   "rule": {
     "floorAED": 150,
     "percent": 20,
@@ -18,9 +18,9 @@
     {
       "model": "Apple iPhone 13",
       "variant": "128GB",
-      "retail": 1039,
-      "discount": 208,
-      "buy": 830,
+      "retail": 1049,
+      "discount": 210,
+      "buy": 840,
       "colours": 5
     },
     {

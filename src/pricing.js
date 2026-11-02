@@ -73,10 +73,12 @@ function valuate(variantId, category, answers = {}, opts = {}) {
     if (chosen === undefined || chosen === null || chosen === '') { missing.push(q.code); continue; }
     const opt = q.options.find((o) => o.code === chosen);
     if (!opt) { const e = new Error(`Invalid option "${chosen}" for question "${q.code}"`); e.status = 400; throw e; }
+    // percentage deductions are rounded to whole dirhams — a customer should never read "-AED76.80"
     let amount = opt.adj_kind === 'pct'
-      ? Math.round(baseDisp * (opt.adj_value / 10000))
+      ? money.roundToStep(Math.round(baseDisp * (opt.adj_value / 10000)), settings.base, 1)
       : opt.adj_value;
-    if (opt.adj_kind === 'flat') amount = toDisplay(opt.adj_value, baseCur, settings.base).minor;
+    // a flat adjustment is money in the currency it was entered in — convert it, never rewrite it
+    if (opt.adj_kind === 'flat') amount = toDisplay(opt.adj_value, opt.currency || baseCur, settings.base).minor;
     delta += amount;
     if (opt.grade && GRADE_ORDER.indexOf(opt.grade) > GRADE_ORDER.indexOf(worstGrade || 'A')) worstGrade = opt.grade;
     adjustments.push({

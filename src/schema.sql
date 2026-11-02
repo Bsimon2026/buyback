@@ -121,7 +121,9 @@ CREATE TABLE IF NOT EXISTS question_options (
   code TEXT NOT NULL,
   label TEXT NOT NULL,
   adj_kind TEXT NOT NULL DEFAULT 'flat',   -- flat|pct
-  adj_value INTEGER NOT NULL DEFAULT 0,    -- flat: minor units | pct: basis points (negative = deduction)
+  adj_value INTEGER NOT NULL DEFAULT 0,    -- flat: minor units OF adj_currency | pct: basis points (negative = deduction)
+  currency TEXT NOT NULL DEFAULT 'AED',    -- the currency adj_value is expressed in; converted to the display
+                                           -- currency at quote time, never rewritten (a rewrite drifts on round-trip)
   grade TEXT,                              -- optional inventory grade hint (A/B/C/D)
   sort INTEGER NOT NULL DEFAULT 0,
   UNIQUE(question_id, code)

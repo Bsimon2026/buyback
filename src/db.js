@@ -70,6 +70,9 @@ ensureColumn('sales', 'vat_minor', 'INTEGER NOT NULL DEFAULT 0');
 ensureColumn('sales', 'vat_rate_bp', 'INTEGER NOT NULL DEFAULT 0');
 ensureColumn('sales', 'buyer_trn', 'TEXT');
 ensureColumn('sales', 'payment_method', "TEXT NOT NULL DEFAULT 'cash'");
+// question adjustments are money: they must say which currency they are in
+ensureColumn('question_options', 'currency', "TEXT NOT NULL DEFAULT ''");
+run("UPDATE question_options SET currency = ? WHERE currency IS NULL OR currency = ''", getSetting('base_currency'));
 ensureColumn('buyback_orders', 'data_handling', "TEXT NOT NULL DEFAULT 'reuse'");
 ensureColumn('buyback_orders', 'sanitised_at', 'TEXT');
 ensureColumn('buyback_orders', 'sanitisation_ref', 'TEXT');
@@ -278,8 +281,8 @@ function seed() {
       q.code, 'mobile', q.label, q.section, q.sort);
     const qid = Number(rq.lastInsertRowid);
     q.options.forEach((o, i) => run(
-      `INSERT INTO question_options (question_id,code,label,adj_kind,adj_value,grade,sort) VALUES (?,?,?,?,?,?,?)`,
-      qid, o.code, o.label, o.adjKind, o.adjValue, o.grade || null, i));
+      `INSERT INTO question_options (question_id,code,label,adj_kind,adj_value,currency,grade,sort) VALUES (?,?,?,?,?,?,?,?)`,
+      qid, o.code, o.label, o.adjKind, o.adjValue, getSetting('base_currency'), o.grade || null, i));
   }
 
   // questions — per category so the same code can carry different adjustments
@@ -291,9 +294,9 @@ function seed() {
       const qid = Number(q.lastInsertRowid);
       let os = 0;
       for (const [ocode, olabel, amountMinor, grade] of options) {
-        run(`INSERT INTO question_options (question_id,code,label,adj_kind,adj_value,grade,sort)
-             VALUES (?,?,?,?,?,?,?)`,
-          qid, ocode, olabel, 'flat', Math.round(amountMinor), grade, os++);
+        run(`INSERT INTO question_options (question_id,code,label,adj_kind,adj_value,currency,grade,sort)
+             VALUES (?,?,?,?,?,?,?,?)`,
+          qid, ocode, olabel, 'flat', Math.round(amountMinor), getSetting('base_currency'), grade, os++);
       }
     }
   }

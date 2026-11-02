@@ -24,6 +24,11 @@
     return Math.round(minor / step) * step;
   }
 
+  // condition adjustments round to a whole unit of the display currency (AED77, never AED76.80)
+  function roundToUnit(minor) {
+    return Math.round(minor / FACTOR) * FACTOR;
+  }
+
   function fmt(minor) {
     var v = minor / FACTOR;
     var s = Math.abs(v).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
@@ -43,7 +48,7 @@
       var opt = null;
       for (var i = 0; i < q.options.length; i++) if (q.options[i].code === chosen) { opt = q.options[i]; break; }
       if (!opt) { var e = new Error('Invalid option "' + chosen + '" for question "' + q.code + '"'); e.status = 400; throw e; }
-      var amount = opt.adj_kind === 'pct' ? Math.round(baseMinor * (opt.adj_value / 10000)) : opt.adj_value;
+      var amount = opt.adj_kind === 'pct' ? roundToUnit(Math.round(baseMinor * (opt.adj_value / 10000))) : opt.adj_value;
       delta += amount;
       if (opt.grade && GRADE_ORDER.indexOf(opt.grade) > GRADE_ORDER.indexOf(worst || 'A')) worst = opt.grade;
       adjustments.push({
