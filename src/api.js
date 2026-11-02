@@ -664,10 +664,54 @@ async function handle(req, res, url, body, ip, auth) {
     if (sub === 'users' && m === 'GET') { need('super_admin'); return all('SELECT id,name,email,role,branch_id,active FROM users'); }
     if (sub === 'users' && m === 'POST') {
       const a = need('super_admin');
+      const pw = body.password ? String(body.password) : '123123';
+      if (pw.length < 6) throw httpError(400, 'Password must be at least 6 characters');
+      if (one('SELECT id FROM users WHERE email = ?', String(body.email || '').toLowerCase())) {
+        throw httpError(409, 'That email already has an account');
+      }
       const r = run('INSERT INTO users (name,email,role,branch_id,password_hash) VALUES (?,?,?,?,?)',
-        body.name, String(body.email).toLowerCase(), body.role, body.branchId || null, hashPassword(body.password || 'changeme123'));
+        body.name, String(body.email).toLowerCase(), body.role, body.branchId || null, hashPassword(pw));
       audit('users', String(r.lastInsertRowid), 'create', 'role', null, body.role, null, a.id, a.name, ip);
       return { ok: true, id: Number(r.lastInsertRowid) };
+    }
+    // Staff management: rename, change role, disable, reset password. Every change is audited;
+    // the password itself never reaches the audit log.
+    if (sub === 'users' && seg[3] && m === 'PATCH') {
+      const a = need('super_admin');
+      const id = Number(seg[3]);
+      const u = one('SELECT * FROM users WHERE id = ?', id);
+      if (!u) throw httpError(404, 'Unknown user');
+      const reason = body.reason ? String(body.reason) : null;
+
+      if (body.name !== undefined && String(body.name).trim()) {
+        run('UPDATE users SET name = ? WHERE id = ?', String(body.name).trim(), id);
+        audit('users', String(id), 'update', 'name', u.name, body.name, reason, a.id, a.name, ip);
+      }
+      if (body.role !== undefined) {
+        if (!ROLES_ALL.includes(body.role)) throw httpError(400, 'Unknown role');
+        if (id === a.id && body.role !== 'super_admin') {
+          throw httpError(400, 'You cannot drop your own super admin role — another admin must do it');
+        }
+        run('UPDATE users SET role = ? WHERE id = ?', body.role, id);
+        audit('users', String(id), 'update', 'role', u.role, body.role, reason, a.id, a.name, ip);
+      }
+      if (body.active !== undefined) {
+        const active = body.active ? 1 : 0;
+        if (id === a.id && !active) throw httpError(400, 'You cannot disable your own account');
+        if (!active && u.role === 'super_admin'
+            && one("SELECT count(*) n FROM users WHERE role = 'super_admin' AND active = 1").n <= 1) {
+          throw httpError(400, 'This is the only active super admin — promote someone else first');
+        }
+        run('UPDATE users SET active = ? WHERE id = ?', active, id);
+        audit('users', String(id), 'update', 'active', u.active, active, reason, a.id, a.name, ip);
+      }
+      if (body.password) {
+        const pw = String(body.password);
+        if (pw.length < 6) throw httpError(400, 'Password must be at least 6 characters');
+        run('UPDATE users SET password_hash = ? WHERE id = ?', hashPassword(pw), id);
+        audit('users', String(id), 'password_reset', null, null, null, reason, a.id, a.name, ip);
+      }
+      return { ok: true, user: one('SELECT id,name,email,role,branch_id,active FROM users WHERE id = ?', id) };
     }
     if (sub === 'reports' && seg[3] === 'cash') {
       need(...canFinance);

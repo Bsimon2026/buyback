@@ -66,6 +66,7 @@ const TITLES = {
   prices: ['Price master', 'Base buy prices. Every change is versioned and audited.'],
   reports: ['Reports', 'Purchases, sales and gross profit by period'],
   settings: ['Settings', 'Currency, policies and staff'],
+  users: ['Users', 'Staff accounts, roles and passwords. Every change is audited.'],
   audit: ['Audit log', 'Who changed what, when — the fraud paper trail'],
 };
 
@@ -81,6 +82,7 @@ async function render() {
     if (TAB === 'prices') return await prices();
     if (TAB === 'reports') return await reports();
     if (TAB === 'settings') return await settings();
+    if (TAB === 'users') return await users();
     if (TAB === 'audit') return await auditLog();
   } catch (e) {
     $('view').innerHTML = `<div class="card panel"><div class="err">${esc(e.message)}</div></div>`;
@@ -689,6 +691,116 @@ async function savePolicies() {
     } });
     toast('Policies saved'); render();
   } catch (e) { toast(e.message, true); }
+}
+
+// ---------- users ----------
+const ROLES = [
+  ['super_admin', 'Super admin — everything'],
+  ['ops_manager', 'Ops manager — orders and inspections'],
+  ['branch_manager', 'Branch manager — own branch'],
+  ['inspector', 'Inspector — inspection only'],
+  ['finance', 'Finance — payments and reports'],
+  ['sales', 'Sales — resale inventory'],
+];
+
+async function users() {
+  const list = await api('/api/admin/users');
+  const selfId = ME && ME.id;
+
+  const rows = list.map((u) => `
+    <tr>
+      <td><b>${esc(u.name)}</b>${u.id === selfId ? ' <span class="badge info">you</span>' : ''}</td>
+      <td class="dim">${esc(u.email)}</td>
+      <td>
+        <select onchange="changeRole(${u.id}, this.value)" ${u.id === selfId ? 'disabled title="You cannot change your own role"' : ''}>
+          ${ROLES.map(([v, l]) => `<option value="${v}" ${u.role === v ? 'selected' : ''}>${esc(l)}</option>`).join('')}
+        </select>
+      </td>
+      <td>${u.active ? '<span class="badge ok">active</span>' : '<span class="badge warn">disabled</span>'}</td>
+      <td>
+        <div style="display:flex;gap:6px;align-items:center;white-space:nowrap">
+          <input id="pw_${u.id}" type="password" placeholder="new password"
+                 style="flex:1;min-width:104px;max-width:170px;margin:0">
+          <button class="btn sm" style="flex:none" onclick="resetPw(${u.id})">Set</button>
+          <button class="btn sm ghost" style="flex:none" onclick="toggleUser(${u.id}, ${u.active ? 0 : 1})" ${u.id === selfId ? 'disabled' : ''}>
+            ${u.active ? 'Disable' : 'Enable'}
+          </button>
+        </div>
+      </td>
+    </tr>`).join('');
+
+  $('view').innerHTML = `
+    <div class="card panel">
+      <h2 style="font-size:16px;margin-bottom:6px">Add a staff account</h2>
+      <p class="muted" style="font-size:13.5px;margin-bottom:14px">
+        New accounts start with the password <b>123123</b>. Set a real one before handing the login over.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;align-items:end">
+        <label class="field" style="margin:0"><span>Name</span><input id="uName" placeholder="Rahul Inspector"></label>
+        <label class="field" style="margin:0"><span>Email</span><input id="uEmail" placeholder="name@indubaicity.com"></label>
+        <label class="field" style="margin:0"><span>Role</span>
+          <select id="uRole">${ROLES.map(([v, l]) => `<option value="${v}">${esc(l)}</option>`).join('')}</select>
+        </label>
+        <label class="field" style="margin:0"><span>Password</span><input id="uPass" value="123123"></label>
+        <button class="btn" style="height:42px" onclick="addUser()">Create account</button>
+      </div>
+      <div id="uErr" class="err" style="margin-top:10px"></div>
+    </div>
+
+    <div class="card tbl-wrap" style="margin-top:18px">
+      <table>
+        <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th style="min-width:300px">Password / access</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+
+    <p class="muted" style="font-size:13px;margin-top:14px">
+      Disabling an account blocks sign-in immediately. Every change here is written to the audit log with who did it,
+      when, and the old and new value — the password itself is never recorded.</p>`;
+}
+
+async function addUser() {
+  const err = $('uErr');
+  err.textContent = '';
+  const body = {
+    name: $('uName').value.trim(),
+    email: $('uEmail').value.trim(),
+    role: $('uRole').value,
+    password: $('uPass').value || '123123',
+  };
+  if (!body.name || !body.email) { err.textContent = 'Name and email are required.'; return; }
+  try {
+    await api('/api/admin/users', { method: 'POST', body });
+    toast('Account created');
+    render();
+  } catch (e) { err.textContent = e.message; }
+}
+
+async function resetPw(id) {
+  const input = $('pw_' + id);
+  const password = (input.value || '').trim();
+  if (password.length < 6) { toast('Password must be at least 6 characters', true); return; }
+  try {
+    await api('/api/admin/users/' + id, { method: 'PATCH', body: { password, reason: 'reset from Users panel' } });
+    input.value = '';
+    toast('Password changed');
+  } catch (e) { toast(e.message, true); }
+}
+
+async function toggleUser(id, active) {
+  try {
+    await api('/api/admin/users/' + id, { method: 'PATCH',
+      body: { active: !!active, reason: active ? 'enabled from Users panel' : 'disabled from Users panel' } });
+    toast(active ? 'Account enabled' : 'Account disabled');
+    render();
+  } catch (e) { toast(e.message, true); }
+}
+
+async function changeRole(id, role) {
+  try {
+    await api('/api/admin/users/' + id, { method: 'PATCH', body: { role, reason: 'role changed from Users panel' } });
+    toast('Role updated');
+    render();
+  } catch (e) { toast(e.message, true); render(); }
 }
 
 // ---------- audit ----------
