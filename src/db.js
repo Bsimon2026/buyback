@@ -208,6 +208,44 @@ const SEED_DEVICES = [
   ['mobile', 'Apple', 'iPhone 13', '128GB', 820],
   ['mobile', 'Apple', 'iPhone 13', '256GB', 1150],
   ['mobile', 'Apple', 'iPhone 12', '128GB', 690],
+
+  // iPhone ladder from 15 up, priced from the Revibe refurbished retail feed with the
+  // client's rule: buy = retail − max(AED 150, 20% of retail), to the nearest AED 10,
+  // where retail is the median "Good" grade across colours for that exact model + storage.
+  // Regenerate with `node scripts/plan-iphone-catalogue.mjs`; snapshot in data/prices/revibe-catalogue.json.
+  // Tiers whose source price was self-contradictory are deliberately absent — set those by hand if needed.
+  ['mobile', 'Apple', 'iPhone 15', '512GB', 1980],
+  ['mobile', 'Apple', 'iPhone 15 Plus', '128GB', 1330],
+  ['mobile', 'Apple', 'iPhone 15 Plus', '256GB', 1820],
+  ['mobile', 'Apple', 'iPhone 15 Pro', '128GB', 1490],
+  ['mobile', 'Apple', 'iPhone 15 Pro', '256GB', 1730],
+  ['mobile', 'Apple', 'iPhone 15 Pro', '512GB', 2060],
+  ['mobile', 'Apple', 'iPhone 15 Pro', '1TB', 2460],
+  ['mobile', 'Apple', 'iPhone 15 Pro Max', '256GB', 1760],
+  ['mobile', 'Apple', 'iPhone 15 Pro Max', '512GB', 2220],
+  ['mobile', 'Apple', 'iPhone 15 Pro Max', '1TB', 2650],
+  ['mobile', 'Apple', 'iPhone 16', '128GB', 1720],
+  ['mobile', 'Apple', 'iPhone 16', '256GB', 2050],
+  ['mobile', 'Apple', 'iPhone 16', '512GB', 2520],
+  ['mobile', 'Apple', 'iPhone 16 Plus', '128GB', 2080],
+  ['mobile', 'Apple', 'iPhone 16 Plus', '256GB', 2490],
+  ['mobile', 'Apple', 'iPhone 16 Pro', '128GB', 2080],
+  ['mobile', 'Apple', 'iPhone 16 Pro', '256GB', 2310],
+  ['mobile', 'Apple', 'iPhone 16 Pro', '512GB', 3250],
+  ['mobile', 'Apple', 'iPhone 16 Pro', '1TB', 3640],
+  ['mobile', 'Apple', 'iPhone 16 Pro Max', '256GB', 2380],
+  ['mobile', 'Apple', 'iPhone 16 Pro Max', '512GB', 2740],
+  ['mobile', 'Apple', 'iPhone 16 Pro Max', '1TB', 3320],
+  ['mobile', 'Apple', 'iPhone 17', '256GB', 2430],
+  ['mobile', 'Apple', 'iPhone 17', '512GB', 3140],
+  ['mobile', 'Apple', 'iPhone 17 Pro', '256GB', 2900],
+  ['mobile', 'Apple', 'iPhone 17 Pro', '512GB', 3150],
+  ['mobile', 'Apple', 'iPhone 17 Pro', '1TB', 3800],
+  ['mobile', 'Apple', 'iPhone 17 Pro Max', '256GB', 3020],
+  ['mobile', 'Apple', 'iPhone 17 Pro Max', '512GB', 3220],
+  ['mobile', 'Apple', 'iPhone 17 Pro Max', '1TB', 3330],
+  ['mobile', 'Apple', 'iPhone Air', '256GB', 2230],
+
   ['mobile', 'Samsung', 'Galaxy S24', '256GB', 1150],
   ['mobile', 'Samsung', 'Galaxy S23', '256GB', 1010],
   ['mobile', 'Samsung', 'Galaxy A54', '128GB', 710],
@@ -302,23 +340,47 @@ function seed() {
   }
 
   for (const [category, brand, model, variant, price] of SEED_DEVICES) {
-    const bs = slug(brand);
-    let b = one('SELECT id FROM device_brands WHERE category = ? AND slug = ?', category, bs);
-    if (!b) {
-      const r = run('INSERT INTO device_brands (category,name,slug) VALUES (?,?,?)', category, brand, bs);
-      b = { id: Number(r.lastInsertRowid) };
-    }
-    const ms = slug(model);
-    let m = one('SELECT id FROM device_models WHERE brand_id = ? AND slug = ?', b.id, ms);
-    if (!m) {
-      const r = run('INSERT INTO device_models (brand_id,name,slug) VALUES (?,?,?)', b.id, model, ms);
-      m = { id: Number(r.lastInsertRowid) };
-    }
-    const v = run('INSERT INTO device_variants (model_id,variant,base_price_minor,currency) VALUES (?,?,?,?)',
-      m.id, variant, Math.round(price * 100), getSetting('base_currency'));
-    run(`INSERT INTO device_prices (variant_id,base_price_minor,currency,effective_from,note)
-         VALUES (?,?,?,?,?)`, Number(v.lastInsertRowid), Math.round(price * 100), getSetting('base_currency'), now(), 'seed');
+    addDeviceRow(category, brand, model, variant, price);
   }
+}
+
+/* Adding a model to SEED_DEVICES does nothing for a database that is already
+   seeded — seed() returns early once users exist. This top-up runs once per
+   CATALOGUE_VERSION and only inserts variants that are missing, so an existing
+   installation (and the live one) picks up new models on the next restart
+   without touching prices anyone has edited. */
+const CATALOGUE_VERSION = 2;
+
+function addDeviceRow(category, brand, model, variant, price) {
+  const bs = slug(brand);
+  let b = one('SELECT id FROM device_brands WHERE category = ? AND slug = ?', category, bs);
+  if (!b) {
+    const r = run('INSERT INTO device_brands (category,name,slug) VALUES (?,?,?)', category, brand, bs);
+    b = { id: Number(r.lastInsertRowid) };
+  }
+  const ms = slug(model);
+  let m = one('SELECT id FROM device_models WHERE brand_id = ? AND slug = ?', b.id, ms);
+  if (!m) {
+    const r = run('INSERT INTO device_models (brand_id,name,slug) VALUES (?,?,?)', b.id, model, ms);
+    m = { id: Number(r.lastInsertRowid) };
+  }
+  if (one('SELECT id FROM device_variants WHERE model_id = ? AND variant = ?', m.id, variant)) return false;
+  const v = run('INSERT INTO device_variants (model_id,variant,base_price_minor,currency) VALUES (?,?,?,?)',
+    m.id, variant, Math.round(price * 100), getSetting('base_currency'));
+  run(`INSERT INTO device_prices (variant_id,base_price_minor,currency,effective_from,note)
+       VALUES (?,?,?,?,?)`, Number(v.lastInsertRowid), Math.round(price * 100), getSetting('base_currency'), now(), 'seed');
+  return true;
+}
+
+function ensureCatalogue() {
+  const current = Number(getSetting('catalogue_version') || 1);
+  if (current >= CATALOGUE_VERSION) return;
+  let added = 0;
+  for (const [category, brand, model, variant, price] of SEED_DEVICES) {
+    if (addDeviceRow(category, brand, model, variant, price)) added++;
+  }
+  setSetting('catalogue_version', String(CATALOGUE_VERSION), 'catalogue top-up');
+  if (added) console.log(`catalogue top-up v${CATALOGUE_VERSION}: ${added} variant(s) added`);
 }
 
 function slug(s) {
@@ -326,6 +388,7 @@ function slug(s) {
 }
 
 seed();
+ensureCatalogue();
 
 module.exports = {
   db, one, all, run, now, uid, audit,

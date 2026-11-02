@@ -1,0 +1,309 @@
+{
+  "source": "https://revibe.me/collections/refurbished-iphones-uae/products.json?limit=250",
+  "fetchedAt": "2026-11-02T15:13:46.865Z",
+  "rule": {
+    "floorAED": 150,
+    "percent": 20,
+    "roundTo": 10,
+    "maxTierJump": 1.45,
+    "goodVsNew": 0.02
+  },
+  "models": [
+    {
+      "model": "iPhone 15",
+      "storage": "128GB",
+      "retail": 1599,
+      "discount": 320,
+      "buy": 1280,
+      "colours": 5
+    },
+    {
+      "model": "iPhone 15",
+      "storage": "256GB",
+      "retail": 1879,
+      "discount": 376,
+      "buy": 1500,
+      "colours": 5
+    },
+    {
+      "model": "iPhone 15",
+      "storage": "512GB",
+      "retail": 2469,
+      "discount": 494,
+      "buy": 1980,
+      "colours": 5
+    },
+    {
+      "model": "iPhone 15 Plus",
+      "storage": "128GB",
+      "retail": 1659,
+      "discount": 332,
+      "buy": 1330,
+      "colours": 5
+    },
+    {
+      "model": "iPhone 15 Plus",
+      "storage": "256GB",
+      "retail": 2279,
+      "discount": 456,
+      "buy": 1820,
+      "colours": 5
+    },
+    {
+      "model": "iPhone 15 Pro",
+      "storage": "128GB",
+      "retail": 1864,
+      "discount": 373,
+      "buy": 1490,
+      "colours": 4
+    },
+    {
+      "model": "iPhone 15 Pro",
+      "storage": "256GB",
+      "retail": 2164,
+      "discount": 433,
+      "buy": 1730,
+      "colours": 4
+    },
+    {
+      "model": "iPhone 15 Pro",
+      "storage": "512GB",
+      "retail": 2574,
+      "discount": 515,
+      "buy": 2060,
+      "colours": 4
+    },
+    {
+      "model": "iPhone 15 Pro",
+      "storage": "1TB",
+      "retail": 3079,
+      "discount": 616,
+      "buy": 2460,
+      "colours": 4
+    },
+    {
+      "model": "iPhone 15 Pro Max",
+      "storage": "256GB",
+      "retail": 2204,
+      "discount": 441,
+      "buy": 1760,
+      "colours": 4
+    },
+    {
+      "model": "iPhone 15 Pro Max",
+      "storage": "512GB",
+      "retail": 2779,
+      "discount": 556,
+      "buy": 2220,
+      "colours": 4
+    },
+    {
+      "model": "iPhone 15 Pro Max",
+      "storage": "1TB",
+      "retail": 3309,
+      "discount": 662,
+      "buy": 2650,
+      "colours": 4
+    },
+    {
+      "model": "iPhone 16",
+      "storage": "128GB",
+      "retail": 2149,
+      "discount": 430,
+      "buy": 1720,
+      "colours": 5
+    },
+    {
+      "model": "iPhone 16",
+      "storage": "256GB",
+      "retail": 2559,
+      "discount": 512,
+      "buy": 2050,
+      "colours": 5
+    },
+    {
+      "model": "iPhone 16",
+      "storage": "512GB",
+      "retail": 3149,
+      "discount": 630,
+      "buy": 2520,
+      "colours": 5
+    },
+    {
+      "model": "iPhone 16 Plus",
+      "storage": "128GB",
+      "retail": 2599,
+      "discount": 520,
+      "buy": 2080,
+      "colours": 5
+    },
+    {
+      "model": "iPhone 16 Plus",
+      "storage": "256GB",
+      "retail": 3109,
+      "discount": 622,
+      "buy": 2490,
+      "colours": 5
+    },
+    {
+      "model": "iPhone 16 Pro",
+      "storage": "128GB",
+      "retail": 2604,
+      "discount": 521,
+      "buy": 2080,
+      "colours": 4
+    },
+    {
+      "model": "iPhone 16 Pro",
+      "storage": "256GB",
+      "retail": 2884,
+      "discount": 577,
+      "buy": 2310,
+      "colours": 4
+    },
+    {
+      "model": "iPhone 16 Pro",
+      "storage": "512GB",
+      "retail": 4064,
+      "discount": 813,
+      "buy": 3250,
+      "colours": 4
+    },
+    {
+      "model": "iPhone 16 Pro",
+      "storage": "1TB",
+      "retail": 4549,
+      "discount": 910,
+      "buy": 3640,
+      "colours": 4
+    },
+    {
+      "model": "iPhone 16 Pro Max",
+      "storage": "256GB",
+      "retail": 2969,
+      "discount": 594,
+      "buy": 2380,
+      "colours": 4
+    },
+    {
+      "model": "iPhone 16 Pro Max",
+      "storage": "512GB",
+      "retail": 3429,
+      "discount": 686,
+      "buy": 2740,
+      "colours": 4
+    },
+    {
+      "model": "iPhone 16 Pro Max",
+      "storage": "1TB",
+      "retail": 4154,
+      "discount": 831,
+      "buy": 3320,
+      "colours": 4
+    },
+    {
+      "model": "iPhone 17",
+      "storage": "256GB",
+      "retail": 3039,
+      "discount": 608,
+      "buy": 2430,
+      "colours": 5
+    },
+    {
+      "model": "iPhone 17",
+      "storage": "512GB",
+      "retail": 3929,
+      "discount": 786,
+      "buy": 3140,
+      "colours": 5
+    },
+    {
+      "model": "iPhone 17 Pro",
+      "storage": "256GB",
+      "retail": 3629,
+      "discount": 726,
+      "buy": 2900,
+      "colours": 3
+    },
+    {
+      "model": "iPhone 17 Pro",
+      "storage": "512GB",
+      "retail": 3939,
+      "discount": 788,
+      "buy": 3150,
+      "colours": 3
+    },
+    {
+      "model": "iPhone 17 Pro",
+      "storage": "1TB",
+      "retail": 4749,
+      "discount": 950,
+      "buy": 3800,
+      "colours": 3
+    },
+    {
+      "model": "iPhone 17 Pro Max",
+      "storage": "256GB",
+      "retail": 3779,
+      "discount": 756,
+      "buy": 3020,
+      "colours": 3
+    },
+    {
+      "model": "iPhone 17 Pro Max",
+      "storage": "512GB",
+      "retail": 4019,
+      "discount": 804,
+      "buy": 3220,
+      "colours": 3
+    },
+    {
+      "model": "iPhone 17 Pro Max",
+      "storage": "1TB",
+      "retail": 4159,
+      "discount": 832,
+      "buy": 3330,
+      "colours": 3
+    },
+    {
+      "model": "iPhone Air",
+      "storage": "256GB",
+      "retail": 2789,
+      "discount": 558,
+      "buy": 2230,
+      "colours": 4
+    }
+  ],
+  "excluded": [
+    {
+      "model": "iPhone 16 Plus",
+      "storage": "512GB",
+      "retail": 8959,
+      "why": "188% above the tier below (AED3109)"
+    },
+    {
+      "model": "iPhone 15 Plus",
+      "storage": "512GB",
+      "retail": 4079,
+      "why": "Good retail equals New retail (AED4069)"
+    },
+    {
+      "model": "iPhone 17 Pro Max",
+      "storage": "2TB",
+      "retail": 6099,
+      "why": "47% above the tier below (AED4159)"
+    },
+    {
+      "model": "iPhone Air",
+      "storage": "512GB",
+      "retail": 5339,
+      "why": "Good retail equals New retail (AED5339)"
+    },
+    {
+      "model": "iPhone Air",
+      "storage": "1TB",
+      "retail": 6939,
+      "why": "Good retail equals New retail (AED6939)"
+    }
+  ]
+}

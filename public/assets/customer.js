@@ -107,7 +107,7 @@ async function loadHeroPicker(category) {
 
 /* Marketing surfaces only advertise models whose buy price came from researched market data.
    The rest stay quotable in the flow, but we don't headline an unverified number. */
-const FEATURED = ['iPhone 15', 'iPhone 14', 'Galaxy S24', 'Galaxy S23', 'Pixel 8', 'iPhone 13', 'MacBook Air M2', 'XPS 13'];
+const FEATURED = ['iPhone 17 Pro Max', 'iPhone 17 Pro', 'iPhone 17', 'iPhone 16 Pro', 'iPhone 16', 'iPhone 15 Pro', 'Galaxy S24', 'MacBook Air M2'];
 
 function collectPrices(brands) {
   const out = [];
