@@ -31,10 +31,38 @@ public.**
 
 | Host | Works? | Notes |
 |---|---|---|
+| Hostinger Business / Cloud Startup and up | ✅ | Node.js web app in hPanel; **`DATA_DIR` must point outside the build folder** — see below |
 | Railway, Render, Fly.io, any VPS | ✅ | set `DATA_DIR=/data` and attach a volume |
 | cPanel → *Setup Node.js App* | ✅ | point the startup file at `server.js`; keep the app root outside `public_html` |
 | Shared hosting without Node | ❌ | it is not a static site |
 | Vercel, Netlify | ❌ | no persistent filesystem and no long-lived process; would need Postgres plus a serverless rewrite |
+
+### Hostinger specifics
+
+Node.js web apps run on Business and every Cloud plan. Node 22 and 24 are both offered — **choose 24**, which is
+what the test suite runs on. Settings:
+
+| Field | Value |
+|---|---|
+| Framework preset | Other |
+| Entry file | `server.js` |
+| Build command | *(empty — zero dependencies)* |
+| Output directory | *(empty)* |
+| Environment variable | `DATA_DIR=/home/uXXXXXXXX/persistent/buyback-data` |
+
+**The trap:** Hostinger keeps only the live build under `~/domains/{domain}/hbuilds/versions/{build-id}` and
+deletes the previous one on every deploy. A database written inside the app folder is destroyed by the next
+`git push`, silently — the site comes back up with an empty database. `DATA_DIR` must be an absolute path outside
+`~/domains/{domain}/`; the app creates it on first boot.
+
+Nightly backup via hPanel → Advanced → **Cron Jobs** (03:30 daily):
+
+```bash
+DATA_DIR=/home/uXXXXXXXX/persistent/buyback-data node ~/domains/indubaicity.com/hbuilds/current/nodejs/scripts/backup-db.mjs --keep 14
+```
+
+`backup-db.mjs` uses `VACUUM INTO`, so the copy is transactionally consistent even while the app is serving —
+never `cp` a live WAL database.
 
 **Persistent disk is not optional.** If the host wipes the filesystem on redeploy, every order, payment and
 inventory record goes with it. Mount a volume and point `DATA_DIR` at it.
