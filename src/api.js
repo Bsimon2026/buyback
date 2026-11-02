@@ -601,7 +601,7 @@ async function handle(req, res, url, body, ip, auth) {
       audit('device_variants', String(vid), 'create', 'base_price_minor', null, minor, null, a.id, a.name, ip);
       return { ok: true, variantId: vid };
     }
-    if (sub === 'questions') { need(...canOps); return questionsFor(q.category === 'laptop' ? 'laptop' : 'mobile'); }
+    if (sub === 'questions' && m === 'GET') { need(...canOps); return questionsFor(q.category === 'laptop' ? 'laptop' : 'mobile'); }
 
     if (sub === 'settings' && m === 'GET') { need(...ROLES_ALL); return getSettings(); }
     if (sub === 'settings' && m === 'POST') {
@@ -662,6 +662,29 @@ async function handle(req, res, url, body, ip, auth) {
     if (sub === 'audit') { need('super_admin', 'ops_manager', 'finance'); return all(`SELECT * FROM audit_logs ORDER BY id DESC LIMIT ${Math.min(Number(q.limit) || 100, 300)}`); }
     if (sub === 'branches') { need(...callableRoles()); return all('SELECT * FROM branches ORDER BY id'); }
     if (sub === 'users' && m === 'GET') { need('super_admin'); return all('SELECT id,name,email,role,branch_id,active FROM users'); }
+    // Add condition questions to a live site without touching the database by hand.
+    // Idempotent: a question that already exists (same code + category) is skipped, never duplicated.
+    if (sub === 'questions' && m === 'POST') {
+      const a = need('super_admin');
+      const category = body.category || 'mobile';
+      const defs = Array.isArray(body.questions) ? body.questions : [body];
+      const created = [];
+      for (const q of defs) {
+        if (!q.code || !Array.isArray(q.options) || !q.options.length) {
+          throw httpError(400, 'Each question needs a code and at least one option');
+        }
+        if (one('SELECT id FROM questions WHERE code = ? AND category = ?', q.code, category)) continue;
+        const rq = run('INSERT INTO questions (code,category,label,section,sort) VALUES (?,?,?,?,?)',
+          q.code, category, q.label, q.section || 'cosmetic', Number(q.sort) || 99);
+        const qid = Number(rq.lastInsertRowid);
+        q.options.forEach((o, i) => run(
+          `INSERT INTO question_options (question_id,code,label,adj_kind,adj_value,grade,sort) VALUES (?,?,?,?,?,?,?)`,
+          qid, o.code, o.label, o.adjKind || 'flat', Math.round(Number(o.adjValue) || 0), o.grade || null, i));
+        audit('questions', String(qid), 'create', 'code', null, q.code, 'added from admin', a.id, a.name, ip);
+        created.push(q.code);
+      }
+      return { ok: true, created, skipped: defs.length - created.length };
+    }
     if (sub === 'users' && m === 'POST') {
       const a = need('super_admin');
       const pw = body.password ? String(body.password) : '123123';

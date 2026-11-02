@@ -19,6 +19,7 @@ async function call(path, { method = 'GET', body, token } = {}) {
 const goodPhone = {
   screen: 'minor', body: 'excellent', battery: '90plus', camera: 'working',
   speaker: 'working', faceid: 'working', charging: 'working', water: 'no', repairs: 'never',
+  frame: 'mint', backglass: 'intact',
 };
 
 // 1. platform config: AED is the base currency
@@ -50,7 +51,7 @@ ok(q2.data.estimate.minor >= floorMinor - 1, 'never quotes below the 15% floor',
 
 // 4. partial answers are flagged, not guessed
 const q3 = await call('/api/quote', { method: 'POST', body: { variantId: v128.id, category: 'mobile', answers: { screen: 'minor' } } });
-ok(q3.data.complete === false && q3.data.missingAnswers.length === 8, 'partial answers flagged', 'missing=' + q3.data.missingAnswers.length);
+ok(q3.data.complete === false && q3.data.missingAnswers.length === 10, 'partial answers flagged', 'missing=' + q3.data.missingAnswers.length);
 
 // 5. order creation + UAE fraud guards
 const imei = '356' + String(Date.now()).slice(-12);
@@ -92,13 +93,14 @@ ok(inspCurrency.status === 403, 'inspector cannot change currency', inspCurrency
 
 // 8. inspection: worse than declared
 const worse = { screen: 'heavy', body: 'dents', battery: '85to89', camera: 'working',
-  speaker: 'working', faceid: 'working', charging: 'working', water: 'no', repairs: 'never' };
+  speaker: 'working', faceid: 'working', charging: 'working', water: 'no', repairs: 'never',
+  frame: 'scuffs', backglass: 'scratched' };
 const insp = await call(`/api/admin/orders/${code}/inspection`, { method: 'POST', token: inspToken,
   body: { findings: worse, imeiVerified: true, notes: 'Heavy scratches confirmed' } });
 ok(insp.status === 200, 'inspection recorded', insp.data.error || '');
 const offered = insp.data.inspection.offers[0];
 ok(offered && offered.status === 'pending', 'final offer created', offered && offered.amount.formatted);
-ok(offered.amount.minor === 117000, 'offer recomputed from actual findings (AED1,170)', offered.amount.formatted);
+ok(offered.amount.minor === 112000, 'offer recomputed from actual findings (AED1,120)', offered.amount.formatted);
 ok(offered.amount.minor < q.data.estimate.minor, 'actual condition lowers the offer');
 ok(insp.data.inspection.order.status === 'offer_generated', 'order moved to offer_generated');
 
@@ -132,7 +134,7 @@ const stockId = pay.data.stockId;
 // 13. inventory economics with VAT: cost + repairs, list, sell
 const item0 = await call('/api/admin/inventory/' + stockId, { token });
 const costMinor = item0.data.cost.minor;
-ok(costMinor === 117000, 'stock cost equals the paid offer', item0.data.cost.formatted);
+ok(costMinor === 112000, 'stock cost equals the paid offer', item0.data.cost.formatted);
 const rep = await call(`/api/admin/inventory/${stockId}/repair`, { method: 'POST', token,
   body: { description: 'Screen replacement', items: [{ part: 'Screen', cost: 300 }, { part: 'Battery', cost: 120 }], complete: true } });
 ok(rep.data.repairCost.minor === 42000, 'repair cost summed', rep.data.repairCost.formatted);
@@ -163,7 +165,7 @@ await call('/api/admin/settings', { method: 'POST', token,
 const receiptRes = await fetch(`${BASE}/doc/receipt/${pay.data.receiptNo}`);
 const receiptHtml = await receiptRes.text();
 ok(receiptRes.status === 200 && /PURCHASE RECEIPT/i.test(receiptHtml), 'purchase receipt renders');
-ok(receiptHtml.includes('AED1,170') && /CASH|BANK TRANSFER/i.test(receiptHtml), 'receipt shows amount and method');
+ok(receiptHtml.includes('AED1,120') && /CASH|BANK TRANSFER/i.test(receiptHtml), 'receipt shows amount and method');
 ok(/No VAT is charged on this\s+purchase/i.test(receiptHtml), 'receipt states no VAT on a consumer purchase');
 const invRes = await fetch(`${BASE}/doc/invoice/${sale.data.sale.invoiceNo}`);
 const invHtml = await invRes.text();
@@ -173,7 +175,7 @@ ok(/VAT 5%/.test(invHtml) && invHtml.includes('AED99.95') && invHtml.includes('A
 const saleMethodDefault = sale.data.sale.paymentMethod;
 ok(saleMethodDefault === 'cash', 'sale defaults to cash when no method is given', String(saleMethodDefault));
 const cashRep = await call('/api/admin/reports/cash', { token });
-ok(cashRep.data.cashOut.minor === 117000, 'cash report shows the cash payout for the day', cashRep.data.cashOut.formatted);
+ok(cashRep.data.cashOut.minor === 112000, 'cash report shows the cash payout for the day', cashRep.data.cashOut.formatted);
 ok(cashRep.data.netCash.minor === cashRep.data.cashIn.minor - cashRep.data.cashOut.minor, 'net cash = in − out',
   cashRep.data.netCash.formatted);
 ok(Array.isArray(cashRep.data.salesByMethod) && cashRep.data.salesByMethod.length >= 1, 'sales split by payment method');

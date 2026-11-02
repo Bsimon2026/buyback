@@ -390,7 +390,7 @@ async function bookPickup() {
     const out = await api('/api/orders', { method: 'POST', body: state.details });
     localStorage.setItem('bb_last_order', out.code);
     $('doneCode').textContent = out.code;
-    $('doneEst').textContent = `Estimated ${out.estimate.range.text} · ${state.details.pickupType === 'store' ? 'store visit' : 'home pickup'}`;
+    $('doneEst').textContent = `Estimated ${out.estimate.range.text} · ${state.details.pickupType === 'store' ? 'store visit' : 'home pickup'} · final value confirmed at inspection`;
     go('done');
   } catch (e) {
     err.textContent = e.message;

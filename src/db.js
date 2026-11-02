@@ -271,6 +271,17 @@ function seed() {
       name, email, role, branchId(br), hashPassword(pw));
   }
 
+  // cosmetic-condition questions (added after the first release — see src/cosmetic-questions.js)
+  for (const q of require('./cosmetic-questions')) {
+    if (one('SELECT id FROM questions WHERE code = ? AND category = ?', q.code, 'mobile')) continue;
+    const rq = run('INSERT INTO questions (code,category,label,section,sort) VALUES (?,?,?,?,?)',
+      q.code, 'mobile', q.label, q.section, q.sort);
+    const qid = Number(rq.lastInsertRowid);
+    q.options.forEach((o, i) => run(
+      `INSERT INTO question_options (question_id,code,label,adj_kind,adj_value,grade,sort) VALUES (?,?,?,?,?,?,?)`,
+      qid, o.code, o.label, o.adjKind, o.adjValue, o.grade || null, i));
+  }
+
   // questions — per category so the same code can carry different adjustments
   for (const [category, set] of [['mobile', SEED_MOBILE_QUESTIONS], ['laptop', SEED_LAPTOP_QUESTIONS]]) {
     let sort = 0;

@@ -238,19 +238,19 @@
       <div class="sec-head">
         <span class="lab">03 — Method</span>
         <h2>Three moves, one visit.</h2>
-        <p>No haggling at the door. The inspector scores the same nine points you answered, using the same rules —
+        <p>No haggling at the door. The inspector scores the same points you answered, using the same rules —
           and the data treatment you chose happens before the device leaves your sight.</p>
       </div>
       <div class="method">
         <div class="m-row">
           <span class="n">01</span>
           <h3>Describe the device</h3>
-          <p>Brand, model, storage, then nine condition questions. You give your details, then you see the price.</p>
+          <p>Brand, model, storage, then the condition questions — screen, body, cosmetic wear, battery and function. You give your details, then you see the price.</p>
         </div>
         <div class="m-row">
           <span class="n">02</span>
           <h3>We inspect at your door</h3>
-          <p>IMEI checked against our register, Emirates ID verified, the same nine points confirmed in person.
+          <p>IMEI checked against our register, Emirates ID verified, the same points confirmed in person.
             Ten minutes, no charge.</p>
         </div>
         <div class="m-row">
@@ -453,7 +453,7 @@
           <h2 id="condTitle">How is it holding up?</h2>
           <span class="tag tag-on" id="condDevice"></span>
         </div>
-        <p class="panel-sub">Answer honestly — the inspector scores the same nine points in person.</p>
+        <p class="panel-sub">Answer honestly — the inspector scores the same points in person, and that check sets the final value at your visit.</p>
         <div id="questionBody"></div>
         <div class="flow-actions">
           <button class="btn btn-out" onclick="backToSelect()">Back</button>
@@ -558,11 +558,16 @@
           <h2>Your price</h2>
           <span class="tag tag-on" id="priceDevice">—</span>
         </div>
-        <p class="panel-sub">Based on your answers. The inspector confirms the same nine points at your door, and the
-          final offer lands in this range.</p>
+        <p class="panel-sub"><b>This is an estimate, not the final offer.</b> The exact value is confirmed when we
+          inspect the device at your visit — every point you answered, checked in person.</p>
         <div class="bigrange" id="priceRange">—</div>
         <div class="lab" style="margin-top:18px">How we got there</div>
         <div class="priceline" id="priceBreakdown"></div>
+        <div class="note" style="margin-top:16px;border-left:2px solid var(--red);padding:10px 0 10px 14px">
+          <b>The final value is set at the time of visit.</b> Cosmetic condition, battery health and function are
+          verified face to face. If the device matches what you told us, the offer lands in the range above.
+          If it does not, we tell you the new figure before you accept — and rejecting costs nothing.
+        </div>
         <div class="flow-actions">
           <button class="btn btn-out" onclick="go('details')">Back</button>
           <button class="btn" id="bookBtn" onclick="bookPickup()">Book free pickup</button>
@@ -574,7 +579,7 @@
           <span class="lab">If you accept</span>
           <ul class="next">
             <li><b>01</b> We collect at the slot you chose</li>
-            <li><b>02</b> Nine-point inspection, IMEI check, ID verified</li>
+            <li><b>02</b> Full condition check, IMEI check, ID verified</li>
             <li><b>03</b> Final offer — accept for cash, or reject free</li>
             <li><b>04</b> Data treatment as chosen, certificate issued</li>
           </ul>

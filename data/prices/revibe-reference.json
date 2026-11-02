@@ -1,0 +1,67 @@
+{
+  "source": "https://revibe.me/collections/refurbished-iphones-uae/products.json?limit=250",
+  "fetchedAt": "2026-11-02T12:06:28.668Z",
+  "rule": {
+    "floorAED": 150,
+    "percent": 20,
+    "roundTo": 10
+  },
+  "reference": [
+    {
+      "model": "Apple iPhone 12",
+      "variant": "128GB",
+      "retail": 819,
+      "discount": 164,
+      "buy": 660,
+      "colours": 6
+    },
+    {
+      "model": "Apple iPhone 13",
+      "variant": "128GB",
+      "retail": 1039,
+      "discount": 208,
+      "buy": 830,
+      "colours": 5
+    },
+    {
+      "model": "Apple iPhone 13",
+      "variant": "256GB",
+      "retail": 1209,
+      "discount": 242,
+      "buy": 970,
+      "colours": 5
+    },
+    {
+      "model": "Apple iPhone 14",
+      "variant": "128GB",
+      "retail": 1089,
+      "discount": 218,
+      "buy": 870,
+      "colours": 6
+    },
+    {
+      "model": "Apple iPhone 14",
+      "variant": "256GB",
+      "retail": 1434,
+      "discount": 287,
+      "buy": 1150,
+      "colours": 6
+    },
+    {
+      "model": "Apple iPhone 15",
+      "variant": "128GB",
+      "retail": 1599,
+      "discount": 320,
+      "buy": 1280,
+      "colours": 5
+    },
+    {
+      "model": "Apple iPhone 15",
+      "variant": "256GB",
+      "retail": 1879,
+      "discount": 376,
+      "buy": 1500,
+      "colours": 5
+    }
+  ]
+}
