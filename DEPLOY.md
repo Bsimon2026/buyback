@@ -37,6 +37,24 @@ public.**
 | Shared hosting without Node | ❌ | it is not a static site |
 | Vercel, Netlify | ❌ | no persistent filesystem and no long-lived process; would need Postgres plus a serverless rewrite |
 
+### Live deployment
+
+| | |
+|---|---|
+| App (canonical) | **https://recycle.indubaicity.com** |
+| Still serving the same app | https://indubaicity.com — to be retired |
+| Staff console | `/admin` on either host |
+| Database | `/home/u449329419/persistent/buyback-data/buyback.db` — **outside** the build folder, shared by both hostnames |
+| Runtime | Hostinger Cloud Startup, Node.js Web App, Node 24, `npm`, entry `server.js` |
+
+Both hostnames currently serve the same process against the same file, which is safe but should not stay that way:
+two public origins for one site split search results and double the surface to keep secure. When the subdomain has
+run clean for a few days, point `indubaicity.com` at a 301 redirect to the subdomain (or a marketing page) and
+detach it from the Web App.
+
+**Never delete `/home/u449329419/persistent/`** — that folder is the business. Removing the app or the website in
+hPanel does not touch it; deleting that folder does.
+
 ### Hostinger specifics
 
 Node.js web apps run on Business and every Cloud plan. Node 22 and 24 are both offered — **choose 24**, which is
