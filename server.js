@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { one, run } = require('./src/db');
 const api = require('./src/api');
+const { siteForHost } = require('./src/sites');
 
 const PORT = Number(process.env.PORT || 8099);
 const ROOT = __dirname;
@@ -45,7 +46,13 @@ function send(res, status, data, headers = {}) {
 }
 
 function serveStatic(req, res, pathname) {
-  let rel = pathname === '/' ? '/index.html' : pathname;
+  // the landing page is per-domain; everything else is shared
+  let rel = pathname;
+  if (pathname === '/') {
+    const site = siteForHost(req.headers.host);
+    const custom = site ? path.join('sites', site, 'index.html') : null;
+    rel = custom && fs.existsSync(path.join(PUBLIC_DIR, custom)) ? '/' + custom.split(path.sep).join('/') : '/index.html';
+  }
   if (rel === '/admin') rel = '/admin.html';
   if (rel === '/terms') rel = '/terms.html';
   if (rel === '/privacy') rel = '/privacy.html';
