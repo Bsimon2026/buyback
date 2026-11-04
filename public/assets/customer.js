@@ -18,11 +18,15 @@ async function api(path, opts = {}) {
 }
 
 function go(screen) {
-  for (const s of ['home', 'select', 'condition', 'details', 'price', 'done', 'track']) {
+  for (const s of ['home', 'select', 'contact', 'condition', 'details', 'price', 'done', 'track']) {
     const el = $('scr-' + s);
     if (el) el.classList.toggle('hidden', s !== screen);
   }
-  if (screen === 'details') syncDeviceFields();
+  if (screen === 'details') {
+    syncDeviceFields();
+    // the number was captured in step 2 — show it, don't ask for it twice
+    if ($('fPhone') && state.phone) $('fPhone').value = state.phone;
+  }
   if (screen !== 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
   else window.scrollTo({ top: 0, behavior: 'auto' });
 }
@@ -283,9 +287,63 @@ function renderVariants() {
   $('selectBody').querySelectorAll('[data-variant]').forEach((el) => {
     el.addEventListener('click', () => {
       state.variant = state.model.variants.find((v) => v.id === Number(el.dataset.variant));
-      openCondition();
+      openContact();
     });
   });
+}
+
+// ---------- step 2: mobile number, then a first price ----------
+async function openContact() {
+  const label = `${state.brand.name} ${state.model.name} ${state.variant.variant}`;
+  $('cErr').textContent = '';
+  $('firstPrice').classList.add('hidden');
+  $('cPhoneBtn').disabled = false;
+  $('cPhone').value = state.phone || '';
+  // representative photo until real model photography is scraped in
+  const shot = $('modelShot');
+  if (shot) {
+    shot.src = state.model.image || '/assets/img/iphone15.jpg';
+    shot.alt = label;
+  }
+  $('fpRange').dataset.device = label;
+  go('contact');
+  setTimeout(() => { const el = $('cPhone'); if (el) el.focus(); }, 220);
+}
+
+const phoneDigits = (v) => String(v || '').replace(/[^0-9]/g, '');
+
+async function submitPhone() {
+  const err = $('cErr');
+  err.textContent = '';
+  const digits = phoneDigits($('cPhone').value);
+  if (digits.length < 9 || digits.length > 15) {
+    err.textContent = 'Enter a valid mobile number, for example +971 50 123 4567.'; return;
+  }
+  state.phone = '+' + digits;
+  $('cPhoneBtn').disabled = true;
+  try {
+    const qs = await api('/api/questions?category=' + state.category);
+    // the first price is the top of the range: every question answered at its best
+    const best = {};
+    qs.forEach((q) => { best[q.code] = q.options[0].code; });
+    const top = await api('/api/quote', { method: 'POST',
+      body: { variantId: state.variant.id, category: state.category, answers: best } });
+
+    // a lead, not an order — the customer has not committed to anything yet
+    try {
+      await api('/api/leads', { method: 'POST', body: { phone: state.phone, variantId: state.variant.id,
+        device: `${state.brand.name} ${state.model.name} ${state.variant.variant}`,
+        firstQuoteMinor: top.estimate.minor, source: location.hostname } });
+    } catch (e) { /* never block a price on lead capture */ }
+
+    $('fpRange').textContent = top.range.text;
+    $('firstPrice').classList.remove('hidden');
+    $('cPhoneBtn').classList.add('hidden');
+    setTimeout(() => $('firstPrice').scrollIntoView({ block: 'center', behavior: 'smooth' }), 80);
+  } catch (e) {
+    err.textContent = e.message;
+    $('cPhoneBtn').disabled = false;
+  }
 }
 
 function backToSelect() {
@@ -294,26 +352,73 @@ function backToSelect() {
 }
 function resetFlow() { state.brand = null; state.model = null; state.variant = null; state.answers = {}; quote = null; renderBrands(); go('select'); }
 
-// ---------- step 2: condition ----------
+// ---------- step 3: condition, three short pages ----------
+const QPAGES = [
+  { title: 'Appearance', sub: 'Screen, body and edges', sections: ['display', 'body', 'cosmetic'] },
+  { title: 'How it works', sub: 'Battery and function', sections: ['battery', 'function'] },
+  { title: 'Paperwork', sub: 'Repairs and what comes with it', sections: ['history', 'extras'] },
+];
+let qPage = 0;
+
 async function openCondition() {
   questions = await api('/api/questions?category=' + state.category);
-  state.answers = {};
+  state.answers = state.answers || {};
+  qPage = 0;
   $('condDevice').textContent = `${state.brand.name} ${state.model.name} ${state.variant.variant}`;
-  $('questionBody').innerHTML = questions.map((q) => `
-    <div class="q"><div class="qhead"><h4>${esc(q.label)}<em>${esc(q.section)}</em></h4></div>
+  renderQuestionPage();
+  go('condition');
+}
+
+function pageQuestions() {
+  const sections = QPAGES[qPage].sections;
+  return questions.filter((q) => sections.includes(q.section));
+}
+
+function renderQuestionPage() {
+  const qs = pageQuestions();
+  $('qStep').textContent = `Step ${qPage + 1} of ${QPAGES.length} · ${QPAGES[qPage].title}`;
+  if ($('qBar')) $('qBar').style.width = Math.round(((qPage + 1) / QPAGES.length) * 100) + '%';
+  $('questionBody').innerHTML = qs.map((q) => `
+    <div class="q">
+      <div class="qhead"><h4>${esc(q.label)}</h4></div>
       <div class="opts" data-q="${esc(q.code)}">` +
-      q.options.map((o) => `<button class="opt" data-q="${esc(q.code)}" data-o="${esc(o.code)}">${esc(o.label)}</button>`).join('') +
+      q.options.map((o) => `<button class="opt${state.answers[q.code] === o.code ? ' sel' : ''}"
+        data-q="${esc(q.code)}" data-o="${esc(o.code)}">${esc(o.label)}</button>`).join('') +
       `</div></div>`).join('');
   $('questionBody').querySelectorAll('.opt').forEach((el) => {
     el.addEventListener('click', () => {
-      const q = el.dataset.q;
-      state.answers[q] = el.dataset.o;
+      state.answers[el.dataset.q] = el.dataset.o;
       el.parentElement.querySelectorAll('.opt').forEach((x) => x.classList.toggle('sel', x === el));
       refreshQuote();
+      updateCondNav();
     });
   });
-  refreshQuote();
-  go('condition');
+  updateCondNav();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateCondNav() {
+  const qs = pageQuestions();
+  const answeredAll = qs.every((q) => state.answers[q.code]);
+  const last = qPage === QPAGES.length - 1;
+  const next = $('toDetails');
+  if (next) {
+    next.disabled = !answeredAll;
+    next.textContent = last ? 'See my price' : 'Next';
+  }
+  if ($('qBack')) $('qBack').style.visibility = qPage === 0 ? 'hidden' : 'visible';
+}
+
+function prevQuestionPage() {
+  if (qPage > 0) { qPage--; renderQuestionPage(); }
+}
+
+async function nextQuestionPage() {
+  if (qPage < QPAGES.length - 1) { qPage++; renderQuestionPage(); return; }
+  await refreshQuote();
+  if (!quote || !quote.complete) { toast('Answer the remaining questions first', true); return; }
+  renderPriceScreen(quote);
+  go('price');
 }
 
 function renderEstimate() {
@@ -327,7 +432,8 @@ async function refreshQuote() {
     const q = await api('/api/quote', { method: 'POST', body: { variantId: state.variant.id, category: state.category, answers: state.answers } });
     if (seq !== quoteSeq) return;
     quote = q;
-    if ($('toDetails')) $('toDetails').disabled = !q.complete;
+    // the pager decides when "Next" is available; the full-quote completeness check
+    // would disable it on page 1 of 3 forever
   } catch (e) { console.error(e); }
 }
 
@@ -339,15 +445,18 @@ function togglePickup() {
   $('slotWrap').style.display = store ? 'none' : '';
 }
 
-/** Step 3 → 4: validate, then fetch the price. Nothing is booked until the customer sees the number. */
-async function captureDetails() {
+/** Final step: validate the collection details, then book. The price was already shown. */
+async function confirmBooking() {
   const err = $('formErr');
   err.textContent = '';
+  const phoneInput = $('fPhone');
+  if (phoneInput && state.phone) phoneInput.value = state.phone;
   const body = {
     variantId: state.variant.id,
     category: state.category,
     answers: state.answers,
-    customer: { name: $('fName').value.trim(), phone: $('fPhone').value.trim(), email: $('fEmail').value.trim(),
+    customer: { name: $('fName').value.trim(), phone: state.phone || $('fPhone').value.trim(),
+      email: $('fEmail').value.trim(),
       address: $('fAddr').value.trim(), pincode: $('fPin').value.trim() },
     device: { imei: $('fImei').value.replace(/\D/g, ''), serial: $('fSerial').value.trim(), photos: [] },
     kyc: { idType: $('fIdType').value, idNumber: $('fIdNum').value.trim() },
@@ -357,22 +466,17 @@ async function captureDetails() {
     ownershipDeclared: $('fOwn').checked,
     dataHandling: (document.querySelector('input[name="fHandling"]:checked') || {}).value || 'reuse',
   };
-  if (!body.customer.name || !body.customer.phone) { err.textContent = 'Name and mobile number are required.'; return; }
+  if (!body.customer.name) { err.textContent = 'Your name is required.'; return; }
+  if (!body.customer.phone) { err.textContent = 'Go back to step 2 and add your mobile number.'; return; }
   if (!body.kyc.idNumber) { err.textContent = 'ID number is required for KYC.'; return; }
   if (state.category === 'mobile' && !body.device.imei) { err.textContent = 'IMEI is required for phones.'; return; }
   if (state.category === 'laptop' && !body.device.serial) { err.textContent = 'Serial number is required for laptops.'; return; }
   if (!body.ownershipDeclared) { err.textContent = 'Please confirm the device ownership declaration.'; return; }
 
+  state.details = body;
   $('submitBtn').disabled = true;
   try {
-    const q = await api('/api/quote', { method: 'POST',
-      body: { variantId: body.variantId, category: body.category, answers: body.answers } });
-    state.details = body;
-    state.quote = q;
-    renderPriceScreen(q);
-    go('price');
-  } catch (e) {
-    err.textContent = e.message;
+    await bookPickup();
   } finally {
     $('submitBtn').disabled = false;
   }

@@ -19,7 +19,7 @@ async function call(path, { method = 'GET', body, token } = {}) {
 const goodPhone = {
   screen: 'minor', body: 'excellent', battery: '90plus', camera: 'working',
   speaker: 'working', faceid: 'working', charging: 'working', water: 'no', repairs: 'never',
-  frame: 'mint', backglass: 'intact',
+  frame: 'mint', backglass: 'intact', invoice: 'have', box: 'have', charger: 'original',
 };
 
 // 1. platform config: AED is the base currency
@@ -37,8 +37,8 @@ const v128 = ip15.variants.find((v) => v.variant === '128GB');
 const q = await call('/api/quote', { method: 'POST', body: { variantId: v128.id, category: 'mobile', answers: goodPhone } });
 ok(q.status === 200, 'quote returns 200');
 ok(q.data.basePrice.formatted === 'AED1,330', 'base price AED1,330 (85% of refurb market)', q.data.basePrice.formatted);
-ok(q.data.delta.formatted === 'AED80', 'body-excellent adjustment AED80', q.data.delta.formatted);
-ok(q.data.estimate.formatted === 'AED1,410', 'estimate AED1,410', q.data.estimate.formatted);
+ok(q.data.delta.formatted === 'AED119', 'excellent body + full accessories = AED119', q.data.delta.formatted);
+ok(q.data.estimate.formatted === 'AED1,450', 'estimate AED1,450', q.data.estimate.formatted);
 ok(q.data.range.low.minor < q.data.range.high.minor, 'range is a band', q.data.range.text);
 ok(q.data.complete === true, 'quote complete');
 
@@ -51,7 +51,7 @@ ok(q2.data.estimate.minor >= floorMinor - 1, 'never quotes below the 15% floor',
 
 // 4. partial answers are flagged, not guessed
 const q3 = await call('/api/quote', { method: 'POST', body: { variantId: v128.id, category: 'mobile', answers: { screen: 'minor' } } });
-ok(q3.data.complete === false && q3.data.missingAnswers.length === 10, 'partial answers flagged', 'missing=' + q3.data.missingAnswers.length);
+ok(q3.data.complete === false && q3.data.missingAnswers.length === 13, 'partial answers flagged', 'missing=' + q3.data.missingAnswers.length);
 
 // 5. order creation + UAE fraud guards
 const imei = '356' + String(Date.now()).slice(-12);
@@ -94,7 +94,7 @@ ok(inspCurrency.status === 403, 'inspector cannot change currency', inspCurrency
 // 8. inspection: worse than declared
 const worse = { screen: 'heavy', body: 'dents', battery: '85to89', camera: 'working',
   speaker: 'working', faceid: 'working', charging: 'working', water: 'no', repairs: 'never',
-  frame: 'scuffs', backglass: 'scratched' };
+  frame: 'scuffs', backglass: 'scratched', invoice: 'no', box: 'no', charger: 'none' };
 const insp = await call(`/api/admin/orders/${code}/inspection`, { method: 'POST', token: inspToken,
   body: { findings: worse, imeiVerified: true, notes: 'Heavy scratches confirmed' } });
 ok(insp.status === 200, 'inspection recorded', insp.data.error || '');

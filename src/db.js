@@ -312,8 +312,8 @@ function seed() {
       name, email, role, branchId(br), hashPassword(pw));
   }
 
-  // cosmetic-condition questions (added after the first release — see src/cosmetic-questions.js)
-  for (const q of require('./cosmetic-questions')) {
+  // cosmetic + accessory questions (added after the first release)
+  for (const q of [...require('./cosmetic-questions'), ...require('./extras-questions')]) {
     if (one('SELECT id FROM questions WHERE code = ? AND category = ?', q.code, 'mobile')) continue;
     const rq = run('INSERT INTO questions (code,category,label,section,sort) VALUES (?,?,?,?,?)',
       q.code, 'mobile', q.label, q.section, q.sort);

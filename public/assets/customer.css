@@ -379,3 +379,22 @@ h1.hero-h em{font-style:normal;color:var(--red)}
 .foot-logo{height:42px;width:auto;display:block;margin-bottom:14px}
 .foot-legal{margin-top:14px;font-size:10.5px;line-height:1.8;color:#7E7A70}
 .foot-legal b{color:#C9C4B8;font-weight:600}
+
+/* --- model photo (representative until real photography is scraped) --- */
+.model-shot{position:relative;border:1px solid var(--rule);border-radius:14px;overflow:hidden;background:var(--paper-2)}
+.model-shot img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
+.shot-note{position:absolute;bottom:8px;left:10px;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:#fff;background:rgba(11,15,20,.55);padding:3px 7px;border-radius:3px}
+
+/* --- question pager --- */
+.qpager{display:flex;align-items:center;gap:12px;margin:20px 0 22px}
+.qpager-k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);white-space:nowrap}
+.qpager-bar{flex:1;height:3px;background:var(--rule);border-radius:2px;overflow:hidden}
+.qpager-bar i{display:block;height:100%;width:33%;background:var(--red);transition:width .35s var(--ease)}
+
+/* --- first price revealed after the mobile number --- */
+.first-price{margin-top:26px;border-top:1px solid var(--ink);padding-top:22px}
+.fp-k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.fp-v{font-size:clamp(30px,4.4vw,46px);letter-spacing:-.04em;margin:8px 0 12px;line-height:1}
+.fp-note{font-size:14px;line-height:1.6;color:var(--muted);margin-bottom:18px;max-width:52ch}

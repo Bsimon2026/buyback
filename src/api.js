@@ -451,6 +451,25 @@ async function handle(req, res, url, body, ip, auth) {
   if (p === '/api/catalog') return catalog(q.category === 'laptop' ? 'laptop' : 'mobile');
   if (p === '/api/questions') return questionsFor(q.category === 'laptop' ? 'laptop' : 'mobile');
 
+  // mobile number captured mid-valuation: a lead, not an order. Nobody has to give an
+  // address or an ID to see a price.
+  if (p === '/api/leads' && m === 'POST') {
+    const digits = String(body.phone || '').replace(/[^0-9]/g, '');
+    if (digits.length < 9 || digits.length > 15) throw httpError(400, 'Enter a valid mobile number');
+    const phone = '+' + digits;
+    const v = body.variantId ? variantWithModel(Number(body.variantId)) : null;
+    run(`INSERT INTO leads (phone,name,device,variant_id,first_quote_minor,currency,source,created_at,ip)
+         VALUES (?,?,?,?,?,?,?,?,?)`,
+      phone, body.name ? String(body.name).slice(0, 80) : null,
+      v ? `${v.brand} ${v.model} ${v.variant}` : (body.device ? String(body.device).slice(0, 120) : null),
+      v ? v.id : null,
+      body.firstQuoteMinor != null ? Math.round(Number(body.firstQuoteMinor)) : null,
+      getSetting('base_currency'),
+      body.source ? String(body.source).slice(0, 60) : 'valuation',
+      now(), ip);
+    return { ok: true, phone };
+  }
+
   if (p === '/api/quote' && m === 'POST') {
     return valuate(Number(body.variantId), body.category, body.answers || {});
   }

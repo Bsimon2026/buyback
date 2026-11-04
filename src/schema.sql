@@ -104,6 +104,20 @@ CREATE TABLE IF NOT EXISTS device_prices (
   note TEXT
 );
 
+-- ---------- leads: mobile captured during valuation, before an order exists ----------
+CREATE TABLE IF NOT EXISTS leads (
+  id INTEGER PRIMARY KEY,
+  phone TEXT NOT NULL,
+  name TEXT,
+  device TEXT,
+  variant_id INTEGER,
+  first_quote_minor INTEGER,
+  currency TEXT,
+  source TEXT,
+  created_at TEXT NOT NULL,
+  ip TEXT
+);
+
 -- ---------- condition questions (drive both estimate + inspection) ----------
 CREATE TABLE IF NOT EXISTS questions (
   id INTEGER PRIMARY KEY,

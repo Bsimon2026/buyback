@@ -449,7 +449,7 @@
 <div id="scr-select" class="flow hidden">
   <div class="wrap">
     <div class="flow-top">
-      <div class="steps-crumb"><span class="on">01 Device</span><span>02 Condition</span><span>03 Details</span><span>04 Price</span></div>
+      <div class="steps-crumb"><span class="on">01 Device</span><span>02 Number</span><span>03 Condition</span><span>04 Price</span><span>05 Details</span></div>
       <button class="btn btn-out btn-sm" onclick="go('home')">Back to site</button>
     </div>
     <div class="flow-grid">
@@ -461,7 +461,11 @@
         <div id="selectBody" style="margin-top:22px"></div>
       </div>
       <aside>
-        <div class="est">
+        <div class="model-shot">
+          <img id="modelShot" src="/assets/img/iphone15.jpg" alt="">
+          <span class="shot-note">Representative model</span>
+        </div>
+        <div class="est" style="margin-top:14px">
           <span class="lab">Estimated buyback</span>
           <div class="amount" id="estAmount1">—</div>
           <div class="sub" id="estSub1">Select your device to see a price</div>
@@ -471,10 +475,52 @@
   </div>
 </div>
 
+<div id="scr-contact" class="flow hidden">
+  <div class="wrap">
+    <div class="flow-top">
+      <div class="steps-crumb"><span>01 Device</span><span class="on">02 Number</span><span>03 Condition</span><span>04 Price</span><span>05 Details</span></div>
+      <button class="btn btn-out btn-sm" onclick="backToSelect()">Change device</button>
+    </div>
+    <div class="flow-grid">
+      <div class="panel">
+        <h2>Where should we send the price?</h2>
+        <p class="panel-sub">We show a first estimate straight away, then ask a few short questions to narrow it to
+          the exact value. No address, no ID, no obligation.</p>
+        <div style="margin-top:22px;max-width:420px">
+          <label class="field"><span class="lab">Mobile number</span>
+            <input id="cPhone" inputmode="tel" placeholder="+971 50 123 4567" autocomplete="tel"></label>
+          <div class="flow-actions" style="margin-top:14px">
+            <button class="btn" id="cPhoneBtn" onclick="submitPhone()">Show my first price</button>
+          </div>
+          <div id="cErr" class="err"></div>
+        </div>
+
+        <div id="firstPrice" class="first-price hidden">
+          <div class="fp-k">First estimate — {device{'}'}</div>
+          <div class="fp-v" id="fpRange">—</div>
+          <p class="fp-note">That is the top of the range, for a device in perfect condition with everything
+            included. The next few questions bring it to <b>your exact value</b> — about 40 seconds.</p>
+          <button class="btn" onclick="openCondition()">Answer a few questions
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <aside>
+        <div class="est">
+          <span class="lab">Why the number first?</span>
+          <div class="sub" style="margin-top:8px">So the price you see is yours — we can call you back about it, and
+            you never have to repeat yourself at the door.</div>
+          <div class="note">We do not send marketing messages. Ever.</div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
 <div id="scr-condition" class="flow hidden">
   <div class="wrap">
     <div class="flow-top">
-      <div class="steps-crumb"><span>01 Device</span><span class="on">02 Condition</span><span>03 Details</span><span>04 Price</span></div>
+      <div class="steps-crumb"><span>01 Device</span><span>02 Number</span><span class="on">03 Condition</span><span>04 Price</span><span>05 Details</span></div>
       <button class="btn btn-out btn-sm" onclick="backToSelect()">Change device</button>
     </div>
     <div class="flow-grid">
@@ -484,10 +530,14 @@
           <span class="tag tag-on" id="condDevice"></span>
         </div>
         <p class="panel-sub">Answer honestly — the inspector scores the same points in person, and that check sets the final value at your visit.</p>
+        <div class="qpager">
+          <span id="qStep" class="qpager-k">Step 1 of 3</span>
+          <span class="qpager-bar"><i id="qBar"></i></span>
+        </div>
         <div id="questionBody"></div>
         <div class="flow-actions">
-          <button class="btn btn-out" onclick="backToSelect()">Back</button>
-          <button class="btn" id="toDetails" disabled onclick="go('details')">Continue</button>
+          <button class="btn btn-out" id="qBack" onclick="prevQuestionPage()">Back</button>
+          <button class="btn" id="toDetails" disabled onclick="nextQuestionPage()">Next</button>
         </div>
       </div>
       <aside>
@@ -505,7 +555,7 @@
 <div id="scr-details" class="flow hidden">
   <div class="wrap">
     <div class="flow-top">
-      <div class="steps-crumb"><span>01 Device</span><span>02 Condition</span><span class="on">03 Details</span><span>04 Price</span></div>
+      <div class="steps-crumb"><span>01 Device</span><span>02 Number</span><span>03 Condition</span><span>04 Price</span><span class="on">05 Details</span></div>
       <button class="btn btn-out btn-sm" onclick="go('condition')">Back</button>
     </div>
     <div class="flow-grid">
@@ -515,7 +565,7 @@
         <div style="margin-top:24px">
           <div class="two-col">
             <label class="field"><span class="lab">Full name *</span><input id="fName" autocomplete="name"></label>
-            <label class="field"><span class="lab">Mobile *</span><input id="fPhone" inputmode="tel" placeholder="+971 50 123 4567"></label>
+            <label class="field"><span class="lab">Mobile (from step 2)</span><input id="fPhone" readonly style="background:var(--paper-2)"></label>
             <label class="field"><span class="lab">Email</span><input id="fEmail" type="email"></label>
             <label class="field"><span class="lab">PIN code</span><input id="fPin" inputmode="numeric"></label>
           </div>
@@ -558,17 +608,17 @@
                 onclick="event.preventDefault();event.stopPropagation();window.open('/terms','_blank')">terms &amp; conditions</a>.</span>
           </label>
           <div class="flow-actions">
-            <button class="btn btn-out" onclick="go('condition')">Back</button>
-            <button class="btn" id="submitBtn" onclick="captureDetails()">Show my price</button>
+            <button class="btn btn-out" onclick="go('price')">Back</button>
+            <button class="btn" id="submitBtn" onclick="confirmBooking()">Confirm pickup</button>
           </div>
           <div id="formErr" class="err"></div>
         </div>
       </div>
       <aside>
         <div class="est">
-          <span class="lab">Next</span>
-          <div class="amount" style="font-size:20px">Your price</div>
-          <div class="sub">Shown the moment these details are in.</div>
+          <span class="lab">Last step</span>
+          <div class="amount" style="font-size:20px">Confirm</div>
+          <div class="sub">We reserve the slot and the price you were shown.</div>
           <div class="note">Your data treatment is printed on the certificate we issue.</div>
         </div>
       </aside>
@@ -579,8 +629,8 @@
 <div id="scr-price" class="flow hidden">
   <div class="wrap">
     <div class="flow-top">
-      <div class="steps-crumb"><span>01 Device</span><span>02 Condition</span><span>03 Details</span><span class="on">04 Price</span></div>
-      <button class="btn btn-out btn-sm" onclick="go('details')">Edit details</button>
+      <div class="steps-crumb"><span>01 Device</span><span>02 Number</span><span>03 Condition</span><span class="on">04 Price</span><span>05 Details</span></div>
+      <button class="btn btn-out btn-sm" onclick="go('condition')">Edit answers</button>
     </div>
     <div class="flow-grid">
       <div class="panel">
@@ -600,7 +650,7 @@
         </div>
         <div class="flow-actions">
           <button class="btn btn-out" onclick="go('details')">Back</button>
-          <button class="btn" id="bookBtn" onclick="bookPickup()">Book free pickup</button>
+          <button class="btn" id="bookBtn" onclick="go('details')">Book free pickup</button>
         </div>
         <div id="bookErr" class="err"></div>
       </div>
