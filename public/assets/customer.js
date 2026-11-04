@@ -336,6 +336,7 @@ async function submitPhone() {
         firstQuoteMinor: top.estimate.minor, source: location.hostname } });
     } catch (e) { /* never block a price on lead capture */ }
 
+    if ($('fpDevice')) $('fpDevice').textContent = `${state.brand.name} ${state.model.name} ${state.variant.variant}`;
     $('fpRange').textContent = top.range.text;
     $('firstPrice').classList.remove('hidden');
     $('cPhoneBtn').classList.add('hidden');
