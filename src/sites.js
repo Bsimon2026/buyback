@@ -7,15 +7,21 @@
 //
 // Add a domain by adding one line here and dropping a folder in public/sites/.
 const SITES = {
-  'sellformoney.com': 'sellformoney',
-  'www.sellformoney.com': 'sellformoney',
+  // page = landing page folder under public/sites/  |  phone = shown on that domain
+  'sellformoney.com': { page: 'sellformoney', phone: '+971 52 399 2468' },
+  'www.sellformoney.com': { page: 'sellformoney', phone: '+971 52 399 2468' },
 };
+
+/** Config overrides for a hostname, or null. */
+function siteConfigFor(host) {
+  const clean = String(host || '').toLowerCase().split(':')[0].trim();
+  return clean ? (SITES[clean] || null) : null;
+}
 
 /** Returns the site folder name for a Host header, or null for the default page. */
 function siteForHost(host) {
-  const clean = String(host || '').toLowerCase().split(':')[0].trim();
-  if (!clean) return null;
-  return SITES[clean] || null;
+  const cfg = siteConfigFor(host);
+  return cfg ? cfg.page : null;
 }
 
-module.exports = { SITES, siteForHost };
+module.exports = { SITES, siteForHost, siteConfigFor };

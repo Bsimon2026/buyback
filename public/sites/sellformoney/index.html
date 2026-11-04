@@ -5,315 +5,120 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sell your phone for cash in Dubai — free pickup, paid on the spot</title>
 <link rel="canonical" href="https://sellformoney.com/">
-<meta name="description" content="Get a real price for your phone or laptop in under a minute. Free pickup across the UAE, cash or bank transfer on collection, and a certificate proving your data was erased. Reject the offer for free.">
+<meta name="description" content="Get a real price for your phone or laptop in under a minute. Free pickup across the UAE, cash or bank transfer on collection. No fees, no commission, reject the offer for free.">
 <link rel="stylesheet" href="/assets/styles.css">
 <link rel="stylesheet" href="/assets/customer.css">
 <link rel="stylesheet" href="/assets/home.css">
+<link rel="stylesheet" href="/assets/sell.css">
 <noscript><style>
-  /* no JS: nothing may stay hidden waiting for a reveal we cannot run */
   .reveal,.eyebrow,.hero-sub,.hero-acts,.hero-facts,.vcard{opacity:1!important;transform:none!important}
-  .hero h1 .ln>span{opacity:1!important;transform:none!important}
   .fq .fq-body{grid-template-rows:1fr!important}
-  .pane{opacity:1!important;visibility:visible!important;position:static}
 </style></noscript>
 </head>
-<body class="home">
+<body class="home sfm-sell">
 
-<header class="hdr" id="hdr">
+<header class="hdr sfm-hdr" id="hdr">
   <div class="hdr-in">
-    <a class="brand" href="#" onclick="go('home');return false" aria-label="in Dubai City — home">
-      <img src="/assets/img/logo-mark.png" alt="in Dubai City">
+    <a class="sfm-brand" href="#" onclick="go('home');return false" aria-label="sell for money — home">
+      <img src="/assets/img/sfm-mark.svg" alt="">
+      <b>sell <em>for</em> money</b>
     </a>
     <nav class="nvl" aria-label="Sections">
-      <a href="#impact">Impact</a>
-      <a href="#data">Your data</a>
-      <a href="#method">Method</a>
       <a href="#prices">Prices</a>
-      <a href="#branches">Branches</a>
+      <a href="#how">How it works</a>
+      <a href="#branches">Pickup</a>
+      <a href="#track">Track</a>
     </nav>
     <div class="hdr-r">
-      <div class="hdr-tel"><small>Talk to us</small><span id="navPhone">+971 50 000 0000</span></div>
-      <button class="cta cta-sm" onclick="scrollToQuote()" data-magnet>Value my device
-        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
+      <div class="hdr-tel"><small>Call or WhatsApp</small><span id="navPhone">+971 50 000 0000</span></div>
+      <button class="cta cta-sm" onclick="scrollToQuote()" data-magnet>Get my price</button>
     </div>
   </div>
 </header>
 
 <section id="scr-home">
 
-  <!-- ============ HERO ============ -->
-  <section class="hero">
-    <div class="hero-glow" aria-hidden="true"></div>
-    <div class="hero-in">
-      <div class="hero-copy">
-        <div class="eyebrow">
-          <span class="pulse" aria-hidden="true"></span>
-          <span>Paying cash for devices<span class="ebr-more"> &middot; Dubai / Abu Dhabi / Sharjah</span></span>
-        </div>
-        <h1>
-          <span class="ln"><span style="--d:60ms">Turn your old phone</span></span>
-          <span class="ln"><span style="--d:150ms">into <em>cash</em>.</span></span>
-          <span class="ln"><span style="--d:240ms">Free pickup.</span></span>
-          <span class="ln"><span style="--d:330ms">Paid on the spot.</span></span>
-        </h1>
-        <p class="hero-sub">A real price in under a minute, no haggling at the door. <b>Cash in hand or a bank
-          transfer on collection</b>, and a certificate proving your data was erased to a certified standard &mdash;
-          not just wiped by a shop assistant. Reject the offer and we hand the device back, free.</p>
-        <div class="hero-acts">
-          <button class="cta" onclick="scrollToQuote()" data-magnet>Get my price
-            <svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <a class="lnk" href="#method">How a pickup runs</a>
-        </div>
-        <div class="hero-facts">
-          <span>Price held 48 hours</span>
-          <span>Cash or bank transfer</span>
-          <span>No fees, no commission</span>
-        </div>
+  <!-- ============ HERO (centred) ============ -->
+  <section class="sfm-hero">
+    <div class="wrap">
+      <div class="eyebrow" style="justify-content:center">
+        <span class="pulse" aria-hidden="true"></span>
+        <span>Paying cash for phones &amp; laptops<span class="ebr-more"> &middot; Dubai / Abu Dhabi / Sharjah</span></span>
+      </div>
+      <h1>Sell your phone.<br>Get paid <em>today</em>.</h1>
+      <p class="sub">A real price in under a minute, collected from your door, and paid before the driver leaves.
+        No fees, no commission, no haggling at the last second.</p>
+      <div class="sfm-facts">
+        <span>Price held 48 hours</span>
+        <span>Cash or bank transfer</span>
+        <span>Reject free</span>
       </div>
 
-      <div class="vcard" id="quote">
-        <div class="vcard-top">
-          <span class="k">Instant valuation</span>
-          <div class="switch" id="hqTabs">
-            <button class="on" data-cat="mobile">Phone</button>
-            <button data-cat="laptop">Laptop</button>
+      <div class="sfm-vwrap">
+        <div class="vcard" id="quote">
+          <div class="vcard-top">
+            <span class="k">What are you selling?</span>
+            <div class="switch" id="hqTabs">
+              <button class="on" data-cat="mobile">Phone</button>
+              <button data-cat="laptop">Laptop</button>
+            </div>
           </div>
-        </div>
-        <div class="vcard-body">
-          <label class="fld"><span>Brand</span>
-            <select id="hqBrand"><option>Loading&hellip;</option></select></label>
-          <label class="fld"><span>Model</span>
-            <select id="hqModel"><option>Choose a model</option></select></label>
-          <label class="fld hidden" id="hqVariantWrap"><span>Storage</span>
-            <select id="hqVariant" class="hidden"></select></label>
-          <button class="cta cta-wide" id="hqGo" onclick="heroQuote()">Value my device</button>
-          <p class="vcard-note">Details first, then the number. Cash on collection &middot; data certificate included.</p>
+          <div class="vcard-body">
+            <label class="fld"><span>Brand</span>
+              <select id="hqBrand"><option>Loading&hellip;</option></select></label>
+            <label class="fld"><span>Model</span>
+              <select id="hqModel"><option>Choose a model</option></select></label>
+            <label class="fld hidden" id="hqVariantWrap"><span>Storage</span>
+              <select id="hqVariant" class="hidden"></select></label>
+            <button class="cta cta-wide" id="hqGo" onclick="heroQuote()">Get my price</button>
+            <p class="vcard-note">A few details first, then the number. Collection is free and you can say no at the door.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ LIVE PRICE TAPE ============ -->
+<!-- ============ LIVE PRICE TAPE ============ -->
   <div class="tapeband" aria-label="Today's buy prices">
     <div class="tape-track" id="tapeTrack">
       <div class="tape-set" id="tapeRows"></div>
     </div>
   </div>
 
-  <!-- ============ WHAT YOU GET ============ -->
-  <section class="sec" id="paid">
+  
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="sfm-steps" id="how">
     <div class="wrap">
-      <div class="shead reveal">
-        <span class="snum">01 &mdash; What you get</span>
-        <h2>No fees, no commission, nothing deducted after the fact.</h2>
-      </div>
-
-      <div class="figs">
-        <div class="figi reveal" style="--d:0ms">
-          <div class="figv"><b>0</b><i>AED</i></div>
-          <p>in fees. No listing charge, no commission, no &ldquo;service&rdquo; deduction. The range you are quoted is
-            the range we offer.</p>
-        </div>
-        <div class="figi reveal" style="--d:80ms">
-          <div class="figv"><b>48</b><i>hours</i></div>
-          <p>your price is held for. Book today, have it collected at a slot that suits you, decide at the door.</p>
-        </div>
-        <div class="figi reveal" style="--d:160ms">
-          <div class="figv"><b>30</b><i>min</i></div>
-          <p>for the inspection and payment. Cash counted out, or a bank transfer you can see land before you hand
-            the device over.</p>
-        </div>
-      </div>
-
-      <p class="src">The exact value is confirmed at the time of visit &mdash; we check the points you answered, in
-        person, and tell you the figure before you accept.</p>
-    </div>
-  </section>
-
-  <!-- ============ IMPACT ============ -->
-  <section class="sec" id="impact">
-    <div class="wrap">
-      <div class="shead reveal">
-        <span class="snum">02 &mdash; Why this matters</span>
-        <h2>Most old phones don&rsquo;t get recycled. They sit in drawers until they get thrown out.</h2>
-      </div>
-
-      <div class="figs">
-        <div class="figi reveal" style="--d:0ms">
-          <div class="figv"><b data-count="62">62</b><i>Mt</i></div>
-          <p>of e-waste was generated worldwide in 2022 &mdash; 7.8 kg for every person on the planet.</p>
-        </div>
-        <div class="figi reveal" style="--d:80ms">
-          <div class="figv"><b data-count="22.3" data-dec="1">22.3</b><i>%</i></div>
-          <p>of it was documented as formally collected and properly recycled. The rest is unaccounted for.</p>
-        </div>
-        <div class="figi reveal" style="--d:160ms">
-          <div class="figv"><i class="pre">$</i><b data-count="91">91</b><i>bn</i></div>
-          <p>of metals &mdash; copper, gold, iron &mdash; went into that waste. Only $28bn was actually recovered.</p>
-        </div>
-        <div class="figi reveal" style="--d:240ms">
-          <div class="figv"><b data-count="56">56</b><i>kg</i></div>
-          <p>of CO&#8322;e is emitted to build one iPhone 15, and 80% of that is manufacturing. Reusing it avoids most of it.</p>
-        </div>
-      </div>
-
-      <p class="src">Sources: Global E-waste Monitor 2024 (ITU / UNITAR); Apple, iPhone 15 Product Environmental
-        Report, Sept 2023. Full references at the foot of this page.</p>
-    </div>
-  </section>
-
-  <!-- ============ TWO PATHS ============ -->
-  <section class="paths" aria-label="Two ways a device is handled">
-    <article class="path">
-      <div class="path-in">
-        <div class="path-copy">
-          <span class="pnum">Path 01 &mdash; Reuse</span>
-          <h3>Erase, refurbish, resell</h3>
-          <p>The best outcome for the planet is the device you already own staying in use &mdash; every extra year
-            avoids another new handset being manufactured.</p>
-        </div>
-        <div class="path-side">
-          <ul class="plist">
-            <li><b>01</b>Data erased to a certified standard</li>
-            <li><b>02</b>Graded and refurbished in-house</li>
-            <li><b>03</b>Resold to a new owner in the UAE</li>
-            <li><b>04</b>You get the certificate, not just the cash</li>
-          </ul>
-          <button class="cta cta-ghost" onclick="startFlow('mobile')">Sell a phone</button>
-        </div>
-      </div>
-    </article>
-
-    <article class="path path-dark">
-      <div class="path-in">
-        <div class="path-copy">
-          <span class="pnum">Path 02 &mdash; Recovery</span>
-          <h3>Shred, separate, recover</h3>
-          <p>When a device is beyond economic repair, the metals are still worth recovering &mdash; and the storage
-            chip still needs destroying.</p>
-        </div>
-        <div class="path-side">
-          <ul class="plist">
-            <li><b>01</b>Storage physically destroyed first</li>
-            <li><b>02</b>Dismantled into material streams</li>
-            <li><b>03</b>Metals recovered at a licensed facility</li>
-            <li><b>04</b>Nothing to general landfill</li>
-          </ul>
-          <button class="cta cta-ghost" onclick="startFlow('mobile')">Recycle a device</button>
-        </div>
-      </div>
-    </article>
-  </section>
-
-  <!-- ============ DATA ============ -->
-  <section class="sec" id="data">
-    <div class="wrap">
-      <div class="shead reveal">
-        <span class="snum">02 &mdash; Your data</span>
-        <h2>What actually happens to the data.</h2>
-        <p>A factory reset is not deletion. It removes the pointer to the files, not the files &mdash; on modern
-          phones the encryption key is what matters, and on a failing drive even a verified erase can leave
-          fragments.</p>
-      </div>
-
-      <div class="datanav reveal">
-        <div class="toggle" id="dataToggle">
-          <button class="on" data-pane="reuse">Erase &amp; resell</button>
-          <button data-pane="destroy">Destroy the storage</button>
-        </div>
-      </div>
-
-      <div class="panes">
-        <div class="pane on" data-pane="reuse">
-          <h3>Cryptographic erase, then verify</h3>
-          <p>Modern phones encrypt storage by default. Destroying the key makes the remaining ciphertext useless
-            &mdash; fast, and the device survives. We run this with certified erasure software, check the completion
-            log, then spot-check the device before it is listed for resale.</p>
-          <ul class="spec">
-            <li><span>Standard</span><b>NIST SP 800-88 Rev.2 &mdash; Purge</b></li>
-            <li><span>Also aligned to</span><b>IEEE 2883-2022</b></li>
-            <li><span>Tool</span><b id="toolName">Certified erasure software</b></li>
-            <li><span>Evidence</span><b>Erasure log + certificate per device</b></li>
-          </ul>
-        </div>
-
-        <div class="pane" data-pane="destroy">
-          <h3>Physical destruction of the media</h3>
-          <p>For devices with sensitive data, or storage that fails verification, the storage chip is destroyed
-            rather than erased. This is the only basis on which &ldquo;unrecoverable by any means&rdquo; is an honest
-            claim &mdash; and it is what the certificate will say.</p>
-          <ul class="spec">
-            <li><span>Method</span><b>Storage media destroyed</b></li>
-            <li><span>Result</span><b>Recovery not possible</b></li>
-            <li><span>Chain</span><b>Custody logged from collection</b></li>
-            <li><span>Evidence</span><b>Destruction certificate per device</b></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="honest reveal">
-        <span class="snum">An honest note</span>
-        <p>&ldquo;100% deletion&rdquo; is a marketing sentence, not a technical one. No erasure tool can prove a
-          negative on failing flash memory. What we do instead is choose the method that fits the device, record
-          which one was used, and put it on a certificate you can hold us to. You pick the method when you book:
-          <b>erase and resell</b>, or <b>destroy the storage</b>.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ METHOD ============ -->
-  <section class="sec sec-tint" id="method">
-    <div class="wrap">
-      <div class="shead reveal">
-        <span class="snum">03 &mdash; Method</span>
-        <h2>Three moves, one visit.</h2>
-        <p>No haggling at the door. The inspector scores the same points you answered, using the same rules &mdash;
-          and the data treatment you chose happens before the device leaves your sight.</p>
-      </div>
-
-      <div class="steps">
-        <div class="steps-line" aria-hidden="true"><i></i></div>
-        <div class="step reveal" style="--d:0ms">
-          <span class="dot" aria-hidden="true"></span>
+      <h2>Three steps, about an hour of your day.</h2>
+      <div class="sfm-grid">
+        <div class="sfm-step">
           <span class="n">01</span>
-          <h3>Describe the device</h3>
-          <p>Brand, model, storage, then the condition questions &mdash; screen, body, cosmetic wear, battery and
-            function. You give your details, then you see the price.</p>
+          <h3>Tell us what you have</h3>
+          <p>Brand, model, storage, then a short list of condition questions. One minute, on your phone, no account
+            and no obligation.</p>
         </div>
-        <div class="step reveal" style="--d:140ms">
-          <span class="dot" aria-hidden="true"></span>
+        <div class="sfm-step">
           <span class="n">02</span>
-          <h3>We inspect at your door</h3>
-          <p>IMEI checked against our register, Emirates ID verified, the same points confirmed in person.
-            Ten minutes, no charge.</p>
+          <h3>We collect or you drop in</h3>
+          <p>Free pickup at a time you choose, seven days a week — or walk into one of our counters and skip the
+            queue.</p>
         </div>
-        <div class="step reveal" style="--d:280ms">
-          <span class="dot" aria-hidden="true"></span>
+        <div class="sfm-step">
           <span class="n">03</span>
-          <h3>Paid, then erased</h3>
-          <p>Cash in hand, signed receipt, and the data is wiped on the spot or the device is sealed for destruction
-            &mdash; your choice, recorded on the certificate.</p>
+          <h3>Paid before we leave</h3>
+          <p>A ten-minute check against the answers you gave, a firm figure, then cash in hand or a transfer you
+            can see land.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ PHOTO BAND ============ -->
-  <div class="photoband">
-    <img src="/assets/img/iphone15.jpg" alt="Four iPhone 15 Pro devices laid out" data-parallax>
-    <div class="wrap pb-cap reveal">
-      <span class="pb-lab">Every device &mdash; graded, erased, logged</span>
-      <p>A device is never resold before its erasure is recorded, and never scrapped before its storage is destroyed.</p>
-    </div>
-  </div>
-
-  <!-- ============ PRICES ============ -->
+<!-- ============ PRICES ============ -->
   <section class="sec" id="prices">
     <div class="wrap">
       <div class="shead reveal">
-        <span class="snum">04 &mdash; Price list</span>
+        <span class="snum">02 &mdash; Price list</span>
         <h2>What we pay, this week.</h2>
         <p>Base prices for good working condition, before condition adjustments. Cash on collection, or bank
           transfer if you prefer.</p>
@@ -339,56 +144,14 @@
     </div>
   </section>
 
-  <!-- ============ CLAIMS ============ -->
-  <section class="band" id="claims">
-    <div class="wrap">
-      <div class="shead reveal">
-        <span class="snum">05 &mdash; Ledger discipline</span>
-        <h2>No games with the price, and no shortcuts with the device.</h2>
-      </div>
-      <div class="claims">
-        <div class="claim reveal" style="--d:0ms">
-          <span class="n">01</span>
-          <div>
-            <h4>One engine, both sides</h4>
-            <p>The online quote and the door-step offer run the same code against the same rules. Every adjustment is
-              itemised.</p>
-          </div>
-        </div>
-        <div class="claim reveal" style="--d:90ms">
-          <span class="n">02</span>
-          <div>
-            <h4>Identity and IMEI checked</h4>
-            <p>Duplicate-IMEI detection against live orders and existing stock. Stolen or blocked devices are
-              declined, not resold.</p>
-          </div>
-        </div>
-        <div class="claim reveal" style="--d:180ms">
-          <span class="n">03</span>
-          <div>
-            <h4>Data treated before resale</h4>
-            <p>Nothing is listed for resale until its erasure is recorded against the order. The certificate is
-              generated from that record, not typed by hand.</p>
-          </div>
-        </div>
-        <div class="claim reveal" style="--d:270ms">
-          <span class="n">04</span>
-          <div>
-            <h4>Zero landfill</h4>
-            <p>Devices we cannot resell go to a licensed recycler for material recovery. Nothing goes to general
-              waste.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
-  <!-- ============ CASH ============ -->
+<!-- ============ CASH ============ -->
   <section class="cashband">
     <div class="wrap cashband-in">
       <div class="cash-copy reveal">
-        <span class="snum">Paid on collection</span>
-        <h2>Cash for the device. A certificate for the data.</h2>
+        <span class="snum">03 &mdash; Paid on collection</span>
+        <h2>Cash for the device, counted out before we leave.</h2>
         <p>Bank transfer if you prefer it. Either way it is logged, receipted and signed &mdash; and the data
           treatment is chosen by you, not assumed by us.</p>
       </div>
@@ -399,11 +162,13 @@
     </div>
   </section>
 
-  <!-- ============ BRANCHES ============ -->
+  
+
+<!-- ============ BRANCHES ============ -->
   <section class="sec" id="branches">
     <div class="wrap split-head">
       <div class="shead reveal">
-        <span class="snum">06 &mdash; Coverage</span>
+        <span class="snum">04 &mdash; Pickup and counters</span>
         <h2>Pickup across the Emirates.</h2>
         <p>Home collection seven days a week, or hand it over at one of our counters.</p>
       </div>
@@ -411,54 +176,47 @@
     </div>
   </section>
 
+  
+
   <!-- ============ FAQ ============ -->
   <section class="sec sec-last">
-    <div class="wrap split-head">
+    <div class="wrap">
       <div class="shead reveal">
-        <span class="snum">07 &mdash; Questions</span>
-        <h2>Before you sell.</h2>
+        <span class="snum">05 &mdash; Questions</span>
+        <h2>What people ask before booking.</h2>
       </div>
-      <div class="faq" id="faq">
-        <div class="fq open">
-          <button type="button" aria-expanded="true"><span>What exactly happens to my data?</span><i class="ic" aria-hidden="true"></i></button>
-          <div class="fq-body"><div><p>You choose at booking. <b>Erase and resell:</b> the storage is cryptographically
-            erased with certified software to NIST SP 800-88 Rev.2, the completion log is checked, and the device is
-            inspected before resale. <b>Destroy the storage:</b> the chip is physically destroyed and cannot be
-            recovered. Either way you get a certificate naming the method, standard, operator and date.</p></div></div>
+      <div class="faqs">
+        <div class="fq">
+          <button type="button" aria-expanded="false"><span>Is the price I see online what I get paid?</span><i class="ic" aria-hidden="true"></i></button>
+          <div class="fq-body"><div><p>It is a firm estimate based on your answers, and it is held for 48 hours. The
+            exact figure is confirmed when we inspect the device at your visit — cosmetic condition, battery health
+            and function are checked in person. If it matches what you told us, the offer lands in your range.</p></div></div>
         </div>
         <div class="fq">
-          <button type="button" aria-expanded="false"><span>Is a factory reset enough?</span><i class="ic" aria-hidden="true"></i></button>
-          <div class="fq-body"><div><p>No. A reset removes the index to the files, not the data. On encrypted phones the
-            useful step is destroying the key &mdash; which is what certified erasure software does, and what a reset
-            alone may not.</p></div></div>
+          <button type="button" aria-expanded="false"><span>What if the offer is lower than I expected?</span><i class="ic" aria-hidden="true"></i></button>
+          <div class="fq-body"><div><p>You say no and keep the device. Refusing costs nothing — there is no fee, no
+            cancellation charge, and no pressure at the door.</p></div></div>
         </div>
         <div class="fq">
-          <button type="button" aria-expanded="false"><span>Do you recycle devices that aren&rsquo;t worth buying?</span><i class="ic" aria-hidden="true"></i></button>
-          <div class="fq-body"><div><p>Yes. Bring it in for collection with your other device, or ask on pickup. There is
-            no payment for scrap-value devices, but the data is still destroyed and the materials still get
-            recovered.</p></div></div>
-        </div>
-        <div class="fq">
-          <button type="button" aria-expanded="false"><span>How is the price calculated?</span><i class="ic" aria-hidden="true"></i></button>
-          <div class="fq-body"><div><p>A base price per model, then adjustments for screen, body, battery health, camera,
-            Face ID, water damage and repair history. You see every line after you enter your details, and the
-            inspector scores the same list at your door.</p></div></div>
+          <button type="button" aria-expanded="false"><span>How do you pay?</span><i class="ic" aria-hidden="true"></i></button>
+          <div class="fq-body"><div><p>Cash on collection, or a bank transfer to your account if you prefer. Either way
+            you get a receipt for the sale showing the amount, the method and the device identifiers.</p></div></div>
         </div>
         <div class="fq">
           <button type="button" aria-expanded="false"><span>What do you need from me?</span><i class="ic" aria-hidden="true"></i></button>
-          <div class="fq-body"><div><p>Emirates ID or passport, the device, and its IMEI. Box and invoice help the offer
-            but are not required.</p></div></div>
+          <div class="fq-body"><div><p>Emirates ID or passport, the device itself, and its IMEI. Box and invoice help
+            the offer but are not required. Sign out of your Apple or Google account before handover.</p></div></div>
         </div>
         <div class="fq">
           <button type="button" aria-expanded="false"><span>Is pickup really free?</span><i class="ic" aria-hidden="true"></i></button>
-          <div class="fq-body"><div><p>Yes. Collection and inspection cost nothing and there is no obligation to
-            sell.</p></div></div>
+          <div class="fq-body"><div><p>Yes. Collection and inspection cost nothing, seven days a week, and there is no
+            obligation to sell once you hear the figure.</p></div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ TRACK ============ -->
+<!-- ============ TRACK ============ -->
   <section class="tracksec">
     <div class="wrap">
       <div class="trackcard reveal">
@@ -474,6 +232,10 @@
       <div id="trackErr" class="err"></div>
     </div>
   </section>
+</section>
+
+
+
 </section>
 
 <!-- ============ FLOW ============ -->

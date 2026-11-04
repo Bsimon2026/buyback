@@ -1,5 +1,6 @@
 'use strict';
 const { all, one, run, now, audit, verifyPassword, hashPassword, getSetting, getSettings, setSetting, slug } = require('./db');
+const { siteConfigFor } = require('./sites');
 const money = require('./money');
 const { valuate, questionsFor, variantWithModel } = require('./pricing');
 const docs = require('./docs');
@@ -440,7 +441,13 @@ async function handle(req, res, url, body, ip, auth) {
 
   // --- public ---
   if (p === '/api/health') return { ok: true, at: now() };
-  if (p === '/api/config') return publicConfig();
+  if (p === '/api/config') {
+    const cfg = publicConfig();
+    // one database, several front doors: a domain may publish its own contact number
+    const site = siteConfigFor(req.headers.host);
+    if (site && site.phone) cfg.support = { ...cfg.support, phone: site.phone };
+    return cfg;
+  }
   if (p === '/api/catalog') return catalog(q.category === 'laptop' ? 'laptop' : 'mobile');
   if (p === '/api/questions') return questionsFor(q.category === 'laptop' ? 'laptop' : 'mobile');
 

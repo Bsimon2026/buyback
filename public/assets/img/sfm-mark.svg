@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="sell for money">
+  <!-- mark: a phone handing out a banknote, drawn for legibility at 28px -->
+  <rect width="64" height="64" rx="14" fill="#0B0F14"/>
+  <!-- device -->
+  <rect x="12" y="12" width="22" height="40" rx="5" fill="none" stroke="#F8F5EF" stroke-width="3.4"/>
+  <line x1="18.5" y1="46" x2="27.5" y2="46" stroke="#F8F5EF" stroke-width="3" stroke-linecap="round"/>
+  <!-- banknote leaving the phone -->
+  <rect x="33" y="25" width="20" height="13" rx="2.6" fill="#E4402F"/>
+  <circle cx="43" cy="31.5" r="3.1" fill="#F8F5EF"/>
+  <!-- up arrow -->
+  <path d="M44 46.5 L44 39.5 M40.4 43.1 L44 39.5 L47.6 43.1"
+        fill="none" stroke="#E4402F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
