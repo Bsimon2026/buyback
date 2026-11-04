@@ -96,7 +96,7 @@ body.sfm-sell .qpager-bar i{background:#007DFB}
 
 /* footer brand mark for this site */
 .sfm-foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.sfm-foot-brand img{height:32px;width:32px;border-radius:8px;display:block}
+.sfm-foot-brand img{height:42px;width:auto;max-width:230px;border-radius:0;display:block}
 .sfm-foot-brand b{font-family:var(--sans);font-size:16px;font-weight:600;letter-spacing:-.02em;color:var(--paper)}
 .sfm-foot-brand b em{font-style:normal;color:#E4402F}
 .foot .foot-logo{display:none}
