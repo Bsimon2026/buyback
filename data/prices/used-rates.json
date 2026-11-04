@@ -1,0 +1,2268 @@
+{
+ "source": "market-used-2026-11-04.txt",
+ "parsedAt": "2026-11-04T09:24:41.098Z",
+ "rule": "pasted prices are used selling prices; buy base = 70% of these, rounded to AED 10",
+ "devices": [
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 11",
+   "variant": "64GB",
+   "ram": null,
+   "storage": 64,
+   "price": 530,
+   "flags": {},
+   "raw": "11 64 GB - 530"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 11",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 610,
+   "flags": {},
+   "raw": "11 128 GB -610AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 11 Pro",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 820,
+   "flags": {},
+   "raw": "11 PRO 256-820AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 11 Pro Max",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 835,
+   "flags": {},
+   "raw": "11 PRO MAX 256GB -835AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 12",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 725,
+   "flags": {},
+   "raw": "12 128GB - 725AED (2sim)"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 12 Mini",
+   "variant": "64GB",
+   "ram": null,
+   "storage": 64,
+   "price": 530,
+   "flags": {},
+   "raw": "12 mini 64 -530"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 12 Mini",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 570,
+   "flags": {},
+   "raw": "12 mini 128-570"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 12 Pro",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 960,
+   "flags": {},
+   "raw": "12 PRO 256GB -960AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 12 Pro Max",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 1220,
+   "flags": {},
+   "raw": "12 PRO MAX 256GB -1220AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 13",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 910,
+   "flags": {},
+   "raw": "13 128GB - 910AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 13",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 1000,
+   "flags": {},
+   "raw": "13 256 -1000 AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 13 Mini",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 730,
+   "flags": {},
+   "raw": "13 mini 128-730"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 13 Pro",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 1180,
+   "flags": {},
+   "raw": "13 PRO 128- 1180AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 13 Pro",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 1365,
+   "flags": {},
+   "raw": "13 PRO 256GB - 1365AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 13 Pro Max",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 1660,
+   "flags": {},
+   "raw": "13 PRO MAX 256GB -1660AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 14",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 1070,
+   "flags": {},
+   "raw": "14 128-1070AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 14 Pro",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 1860,
+   "flags": {},
+   "raw": "14 PRO 256 -1860AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 14 Pro Max",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 1980,
+   "flags": {},
+   "raw": "14 pro max 256-1980"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 15",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 1660,
+   "flags": {},
+   "raw": "15 -128-1660"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 15",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 1770,
+   "flags": {},
+   "raw": "15 -256-1770"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 15 Plus",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 1710,
+   "flags": {},
+   "raw": "15plus 128-1710"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 15 Pro",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 2180,
+   "flags": {},
+   "raw": "15 pro 256-2180"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 15 Pro Max",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 2420,
+   "flags": {},
+   "raw": "15 pro max- 256-2420"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 16 Pro",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 2800,
+   "flags": {},
+   "raw": "16 pro 256-2800 AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 16 Pro",
+   "variant": "512GB",
+   "ram": null,
+   "storage": 512,
+   "price": 2870,
+   "flags": {},
+   "raw": "16 pro 512-2870 AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 16 Pro Max",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 3050,
+   "flags": {},
+   "raw": "16 pro max 256-3050"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 16 Pro Max",
+   "variant": "1TB",
+   "ram": null,
+   "storage": 1024,
+   "price": 3740,
+   "flags": {},
+   "raw": "16 pro max 1tb -3740"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 17 Pro",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 3960,
+   "flags": {},
+   "raw": "17 pro 256 -3960"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 17 Pro Max",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 4440,
+   "flags": {},
+   "raw": "17 pro max 256gb  -4440"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 8 Plus",
+   "variant": "64GB",
+   "ram": null,
+   "storage": 64,
+   "price": 325,
+   "flags": {},
+   "raw": "8 plus 64 gb -325AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone Air",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 2800,
+   "flags": {
+    "box": true
+   },
+   "raw": "17 Air 256 box -2800 none active"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone SE (2nd)",
+   "variant": "64GB",
+   "ram": null,
+   "storage": 64,
+   "price": 290,
+   "flags": {},
+   "raw": "SE2 64 Gb -290"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone SE (2nd)",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 320,
+   "flags": {},
+   "raw": "SE 2 128 -320"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone X",
+   "variant": "64GB",
+   "ram": null,
+   "storage": 64,
+   "price": 360,
+   "flags": {},
+   "raw": "X 64GB -360AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone X",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 400,
+   "flags": {},
+   "raw": "X 256GB -400AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone XR",
+   "variant": "64GB",
+   "ram": null,
+   "storage": 64,
+   "price": 430,
+   "flags": {},
+   "raw": "XR 64 - 430 AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone XR",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 525,
+   "flags": {},
+   "raw": "XR 128GB -525AED"
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone XS",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 510,
+   "flags": {},
+   "raw": "XS 256 - 510AED"
+  },
+  {
+   "brand": "Dingno",
+   "kind": "generic",
+   "model": "DINGNO",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 165,
+   "flags": {},
+   "raw": "DINGNO 6/128 - 165"
+  },
+  {
+   "brand": "Fujitsu",
+   "kind": "generic",
+   "model": "ARROWS F52A",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 285,
+   "flags": {},
+   "raw": "ARROWS F52A 128-285"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 3",
+   "variant": "64GB",
+   "ram": null,
+   "storage": 64,
+   "price": 310,
+   "flags": {},
+   "raw": "Pixel 3  64gb-  310"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 3A",
+   "variant": "64GB",
+   "ram": null,
+   "storage": 64,
+   "price": 325,
+   "flags": {},
+   "raw": "Pixel 3A 64gb-325"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 4XL",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 410,
+   "flags": {},
+   "raw": "pixel 4XL -128-410 AED"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 5",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 425,
+   "flags": {},
+   "raw": "pixel 5 -128 -425 AED"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 5A",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 430,
+   "flags": {},
+   "raw": "pixel 5A 5G  -128-430 AED"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 6",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 465,
+   "flags": {},
+   "raw": "Pixel 6 128gb -465"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 6 pro",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 645,
+   "flags": {},
+   "raw": "PIxel 6 pro 128gb-645"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 6a",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 470,
+   "flags": {},
+   "raw": "Pixel 6a 128gb -470"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 7",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 615,
+   "flags": {},
+   "raw": "Pixel 7 128-615"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 7 pro",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 740,
+   "flags": {},
+   "raw": "Pixel 7 pro 128gb-740"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 7A",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 565,
+   "flags": {},
+   "raw": "Pixel 7A 128-565"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 8",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 720,
+   "flags": {},
+   "raw": "Pixel 8 128-720"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 8 pro",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 1030,
+   "flags": {},
+   "raw": "Pixel 8 pro 128-1030"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 8A",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 680,
+   "flags": {},
+   "raw": "Pixel 8A 128-680"
+  },
+  {
+   "brand": "Google",
+   "kind": "pixel",
+   "model": "Pixel 9 A",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 940,
+   "flags": {},
+   "raw": "9 A 128 -940"
+  },
+  {
+   "brand": "Grid",
+   "kind": "generic",
+   "model": "GRID",
+   "variant": "3/32GB",
+   "ram": 3,
+   "storage": 32,
+   "price": 175,
+   "flags": {
+    "box": true
+   },
+   "raw": "GRID 3/32  BOX pi’s -175 AED"
+  },
+  {
+   "brand": "Huawei",
+   "kind": "generic",
+   "model": "Huawei P20 lite",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 160,
+   "flags": {},
+   "raw": "Huawei P20 lite 128 -160"
+  },
+  {
+   "brand": "Kyocera",
+   "kind": "generic",
+   "model": "KYOCERA 705KC",
+   "variant": "3/32GB",
+   "ram": 3,
+   "storage": 32,
+   "price": 95,
+   "flags": {},
+   "raw": "KYOCERA 705KC 3/32 -95"
+  },
+  {
+   "brand": "Kyocera",
+   "kind": "generic",
+   "model": "TORQUE G 06",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 245,
+   "flags": {},
+   "raw": "TORQUE G06 5G 128GB- 245AED"
+  },
+  {
+   "brand": "Motorola",
+   "kind": "moto",
+   "model": "Moto g 32",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 295,
+   "flags": {},
+   "raw": "Moto g32 128 GB -295"
+  },
+  {
+   "brand": "Motorola",
+   "kind": "moto",
+   "model": "Motorola RAZR 40S/",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 550,
+   "flags": {},
+   "raw": "Motorola RAZR 40S/ 256GB 550AED"
+  },
+  {
+   "brand": "Motorola",
+   "kind": "moto",
+   "model": "Motorola RAZR 50S/",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 830,
+   "flags": {},
+   "raw": "Motorola RAZR 50S/256GB 830AED"
+  },
+  {
+   "brand": "Nokia",
+   "kind": "generic",
+   "model": "NOKIA 3.2",
+   "variant": "32GB",
+   "ram": null,
+   "storage": 32,
+   "price": 110,
+   "flags": {},
+   "raw": "NOKIA 3.2 32GB 110AED"
+  },
+  {
+   "brand": "Nokia",
+   "kind": "generic",
+   "model": "NOKIA 6",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 135,
+   "flags": {},
+   "raw": "NOKIA 6 128GB 135AED"
+  },
+  {
+   "brand": "Oppo",
+   "kind": "generic",
+   "model": "Oppo A 56",
+   "variant": "8/256GB",
+   "ram": 8,
+   "storage": 256,
+   "price": 220,
+   "flags": {},
+   "raw": "Oppo A56 8/256-220 AED"
+  },
+  {
+   "brand": "Oppo",
+   "kind": "generic",
+   "model": "OPPO A 57",
+   "variant": "64GB",
+   "ram": null,
+   "storage": 64,
+   "price": 85,
+   "flags": {},
+   "raw": "OPPO A57 64GB -85 AED"
+  },
+  {
+   "brand": "Oppo",
+   "kind": "generic",
+   "model": "OPPO Reno 7A",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 360,
+   "flags": {},
+   "raw": "OPPO Reno 7A 5G 128-360"
+  },
+  {
+   "brand": "Oppo",
+   "kind": "generic",
+   "model": "OPPO Reno 9A",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 400,
+   "flags": {},
+   "raw": "OPPO Reno 9A 5G 128 -400"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A14",
+   "variant": "64GB",
+   "ram": null,
+   "storage": 64,
+   "price": 255,
+   "flags": {},
+   "raw": "A14 64 GB 5G - 255"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A14",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 205,
+   "flags": {
+    "2sim": true
+   },
+   "raw": "A14 2sim 6/128 -205"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A15",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 400,
+   "flags": {
+    "korea": true
+   },
+   "raw": "A15 Koriya 6/128-400"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A20 E",
+   "variant": "4/64GB",
+   "ram": 4,
+   "storage": 64,
+   "price": 185,
+   "flags": {},
+   "raw": "A20e 4/64- 185"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A23",
+   "variant": "64GB",
+   "ram": null,
+   "storage": 64,
+   "price": 235,
+   "flags": {},
+   "raw": "A23 64GB 5G-235"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A25",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 480,
+   "flags": {
+    "korea": true
+   },
+   "raw": "A25 6/128 koriyaa 5G-480"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A30",
+   "variant": "64GB",
+   "ram": null,
+   "storage": 64,
+   "price": 215,
+   "flags": {
+    "japan": true
+   },
+   "raw": "A30 -64 Gb Japan  -215"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A31",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 260,
+   "flags": {},
+   "raw": "A31 6/128gb-260"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A32",
+   "variant": "4/138GB",
+   "ram": 4,
+   "storage": 138,
+   "price": 310,
+   "flags": {},
+   "raw": "A32 4/138 -310"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A51",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 295,
+   "flags": {},
+   "raw": "A51 5G 6/128-295"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A51",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 275,
+   "flags": {
+    "2sim": true
+   },
+   "raw": "A51 4G 128 2sim-275"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A52",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 350,
+   "flags": {},
+   "raw": "A52  6/128 -350"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A53",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 460,
+   "flags": {},
+   "raw": "A53 6/128-460"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A54",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 570,
+   "flags": {
+    "japan": true
+   },
+   "raw": "A54 6/128 jappan -570"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A71",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 320,
+   "flags": {},
+   "raw": "A71 4g 6/128gb -320"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A82",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 460,
+   "flags": {},
+   "raw": "A82 6/128-460"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy M33",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 330,
+   "flags": {},
+   "raw": "M33 5g6/128 -330"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "note",
+   "model": "Galaxy Note10",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 465,
+   "flags": {},
+   "raw": "NOTE 10 256 -465"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "note",
+   "model": "Galaxy Note10 Plus",
+   "variant": "12/256GB",
+   "ram": 12,
+   "storage": 256,
+   "price": 615,
+   "flags": {},
+   "raw": "NOTE 10 PLUS 12/256 -615"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "note",
+   "model": "Galaxy Note20",
+   "variant": "8/128GB",
+   "ram": 8,
+   "storage": 128,
+   "price": 440,
+   "flags": {},
+   "raw": "Note20 8/128 -440"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "note",
+   "model": "Galaxy Note20",
+   "variant": "8/256GB",
+   "ram": 8,
+   "storage": 256,
+   "price": 465,
+   "flags": {},
+   "raw": "Note 20 8/256-465"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "note",
+   "model": "Galaxy Note20 Ultra",
+   "variant": "12/128GB",
+   "ram": 12,
+   "storage": 128,
+   "price": 820,
+   "flags": {},
+   "raw": "NOTE 20 ULTRA 12/128-820"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "note",
+   "model": "Galaxy Note20 Ultra",
+   "variant": "12/256GB",
+   "ram": 12,
+   "storage": 256,
+   "price": 870,
+   "flags": {},
+   "raw": "NOTE 20 ULTRA 12/256 -870"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S10",
+   "variant": "8/128GB",
+   "ram": 8,
+   "storage": 128,
+   "price": 455,
+   "flags": {},
+   "raw": "S10 8/128 -455"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S10",
+   "variant": "8/256GB",
+   "ram": 8,
+   "storage": 256,
+   "price": 575,
+   "flags": {},
+   "raw": "S10 5G 8/256 -575"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S10 E",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 390,
+   "flags": {},
+   "raw": "S10E 6/128 - 390"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S10 Plus",
+   "variant": "8/128GB",
+   "ram": 8,
+   "storage": 128,
+   "price": 520,
+   "flags": {},
+   "raw": "S10 PLUS 8/128-520"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S20",
+   "variant": "8/128GB",
+   "ram": 8,
+   "storage": 128,
+   "price": 440,
+   "flags": {},
+   "raw": "S20  8/128 -440"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S20 FE",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 385,
+   "flags": {},
+   "raw": "S20FE -6/128 -385"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S20 Plus",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 435,
+   "flags": {},
+   "raw": "S20 PLUS 128GB -435"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S20 Plus",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 450,
+   "flags": {},
+   "raw": "S20 plus  256-450"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S20 Ultra",
+   "variant": "12/128GB",
+   "ram": 12,
+   "storage": 128,
+   "price": 550,
+   "flags": {},
+   "raw": "S20 ULTRA 12/128 -550"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S20 Ultra",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 580,
+   "flags": {},
+   "raw": "S20 ULTRA 256GB -580"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S21",
+   "variant": "8/128GB",
+   "ram": 8,
+   "storage": 128,
+   "price": 510,
+   "flags": {},
+   "raw": "S21 8/128 -510"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S21",
+   "variant": "8/256GB",
+   "ram": 8,
+   "storage": 256,
+   "price": 560,
+   "flags": {},
+   "raw": "S21 8/256-560"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S21 FE",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 415,
+   "flags": {},
+   "raw": "S21FE 128 -415"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S21 Plus",
+   "variant": "8/128GB",
+   "ram": 8,
+   "storage": 128,
+   "price": 520,
+   "flags": {},
+   "raw": "S21 PLUS 8/128 -520"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S21 Plus",
+   "variant": "8/256GB",
+   "ram": 8,
+   "storage": 256,
+   "price": 580,
+   "flags": {},
+   "raw": "S21 plus 8/256 -580"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S21 Ultra",
+   "variant": "12/128GB",
+   "ram": 12,
+   "storage": 128,
+   "price": 720,
+   "flags": {},
+   "raw": "S21 ULTRA 12/128-720"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S21 Ultra",
+   "variant": "12/256GB",
+   "ram": 12,
+   "storage": 256,
+   "price": 810,
+   "flags": {},
+   "raw": "S21 ULTRA  12/256-810"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S21 Ultra",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 840,
+   "flags": {
+    "2sim": true
+   },
+   "raw": "S21 ultra 2sim 256-840"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S21 Ultra",
+   "variant": "512GB",
+   "ram": null,
+   "storage": 512,
+   "price": 850,
+   "flags": {
+    "2sim": true
+   },
+   "raw": "S21 ultra 2sim 512gb- 850"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S22",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 610,
+   "flags": {},
+   "raw": "S22 128-610"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S22",
+   "variant": "8/256GB",
+   "ram": 8,
+   "storage": 256,
+   "price": 665,
+   "flags": {},
+   "raw": "S22 8/256 -665"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S22 Plus",
+   "variant": "8/128GB",
+   "ram": 8,
+   "storage": 128,
+   "price": 650,
+   "flags": {},
+   "raw": "S22 PLUS 8/128GB -650AED"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S22 Plus",
+   "variant": "8/256GB",
+   "ram": 8,
+   "storage": 256,
+   "price": 670,
+   "flags": {},
+   "raw": "S22 PLUS 8/256GB-670AED"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S22 Ultra",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 935,
+   "flags": {},
+   "raw": "S22 ULTRA 128 -935"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S22 Ultra",
+   "variant": "12/256GB",
+   "ram": 12,
+   "storage": 256,
+   "price": 1120,
+   "flags": {},
+   "raw": "S22 ULTRA 12/256 -1120"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S22 Ultra",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 1235,
+   "flags": {
+    "korea": true
+   },
+   "raw": "S22ULTRA 256 KORIYA -1235AED"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S22 Ultra",
+   "variant": "12/512GB",
+   "ram": 12,
+   "storage": 512,
+   "price": 1160,
+   "flags": {},
+   "raw": "S22 ULTRA 12/512GB -1160AED"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S22 Ultra",
+   "variant": "512GB",
+   "ram": null,
+   "storage": 512,
+   "price": 1260,
+   "flags": {
+    "korea": true
+   },
+   "raw": "S22 ultra koriya 512-1260aed"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S23",
+   "variant": "8/128GB",
+   "ram": 8,
+   "storage": 128,
+   "price": 830,
+   "flags": {},
+   "raw": "S23-8/128-830"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S23",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 890,
+   "flags": {},
+   "raw": "S23 256-890"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S23 FE",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 750,
+   "flags": {},
+   "raw": "S23 FE 256-750"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S23 Plus",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 985,
+   "flags": {},
+   "raw": "S23 plus 256-985"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S23 Ultra",
+   "variant": "8/256GB",
+   "ram": 8,
+   "storage": 256,
+   "price": 1480,
+   "flags": {},
+   "raw": "S23ULTRA8/256-1480  Og pen"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S23 Ultra",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 1250,
+   "flags": {},
+   "raw": "S23 ultra -256-1250cover chainge"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S23 Ultra",
+   "variant": "12/256GB",
+   "ram": 12,
+   "storage": 256,
+   "price": 1600,
+   "flags": {},
+   "raw": "S23 ultra 12/256-1600 koriya"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S23 Ultra",
+   "variant": "512GB",
+   "ram": null,
+   "storage": 512,
+   "price": 1660,
+   "flags": {},
+   "raw": "S23 ULTRA 512-1660AED koriya"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S24",
+   "variant": "8/128GB",
+   "ram": 8,
+   "storage": 128,
+   "price": 1150,
+   "flags": {},
+   "raw": "S24 8/128-1150 BOX pi’s"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S24",
+   "variant": "8/256GB",
+   "ram": 8,
+   "storage": 256,
+   "price": 1170,
+   "flags": {},
+   "raw": "S24 8/256-1170 koriya"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S24 FE",
+   "variant": "8/256GB",
+   "ram": 8,
+   "storage": 256,
+   "price": 1130,
+   "flags": {},
+   "raw": "S24 FE 8/256 -1130"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S24 Ultra",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 2050,
+   "flags": {},
+   "raw": "S24 ULTRA 256-2050AED"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S24 Ultra",
+   "variant": "512GB",
+   "ram": null,
+   "storage": 512,
+   "price": 2100,
+   "flags": {},
+   "raw": "S24 ULTRA 512-2100AED"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S25 FE",
+   "variant": "12/128GB",
+   "ram": 12,
+   "storage": 128,
+   "price": 1280,
+   "flags": {},
+   "raw": "S25FE 12/128-1280 box pi’s"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S25 Ultra",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 2480,
+   "flags": {},
+   "raw": "S25 ULTRA  256-2480aed"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S25 Ultra",
+   "variant": "512GB",
+   "ram": null,
+   "storage": 512,
+   "price": 2540,
+   "flags": {},
+   "raw": "S25 ULTRA 512-2540aed"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S26 Ultra",
+   "variant": "12/256GB",
+   "ram": 12,
+   "storage": 256,
+   "price": 3230,
+   "flags": {},
+   "raw": "S26 ultra 12/256 - 3230box pis"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S8",
+   "variant": "4/64GB",
+   "ram": 4,
+   "storage": 64,
+   "price": 285,
+   "flags": {},
+   "raw": "S8 4/64 -285"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S8 Plus",
+   "variant": "4/64GB",
+   "ram": 4,
+   "storage": 64,
+   "price": 310,
+   "flags": {},
+   "raw": "S8 plus 4/64-310"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S9",
+   "variant": "4/64GB",
+   "ram": 4,
+   "storage": 64,
+   "price": 310,
+   "flags": {},
+   "raw": "S9 4/64 - 310"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S9 Plus",
+   "variant": "6/64GB",
+   "ram": 6,
+   "storage": 64,
+   "price": 335,
+   "flags": {},
+   "raw": "S9 PLUS 6/64-335"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Flip 3",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 510,
+   "flags": {},
+   "raw": "ZFLIP 3 128GB -510"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Flip 3",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 555,
+   "flags": {},
+   "raw": "Flip3 256-555"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Flip 4",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 580,
+   "flags": {},
+   "raw": "Flip4 128-580"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Flip 4",
+   "variant": "8/256GB",
+   "ram": 8,
+   "storage": 256,
+   "price": 610,
+   "flags": {},
+   "raw": "ZFLIP 4 8/256-610"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Flip 5",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 760,
+   "flags": {},
+   "raw": "Flip5 -256-760"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Flip 5",
+   "variant": "512GB",
+   "ram": null,
+   "storage": 512,
+   "price": 800,
+   "flags": {},
+   "raw": "Flip5 512-800 AED"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Flip 6",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 1180,
+   "flags": {},
+   "raw": "Flip6 256-1180 ( box )"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Fold 2",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 1130,
+   "flags": {},
+   "raw": "Fold 2 -256 gb -1130"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Fold 3",
+   "variant": "12/256GB",
+   "ram": 12,
+   "storage": 256,
+   "price": 1250,
+   "flags": {
+    "2sim": true
+   },
+   "raw": "ZFOLD 3 2sim 12/256 -1250"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Fold 3",
+   "variant": "512GB",
+   "ram": null,
+   "storage": 512,
+   "price": 1290,
+   "flags": {
+    "2sim": true
+   },
+   "raw": "Fold3 512 2sim -1290"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Fold 4",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 1290,
+   "flags": {
+    "2sim": true
+   },
+   "raw": "ZFOLD 4 2sim 256GB -1290"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Fold 4",
+   "variant": "512GB",
+   "ram": null,
+   "storage": 512,
+   "price": 1360,
+   "flags": {},
+   "raw": "ZFOLD 4 512GB - 1360AED"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Fold 5",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 1625,
+   "flags": {},
+   "raw": "Fold5 256GB-1625"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Fold 5",
+   "variant": "512GB",
+   "ram": null,
+   "storage": 512,
+   "price": 1660,
+   "flags": {},
+   "raw": "Fold 5 -512- 1660"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Fold 6",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 2450,
+   "flags": {},
+   "raw": "Fold6 256-2450"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Fold 6",
+   "variant": "512GB",
+   "ram": null,
+   "storage": 512,
+   "price": 2490,
+   "flags": {},
+   "raw": "Fold6 512 -2490"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Fold 7",
+   "variant": "12/256GB",
+   "ram": 12,
+   "storage": 256,
+   "price": 3990,
+   "flags": {
+    "box": true,
+    "esim": true
+   },
+   "raw": "Fold 7 12/256gb 1sim &esim BOX -3990aed"
+  },
+  {
+   "brand": "Sharp",
+   "kind": "generic",
+   "model": "Sense 6",
+   "variant": "4/64GB",
+   "ram": 4,
+   "storage": 64,
+   "price": 240,
+   "flags": {},
+   "raw": "Sense6 -4/64-240"
+  },
+  {
+   "brand": "Sony",
+   "kind": "generic",
+   "model": "10 mark 6",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 420,
+   "flags": {},
+   "raw": "10 mark 6 -128 GB -420"
+  },
+  {
+   "brand": "Sony",
+   "kind": "generic",
+   "model": "10mark5",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 360,
+   "flags": {},
+   "raw": "10mark5 128-360"
+  },
+  {
+   "brand": "TCL",
+   "kind": "generic",
+   "model": "TCL T 608",
+   "variant": "32GB",
+   "ram": null,
+   "storage": 32,
+   "price": 165,
+   "flags": {},
+   "raw": "TCL T608 32GB -165aed"
+  },
+  {
+   "brand": "Vivo",
+   "kind": "generic",
+   "model": "VIVO Y 85",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 130,
+   "flags": {},
+   "raw": "VIVO Y85-128GB -130 AED"
+  },
+  {
+   "brand": "Vivo",
+   "kind": "generic",
+   "model": "Vivo Y 93",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 130,
+   "flags": {},
+   "raw": "Vivo Y93 -128 GB-130 AED"
+  },
+  {
+   "brand": "Xiaomi",
+   "kind": "xi",
+   "model": "Note 7 pro",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 185,
+   "flags": {},
+   "raw": "Note 7 pro 6/128 185aed"
+  },
+  {
+   "brand": "Xiaomi",
+   "kind": "xi",
+   "model": "Redmi 10A",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 175,
+   "flags": {},
+   "raw": "Redmi 10A 128 -175"
+  },
+  {
+   "brand": "Xiaomi",
+   "kind": "xi",
+   "model": "Redmi 12 R",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 280,
+   "flags": {},
+   "raw": "Redmi 12 R 6/128 -280"
+  },
+  {
+   "brand": "Xiaomi",
+   "kind": "xi",
+   "model": "Redmi 13X 128",
+   "variant": "6/12GB",
+   "ram": 6,
+   "storage": 12,
+   "price": 410,
+   "flags": {},
+   "raw": "Redmi 13X 6/12 128-410"
+  },
+  {
+   "brand": "Xiaomi",
+   "kind": "xi",
+   "model": "Redmi 7a",
+   "variant": "32GB",
+   "ram": null,
+   "storage": 32,
+   "price": 110,
+   "flags": {},
+   "raw": "Redmi 7a 32gb -110"
+  },
+  {
+   "brand": "Xiaomi",
+   "kind": "xi",
+   "model": "Redmi 9",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 220,
+   "flags": {},
+   "raw": "Redmi9 -6/128 -220"
+  },
+  {
+   "brand": "Xiaomi",
+   "kind": "xi",
+   "model": "Redmi 9a",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 160,
+   "flags": {},
+   "raw": "Redmi 9a 128gb-160"
+  },
+  {
+   "brand": "Xiaomi",
+   "kind": "xi",
+   "model": "Redmi 9c",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 180,
+   "flags": {},
+   "raw": "Redmi 9c 128gb- 180"
+  },
+  {
+   "brand": "Xiaomi",
+   "kind": "xi",
+   "model": "Redmi mi 8",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 225,
+   "flags": {},
+   "raw": "Redmi mi 8 -128gb-225"
+  },
+  {
+   "brand": "Xiaomi",
+   "kind": "xi",
+   "model": "Redmi Note 12 R",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 295,
+   "flags": {},
+   "raw": "Redmi Note 12 R 6/128 -295"
+  },
+  {
+   "brand": "Xiaomi",
+   "kind": "xi",
+   "model": "Redmi note 8",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 200,
+   "flags": {},
+   "raw": "Redmi note 8 6/128gb-200"
+  },
+  {
+   "brand": "Xiaomi",
+   "kind": "xi",
+   "model": "Redmi Note 8pro",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 230,
+   "flags": {},
+   "raw": "Redmi Note 8pro 6/128-230"
+  },
+  {
+   "brand": "Xiaomi",
+   "kind": "xi",
+   "model": "Redmi Note 9",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 230,
+   "flags": {},
+   "raw": "Redmi Note 9 6/128-230"
+  },
+  {
+   "brand": "Xiaomi",
+   "kind": "xi",
+   "model": "Xiaomi 13 pro plus",
+   "variant": "8/256GB",
+   "ram": 8,
+   "storage": 256,
+   "price": 710,
+   "flags": {},
+   "raw": "Xiaomi 13 pro plus 8/256-710 (Box 720)"
+  },
+  {
+   "brand": "ZTE",
+   "kind": "generic",
+   "model": "Zte flip 1",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 500,
+   "flags": {},
+   "raw": "Zte flip1 6/128- 500AED-BOX PIs"
+  }
+ ],
+ "excluded": [
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S",
+   "variant": "8GB",
+   "ram": null,
+   "storage": 8,
+   "price": 185,
+   "flags": {
+    "small lcd": true
+   },
+   "raw": "S8 -185"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S21 FE",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 365,
+   "flags": {
+    "small lcd": true
+   },
+   "raw": "S21fe 6/128- 365"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Note9",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 250,
+   "flags": {
+    "small lcd": true
+   },
+   "raw": "Note 9 6/128-250"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Note20 Ultra",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 565,
+   "flags": {
+    "small lcd": true
+   },
+   "raw": "NOTE 20 ULTRA - 128 -565AED"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy N20 ultra",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 590,
+   "flags": {
+    "small lcd": true
+   },
+   "raw": "N20 ultra 256 small -590aed"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Note20 Ultra sml",
+   "variant": "512GB",
+   "ram": null,
+   "storage": 512,
+   "price": 610,
+   "flags": {
+    "small lcd": true
+   },
+   "raw": "Note 20 ultra 512 sml -610"
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S22 Ultra smal",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 880,
+   "flags": {
+    "small lcd": true
+   },
+   "raw": "S22 ultra 256 smal -880"
+  }
+ ],
+ "alternates": [
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 12",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 740,
+   "flags": {
+    "box": true
+   },
+   "raw": "12 128 Box -740",
+   "usedPrice": 725
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 13",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 950,
+   "flags": {
+    "box": true
+   },
+   "raw": "13 128GB box -950AED",
+   "usedPrice": 910
+  },
+  {
+   "brand": "Apple",
+   "kind": "iphone",
+   "model": "iPhone 15 Plus",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 1740,
+   "flags": {
+    "box": true
+   },
+   "raw": "15 plus 128 with box-1740",
+   "usedPrice": 1710
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy A71",
+   "variant": "6/128GB",
+   "ram": 6,
+   "storage": 128,
+   "price": 340,
+   "flags": {},
+   "raw": "A71 5g 6/128 -340",
+   "usedPrice": 320
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S22 Ultra",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 1050,
+   "flags": {
+    "korea": true
+   },
+   "raw": "S22 ultra 128 KORIYA-1050",
+   "usedPrice": 935
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S22 Ultra",
+   "variant": "128GB",
+   "ram": null,
+   "storage": 128,
+   "price": 775,
+   "flags": {
+    "small lcd": true
+   },
+   "raw": "S22 ULTRA 128GB -775AED",
+   "usedPrice": 935
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S23 Ultra",
+   "variant": "256GB",
+   "ram": null,
+   "storage": 256,
+   "price": 1030,
+   "flags": {
+    "small lcd": true
+   },
+   "raw": "S23 ultra 256-1030",
+   "usedPrice": 1250
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S24",
+   "variant": "8/256GB",
+   "ram": 8,
+   "storage": 256,
+   "price": 1200,
+   "flags": {},
+   "raw": "S24 8/256-1200box pi’s",
+   "usedPrice": 1170
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy S25 Ultra",
+   "variant": "512GB",
+   "ram": null,
+   "storage": 512,
+   "price": 2570,
+   "flags": {},
+   "raw": "S25 ultra 512-2570 box pi’s",
+   "usedPrice": 2540
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Flip 4",
+   "variant": "8/256GB",
+   "ram": 8,
+   "storage": 256,
+   "price": 700,
+   "flags": {
+    "brand new": true
+   },
+   "raw": "Flip4 8/256 brand new USA-700aed",
+   "usedPrice": 610
+  },
+  {
+   "brand": "Samsung",
+   "kind": "galaxy",
+   "model": "Galaxy Z Fold 7",
+   "variant": "12/256GB",
+   "ram": 12,
+   "storage": 256,
+   "price": 4340,
+   "flags": {
+    "box": true,
+    "2sim": true
+   },
+   "raw": "Fold 7 12/256gb 2sim with box 4340aed",
+   "usedPrice": 3990
+  }
+ ],
+ "problems": [
+  {
+   "line": "M53 5g 6/128-",
+   "why": "no storage"
+  },
+  {
+   "line": "S23 ul koriya A++ boxd -1650",
+   "why": "no storage"
+  },
+  {
+   "line": "S25 ultra-2500AED box pi’s",
+   "why": "no storage"
+  },
+  {
+   "line": "Fold 2 A grade -1050",
+   "why": "no storage"
+  },
+  {
+   "line": "NOTE 10 PLUS 1SIM -435AED",
+   "why": "no storage"
+  },
+  {
+   "line": "Redmi note 10pro 6/128gb -",
+   "why": "no storage"
+  }
+ ]
+}
