@@ -1,0 +1,102 @@
+iPHONE RATES MISSING
+generated 2026-11-04 09:53 from the live catalogue
+
+Fill the price column (USED SELLING price, AED) and send the file back.
+The site will show 70% of whatever you write, rounded to AED 10.
+
+A. IN THE CATALOGUE, BUT ON THE OLD PRICE BASIS (22)
+   these are live now with a figure derived from refurbished retail, not from your list
+
+   MODEL                 STORAGE  LIVE NOW  USED PRICE
+   iPhone 14             256GB    AED1,150  ______
+   iPhone 15             512GB    AED1,980  ______
+   iPhone 15 Plus        256GB    AED1,820  ______
+   iPhone 15 Pro         128GB    AED1,490  ______
+   iPhone 15 Pro         512GB    AED2,060  ______
+   iPhone 15 Pro         1TB      AED2,460  ______
+   iPhone 15 Pro Max     512GB    AED2,220  ______
+   iPhone 15 Pro Max     1TB      AED2,650  ______
+   iPhone 16             128GB    AED1,720  ______
+   iPhone 16             256GB    AED2,050  ______
+   iPhone 16             512GB    AED2,520  ______
+   iPhone 16 Plus        128GB    AED2,080  ______
+   iPhone 16 Plus        256GB    AED2,490  ______
+   iPhone 16 Pro         128GB    AED2,080  ______
+   iPhone 16 Pro         1TB      AED3,640  ______
+   iPhone 16 Pro Max     512GB    AED2,740  ______
+   iPhone 17             256GB    AED2,430  ______
+   iPhone 17             512GB    AED3,140  ______
+   iPhone 17 Pro         512GB    AED3,150  ______
+   iPhone 17 Pro         1TB      AED3,800  ______
+   iPhone 17 Pro Max     512GB    AED3,220  ______
+   iPhone 17 Pro Max     1TB      AED3,330  ______
+
+B. NOT IN THE CATALOGUE AT ALL (48)
+   customers cannot quote these today; a price here creates them
+
+   MODEL                 STORAGE  USED PRICE
+   iPhone 11             256GB    ______
+   iPhone 11 Pro         64GB     ______
+   iPhone 11 Pro         512GB    ______
+   iPhone 11 Pro Max     64GB     ______
+   iPhone 11 Pro Max     512GB    ______
+   iPhone 12             64GB     ______
+   iPhone 12             256GB    ______
+   iPhone 12 Mini        256GB    ______
+   iPhone 12 Pro         128GB    ______
+   iPhone 12 Pro         512GB    ______
+   iPhone 12 Pro Max     128GB    ______
+   iPhone 12 Pro Max     512GB    ______
+   iPhone 13             512GB    ______
+   iPhone 13 Mini        256GB    ______
+   iPhone 13 Mini        512GB    ______
+   iPhone 13 Pro         512GB    ______
+   iPhone 13 Pro         1TB      ______
+   iPhone 13 Pro Max     128GB    ______
+   iPhone 13 Pro Max     512GB    ______
+   iPhone 13 Pro Max     1TB      ______
+   iPhone 14             512GB    ______
+   iPhone 14 Plus        128GB    ______
+   iPhone 14 Plus        256GB    ______
+   iPhone 14 Plus        512GB    ______
+   iPhone 14 Pro         128GB    ______
+   iPhone 14 Pro         512GB    ______
+   iPhone 14 Pro         1TB      ______
+   iPhone 14 Pro Max     128GB    ______
+   iPhone 14 Pro Max     512GB    ______
+   iPhone 14 Pro Max     1TB      ______
+   iPhone 15 Plus        512GB    ______
+   iPhone 16 Plus        512GB    ______
+   iPhone 16e            128GB    ______
+   iPhone 16e            256GB    ______
+   iPhone 16e            512GB    ______
+   iPhone 8 Plus         256GB    ______
+   iPhone Air            512GB    ______
+   iPhone Air            1TB      ______
+   iPhone SE (2nd)       256GB    ______
+   iPhone SE (3rd)       64GB     ______
+   iPhone SE (3rd)       128GB    ______
+   iPhone SE (3rd)       256GB    ______
+   iPhone XR             256GB    ______
+   iPhone XS             64GB     ______
+   iPhone XS             512GB    ______
+   iPhone XS Max         64GB     ______
+   iPhone XS Max         256GB    ______
+   iPhone XS Max         512GB    ______
+
+C. LINES FROM YOUR SHEET THAT COULD NOT BE READ
+
+   M53 5g 6/128-                     no price given
+   Redmi note 10pro 6/128gb -        no price given
+   S23 ul koriya A++ boxd -1650      no storage (128 or 256?)
+   S25 ultra-2500AED box pi's        no storage
+   Fold 2 A grade -1050              no storage
+   NOTE 10 PLUS 1SIM -435AED         no storage (small-LCD grade)
+
+D. DUPLICATES I RESOLVED BY TAKING THE PLAIN / CHEAPEST ENTRY
+
+   13 128GB            910  used (950 with box ignored)
+   15 Plus 128GB     1,710  used (1,740 with box ignored)
+   12 128GB            725  used (740 with box ignored)
+   S23 Ultra 256GB   1,250  used (1,600 koriya 12/256, 1,650 koriya A++ boxed ignored)
+   Xiaomi 13 Pro+    710    used (720 with box ignored)
