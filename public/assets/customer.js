@@ -18,7 +18,7 @@ async function api(path, opts = {}) {
 }
 
 function go(screen) {
-  for (const s of ['home', 'select', 'contact', 'condition', 'details', 'price', 'done', 'track']) {
+  for (const s of ['home', 'select', 'first', 'contact', 'condition', 'details', 'price', 'done', 'track']) {
     const el = $('scr-' + s);
     if (el) el.classList.toggle('hidden', s !== screen);
   }
@@ -289,27 +289,39 @@ function renderVariants() {
   $('selectBody').querySelectorAll('[data-variant]').forEach((el) => {
     el.addEventListener('click', () => {
       state.variant = state.model.variants.find((v) => v.id === Number(el.dataset.variant));
-      openContact();
+      openFirstPrice();
     });
   });
 }
 
-// ---------- step 2: mobile number, then a first price ----------
-async function openContact() {
+// ---------- step 2: the price, before we ask for anything ----------
+async function openFirstPrice() {
   const label = `${state.brand.name} ${state.model.name} ${state.variant.variant}`;
+  state.deviceLabel = label;
+  if ($('firstDevice')) $('firstDevice').textContent = label;
+  if ($('firstRange')) $('firstRange').textContent = state.variant.basePrice.formatted;
+  go('first');
+  try {
+    const qs = await api('/api/questions?category=' + state.category);
+    const best = {};
+    qs.forEach((q) => { best[q.code] = q.options[0].code; });
+    const top = await api('/api/quote', { method: 'POST',
+      body: { variantId: state.variant.id, category: state.category, answers: best } });
+    state.firstQuote = top;
+    if ($('firstRange')) $('firstRange').textContent = top.range.text;
+  } catch (e) { /* the base price is already on screen */ }
+}
+
+// ---------- step 3: name, mobile, email, then an emailed code ----------
+function openContact() {
   $('cErr').textContent = '';
-  $('firstPrice').classList.add('hidden');
-  $('cPhoneBtn').disabled = false;
-  $('cPhone').value = state.phone || '';
-  // representative photo until real model photography is scraped in
-  const shot = $('modelShot');
-  if (shot) {
-    shot.src = state.model.image || '/assets/img/iphone15.jpg';
-    shot.alt = label;
-  }
-  $('fpRange').dataset.device = label;
+  if ($('otpErr')) $('otpErr').textContent = '';
+  if ($('cPhoneBtn')) $('cPhoneBtn').disabled = false;
+  if ($('cPhone')) $('cPhone').value = state.phone || '';
+  if ($('cName')) $('cName').value = state.name || '';
+  if ($('cEmail')) $('cEmail').value = state.email || '';
   go('contact');
-  setTimeout(() => { const el = $('cPhone'); if (el) el.focus(); }, 220);
+  setTimeout(() => { const el = $('cName'); if (el) el.focus(); }, 220);
 }
 
 const phoneDigits = (v) => String(v || '').replace(/[^0-9]/g, '');
@@ -364,7 +376,8 @@ async function verifyOtp() {
     state.otpToken = out.token;
     $('otpBlock').classList.add('hidden');
     $('cPhoneBtn').classList.remove('hidden');
-    await showFirstPrice();
+    await captureLead();
+    openCondition();
   } catch (e) {
     err.textContent = e.message;
   } finally {
@@ -373,29 +386,15 @@ async function verifyOtp() {
   }
 }
 
-/** The first price: top of the range, and the lead is created here. */
-async function showFirstPrice() {
+/** Records the lead once the address is proven. No price work here any more. */
+async function captureLead() {
   try {
-    const qs = await api('/api/questions?category=' + state.category);
-    const best = {};
-    qs.forEach((q) => { best[q.code] = q.options[0].code; });
-    const top = await api('/api/quote', { method: 'POST',
-      body: { variantId: state.variant.id, category: state.category, answers: best } });
-
-    try {
-      await api('/api/leads', { method: 'POST', body: { phone: state.phone, name: state.name,
-        email: state.email, variantId: state.variant.id,
-        device: `${state.brand.name} ${state.model.name} ${state.variant.variant}`,
-        firstQuoteMinor: top.estimate.minor, source: location.hostname } });
-    } catch (e) { /* never block a price on lead capture */ }
-
-    if ($('fpDevice')) $('fpDevice').textContent = `${state.brand.name} ${state.model.name} ${state.variant.variant}`;
-    $('fpRange').textContent = top.range.text;
-    $('firstPrice').classList.remove('hidden');
-    setTimeout(() => $('firstPrice').scrollIntoView({ block: 'center', behavior: 'smooth' }), 80);
-  } catch (e) {
-    $('cErr').textContent = e.message;
-  }
+    const top = state.firstQuote;
+    await api('/api/leads', { method: 'POST', body: { phone: state.phone, name: state.name,
+      email: state.email, variantId: state.variant.id,
+      device: state.deviceLabel, firstQuoteMinor: top ? top.estimate.minor : null,
+      source: location.hostname, verificationToken: state.otpToken } });
+  } catch (e) { /* never block the flow on lead capture */ }
 }
 
 function backToSelect() {
@@ -538,24 +537,12 @@ async function confirmBooking() {
 function renderPriceScreen(q) {
   $('priceDevice').textContent = q.device.label;
   $('priceRange').textContent = q.range.text;
-  const moved = q.adjustments.filter((a) => a.deltaMinor !== 0);
-  const still = q.adjustments.length - moved.length;
-
-  const rows = moved.map((a) => {
-    const cls = a.deltaMinor < 0 ? 'neg' : 'pos';
-    return `<div><span class="k">${esc(a.questionLabel)} · ${esc(a.optionLabel)}</span><span class="v ${cls}">${esc(a.delta)}</span></div>`;
-  }).join('');
-
   if ($('handlingNote') && state.details) {
     $('handlingNote').textContent = state.details.dataHandling === 'destroy'
       ? 'Data: storage will be physically destroyed, certificate issued.'
       : 'Data: certified erase, then refurbished and resold.';
   }
-  $('priceBreakdown').innerHTML =
-    `<div><span class="k">Base price for ${esc(q.device.model)} ${esc(q.device.variant)}</span><span class="v">${esc(q.basePrice.formatted)}</span></div>` +
-    rows +
-    (still ? `<div><span class="k">${still} answer${still > 1 ? 's' : ''} with no adjustment</span><span class="v">—</span></div>` : '') +
-    `<div class="total"><span>Estimated, before inspection</span><b>${esc(q.range.text)}</b></div>`;
+  if ($('priceBreakdown')) $('priceBreakdown').innerHTML = '';
 }
 
 async function bookPickup() {

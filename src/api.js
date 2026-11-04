@@ -469,8 +469,14 @@ async function handle(req, res, url, body, ip, auth) {
     if (digits.length < 9 || digits.length > 15) throw httpError(400, 'Enter a valid mobile number');
     const phone = '+' + digits;
     const v = body.variantId ? variantWithModel(Number(body.variantId)) : null;
-    run(`INSERT INTO leads (phone,name,email,device,variant_id,first_quote_minor,currency,source,created_at,ip)
-         VALUES (?,?,?,?,?,?,?,?,?,?)`,
+    // a lead posted with the token from a verified code is a verified lead
+    let verified = 0;
+    if (body.verificationToken) {
+      const ev = one('SELECT * FROM email_verifications WHERE token = ? AND verified_at IS NOT NULL', String(body.verificationToken));
+      if (ev && (!body.email || ev.email === String(body.email).trim().toLowerCase())) verified = 1;
+    }
+    run(`INSERT INTO leads (phone,name,email,device,variant_id,first_quote_minor,currency,source,created_at,ip,verified)
+         VALUES (?,?,?,?,?,?,?,?,?,?,?)`,
       phone, body.name ? String(body.name).slice(0, 80) : null,
       body.email ? String(body.email).trim().toLowerCase().slice(0, 160) : null,
       v ? `${v.brand} ${v.model} ${v.variant}` : (body.device ? String(body.device).slice(0, 120) : null),
@@ -478,7 +484,7 @@ async function handle(req, res, url, body, ip, auth) {
       body.firstQuoteMinor != null ? Math.round(Number(body.firstQuoteMinor)) : null,
       getSetting('base_currency'),
       body.source ? String(body.source).slice(0, 60) : 'valuation',
-      now(), ip);
+      now(), ip, verified);
     return { ok: true, phone };
   }
 

@@ -242,7 +242,7 @@
 <div id="scr-select" class="flow hidden">
   <div class="wrap">
     <div class="flow-top">
-      <div class="steps-crumb"><span class="on">01 Device</span><span>02 Number</span><span>03 Condition</span><span>04 Price</span><span>05 Details</span></div>
+      <div class="steps-crumb"><span class="on">01 Device</span><span >02 Estimate</span><span >03 Details</span><span >04 Condition</span><span >05 Price</span><span >06 Pickup</span></div>
       <button class="btn btn-out btn-sm" onclick="go('home')">Back to site</button>
     </div>
     <div class="flow-grid">
@@ -268,17 +268,54 @@
   </div>
 </div>
 
-<div id="scr-contact" class="flow hidden">
+<div id="scr-first" class="flow hidden">
   <div class="wrap">
     <div class="flow-top">
-      <div class="steps-crumb"><span>01 Device</span><span class="on">02 Number</span><span>03 Condition</span><span>04 Price</span><span>05 Details</span></div>
+      <div class="steps-crumb"><span >01 Device</span><span class="on">02 Estimate</span><span >03 Details</span><span >04 Condition</span><span >05 Price</span><span >06 Pickup</span></div>
       <button class="btn btn-out btn-sm" onclick="backToSelect()">Change device</button>
     </div>
     <div class="flow-grid">
       <div class="panel">
-        <h2>Where should we send the price?</h2>
-        <p class="panel-sub">We show a first estimate straight away, then ask a few short questions to narrow it to
-          the exact value. No address, no ID, no obligation.</p>
+        <span class="lab" id="firstDevice">—</span>
+        <span class="lab" style="margin-top:18px;display:block">Your first estimate</span>
+        <div class="bigrange" id="firstRange">&hellip;</div>
+        <p class="panel-sub" style="margin-top:14px">That is the top of the range &mdash; a device in perfect
+          condition with everything included. Answer a few short questions and we give you
+          <b>the exact value</b>, not a guess.</p>
+        <div class="flow-actions">
+          <button class="btn" onclick="openContact()">Get the exact price
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="btn btn-out" onclick="backToSelect()">Other model</button>
+        </div>
+        <div class="note" style="margin-top:16px">No address, no ID, no obligation. The final figure is
+          confirmed when we inspect the device.</div>
+      </div>
+      <aside>
+        <div class="est">
+          <span class="lab">What happens next</span>
+          <ul class="next" style="margin-top:10px">
+            <li><b>01</b> Name, mobile and email &mdash; we email one code</li>
+            <li><b>02</b> A few questions about condition</li>
+            <li><b>03</b> Your exact price, then free pickup</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<div id="scr-contact" class="flow hidden">
+  <div class="wrap">
+    <div class="flow-top">
+      <div class="steps-crumb"><span >01 Device</span><span >02 Estimate</span><span class="on">03 Details</span><span >04 Condition</span><span >05 Price</span><span >06 Pickup</span></div>
+      <button class="btn btn-out btn-sm" onclick="backToSelect()">Change device</button>
+    </div>
+    <div class="flow-grid">
+      <div class="panel">
+        <h2>Who are we quoting?</h2>
+        <p class="panel-sub">A few short questions take you from the estimate above to the exact value. We ask for
+          your details first only so the price and the booking stay tied to a real person.</p>
         <div style="margin-top:22px;max-width:460px">
           <div class="two-col">
             <label class="field"><span class="lab">Full name</span>
@@ -304,23 +341,13 @@
             <div id="otpErr" class="err"></div>
           </div>
         </div>
-
-        <div id="firstPrice" class="first-price hidden">
-          <div class="fp-k">First estimate — <span id="fpDevice"></span></div>
-          <div class="fp-v" id="fpRange">—</div>
-          <p class="fp-note">That is the top of the range, for a device in perfect condition with everything
-            included. The next few questions bring it to <b>your exact value</b> — about 40 seconds.</p>
-          <button class="btn" onclick="openCondition()">Answer a few questions
-            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M3 8h9M8.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
       </div>
       <aside>
         <div class="est">
-          <span class="lab">Why the details first?</span>
-          <div class="sub" style="margin-top:8px">So the price you see is yours — we can call you back about it, and
-            you never have to repeat yourself at the door.</div>
-          <div class="note">We email one code to confirm your address. No account, no password, no marketing.</div>
+          <span class="lab">Why we ask now</span>
+          <div class="sub" style="margin-top:8px">You have already seen the price. To turn it into an exact
+            figure we need to know who we are quoting, and one emailed code proves the address is yours.</div>
+          <div class="note">No account, no password, no marketing.</div>
         </div>
       </aside>
     </div>
@@ -330,7 +357,7 @@
 <div id="scr-condition" class="flow hidden">
   <div class="wrap">
     <div class="flow-top">
-      <div class="steps-crumb"><span>01 Device</span><span>02 Number</span><span class="on">03 Condition</span><span>04 Price</span><span>05 Details</span></div>
+      <div class="steps-crumb"><span >01 Device</span><span >02 Estimate</span><span >03 Details</span><span class="on">04 Condition</span><span >05 Price</span><span >06 Pickup</span></div>
       <button class="btn btn-out btn-sm" onclick="backToSelect()">Change device</button>
     </div>
     <div class="flow-grid">
@@ -365,7 +392,7 @@
 <div id="scr-details" class="flow hidden">
   <div class="wrap">
     <div class="flow-top">
-      <div class="steps-crumb"><span>01 Device</span><span>02 Number</span><span>03 Condition</span><span>04 Price</span><span class="on">05 Details</span></div>
+      <div class="steps-crumb"><span >01 Device</span><span >02 Estimate</span><span >03 Details</span><span >04 Condition</span><span >05 Price</span><span class="on">06 Pickup</span></div>
       <button class="btn btn-out btn-sm" onclick="go('condition')">Back</button>
     </div>
     <div class="flow-grid">
@@ -439,7 +466,7 @@
 <div id="scr-price" class="flow hidden">
   <div class="wrap">
     <div class="flow-top">
-      <div class="steps-crumb"><span>01 Device</span><span>02 Number</span><span>03 Condition</span><span class="on">04 Price</span><span>05 Details</span></div>
+      <div class="steps-crumb"><span >01 Device</span><span >02 Estimate</span><span >03 Details</span><span >04 Condition</span><span class="on">05 Price</span><span >06 Pickup</span></div>
       <button class="btn btn-out btn-sm" onclick="go('condition')">Edit answers</button>
     </div>
     <div class="flow-grid">
@@ -451,8 +478,6 @@
         <p class="panel-sub"><b>This is an estimate, not the final offer.</b> The exact value is confirmed when we
           inspect the device at your visit — every point you answered, checked in person.</p>
         <div class="bigrange" id="priceRange">—</div>
-        <div class="lab" style="margin-top:18px">How we got there</div>
-        <div class="priceline" id="priceBreakdown"></div>
         <div class="note" style="margin-top:16px;border-left:2px solid var(--red);padding:10px 0 10px 14px">
           <b>The final value is set at the time of visit.</b> Cosmetic condition, battery health and function are
           verified face to face. If the device matches what you told us, the offer lands in the range above.
