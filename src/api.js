@@ -1,6 +1,6 @@
 'use strict';
 const { all, one, run, now, audit, verifyPassword, hashPassword, getSetting, getSettings, setSetting, slug } = require('./db');
-const { siteConfigFor } = require('./sites');
+const { siteConfigFor, brandForHost } = require('./sites');
 const otp = require('./otp');
 const money = require('./money');
 const { valuate, questionsFor, variantWithModel } = require('./pricing');
@@ -498,7 +498,7 @@ async function handle(req, res, url, body, ip, auth) {
     const code = otp.newCode();
     const expires = new Date(Date.now() + otp.CODE_TTL_MIN * 60000).toISOString().slice(0, 19).replace('T', ' ');
     // send first: a provider failure should not consume a rate-limit slot or leave a dead code
-    await otp.sendCode(email, code, body.name);
+    await otp.sendCode(email, code, body.name, brandForHost(req.headers.host));
     run(`INSERT INTO email_verifications (email,name,phone,code_hash,created_at,expires_at,ip)
          VALUES (?,?,?,?,?,?,?)`, email, body.name || null, body.phone || null, otp.hash(email, code), now(), expires, ip);
     return { ok: true, sentTo: email, expiresInSeconds: otp.CODE_TTL_MIN * 60 };

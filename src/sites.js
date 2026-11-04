@@ -8,9 +8,14 @@
 // Add a domain by adding one line here and dropping a folder in public/sites/.
 const SITES = {
   // page = landing page folder under public/sites/  |  phone = shown on that domain
-  'sellformoney.com': { page: 'sellformoney', phone: '+971 52 399 2468' },
-  'www.sellformoney.com': { page: 'sellformoney', phone: '+971 52 399 2468' },
+  'sellformoney.com': { page: 'sellformoney', phone: '+971 52 399 2468',
+    brand: { name: 'Sell for Money', emphasis: 'for', accent: '#007DFB' } },
+  'www.sellformoney.com': { page: 'sellformoney', phone: '+971 52 399 2468',
+    brand: { name: 'Sell for Money', emphasis: 'for', accent: '#007DFB' } },
 };
+
+// the house brand, used when no site claims the host
+const DEFAULT_BRAND = { name: 'in Dubai City', emphasis: 'Dubai', accent: '#C0392B' };
 
 /** Config overrides for a hostname, or null. */
 function siteConfigFor(host) {
@@ -24,4 +29,9 @@ function siteForHost(host) {
   return cfg ? cfg.page : null;
 }
 
-module.exports = { SITES, siteForHost, siteConfigFor };
+function brandForHost(host) {
+  const cfg = siteConfigFor(host);
+  return (cfg && cfg.brand) || DEFAULT_BRAND;
+}
+
+module.exports = { SITES, siteForHost, siteConfigFor, brandForHost, DEFAULT_BRAND };

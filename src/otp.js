@@ -21,12 +21,19 @@ function fromAddress() {
   return process.env.OTP_FROM || 'Sell for Money <onboarding@resend.dev>';
 }
 
-function emailHtml(code, name) {
+function brandMark(brand) {
+  const b = brand || { name: 'in Dubai City', emphasis: 'Dubai', accent: '#C0392B' };
+  const parts = String(b.name).split(' ');
+  return parts.map((w) => (w.toLowerCase() === String(b.emphasis || '').toLowerCase()
+    ? `<span style="color:${b.accent}">${w}</span>` : w)).join(' ');
+}
+
+function emailHtml(code, name, brand) {
   const who = name ? `Hi ${String(name).split(' ')[0]},` : 'Hello,';
   return `<!doctype html><html><body style="margin:0;background:#F1F6FD;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif">
   <div style="max-width:520px;margin:0 auto;padding:32px 22px">
     <div style="background:#fff;border-radius:14px;padding:30px 26px;border:1px solid #D2DEF0">
-      <div style="font-size:20px;font-weight:800;color:#001A44;letter-spacing:-.02em">Sell <span style="color:#007DFB">for</span> Money</div>
+      <div style="font-size:20px;font-weight:800;color:#001A44;letter-spacing:-.02em">${brandMark(brand)}</div>
       <p style="color:#4B5D7A;font-size:14px;margin:14px 0 0">${who}</p>
       <p style="color:#001A44;font-size:15px;line-height:1.6;margin:8px 0 20px">Your verification code is:</p>
       <div style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:34px;letter-spacing:.22em;
@@ -40,7 +47,7 @@ function emailHtml(code, name) {
   </div></body></html>`;
 }
 
-async function sendCode(email, code, name) {
+async function sendCode(email, code, name, brand) {
   const key = process.env.RESEND_API_KEY;
   if (!key) {
     const err = new Error('Email is not configured: RESEND_API_KEY is missing on the server');
@@ -53,9 +60,9 @@ async function sendCode(email, code, name) {
     body: JSON.stringify({
       from: fromAddress(),
       to: [email],
-      subject: `${code} is your Sell for Money code`,
-      html: emailHtml(code, name),
-      text: `Your Sell for Money verification code is ${code}. It expires in ${CODE_TTL_MIN} minutes.`,
+      subject: `${code} is your ${(brand && brand.name) || 'in Dubai City'} code`,
+      html: emailHtml(code, name, brand),
+      text: `Your ${(brand && brand.name) || 'in Dubai City'} verification code is ${code}. It expires in ${CODE_TTL_MIN} minutes.`,
     }),
   });
   const body = await res.json().catch(() => ({}));
@@ -68,5 +75,5 @@ async function sendCode(email, code, name) {
   return body;
 }
 
-module.exports = { hash, newCode, newToken, validEmail, sendCode,
+module.exports = { hash, newCode, newToken, validEmail, sendCode, emailHtml, brandMark,
   CODE_TTL_MIN, TOKEN_TTL_MIN, MAX_ATTEMPTS, PER_EMAIL_15MIN, PER_IP_HOUR };
