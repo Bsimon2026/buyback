@@ -190,7 +190,7 @@ async function startFromPrice(f) {
   state.model = state.brand.models.find((m) => m.name === f.model) || null;
   if (!state.model) return renderModels();
   state.variant = state.model.variants.find((v) => v.id === f.id) || state.model.variants[0];
-  openCondition();
+  openFirstPrice();
 }
 
 function onBrandPick() {
@@ -227,7 +227,7 @@ async function heroQuote() {
   state.brand = catalog.find((b) => b.id === brand.id) || null;
   state.model = state.brand && state.brand.models.find((m) => m.id === model.id);
   state.variant = variant;
-  openCondition();
+  openFirstPrice();
 }
 
 // ---------- step 1: device ----------
