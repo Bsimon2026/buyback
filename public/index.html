@@ -486,13 +486,30 @@
         <h2>Where should we send the price?</h2>
         <p class="panel-sub">We show a first estimate straight away, then ask a few short questions to narrow it to
           the exact value. No address, no ID, no obligation.</p>
-        <div style="margin-top:22px;max-width:420px">
-          <label class="field"><span class="lab">Mobile number</span>
-            <input id="cPhone" inputmode="tel" placeholder="+971 50 123 4567" autocomplete="tel"></label>
+        <div style="margin-top:22px;max-width:460px">
+          <div class="two-col">
+            <label class="field"><span class="lab">Full name</span>
+              <input id="cName" autocomplete="name" placeholder="Your name"></label>
+            <label class="field"><span class="lab">Mobile number</span>
+              <input id="cPhone" inputmode="tel" placeholder="+971 50 123 4567" autocomplete="tel"></label>
+          </div>
+          <label class="field"><span class="lab">Email</span>
+            <input id="cEmail" type="email" autocomplete="email" placeholder="you@example.com"></label>
           <div class="flow-actions" style="margin-top:14px">
-            <button class="btn" id="cPhoneBtn" onclick="submitPhone()">Show my first price</button>
+            <button class="btn" id="cPhoneBtn" onclick="sendOtp()">Email me a code</button>
           </div>
           <div id="cErr" class="err"></div>
+
+          <div id="otpBlock" class="hidden" style="margin-top:20px;border-top:1px solid var(--rule);padding-top:18px">
+            <label class="field"><span class="lab">Six-digit code</span>
+              <input id="cOtp" inputmode="numeric" maxlength="6" placeholder="000000" style="letter-spacing:.3em;font-family:var(--mono)"></label>
+            <div class="flow-actions" style="margin-top:12px">
+              <button class="btn" id="otpBtn" onclick="verifyOtp()">Verify and see my price</button>
+              <button class="btn btn-out" id="otpResend" onclick="sendOtp(true)">Send again</button>
+            </div>
+            <div class="note" id="otpNote"></div>
+            <div id="otpErr" class="err"></div>
+          </div>
         </div>
 
         <div id="firstPrice" class="first-price hidden">

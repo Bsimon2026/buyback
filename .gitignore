@@ -14,3 +14,4 @@ buyback-platform-*.zip
 
 # business exports (price sheets, reports) — not source
 _exports/
+.env

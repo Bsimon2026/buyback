@@ -26,6 +26,8 @@ function go(screen) {
     syncDeviceFields();
     // the number was captured in step 2 — show it, don't ask for it twice
     if ($('fPhone') && state.phone) $('fPhone').value = state.phone;
+    if ($('fName') && state.name && !$('fName').value) $('fName').value = state.name;
+    if ($('fEmail') && state.email && !$('fEmail').value) $('fEmail').value = state.email;
   }
   if (screen !== 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
   else window.scrollTo({ top: 0, behavior: 'auto' });
@@ -312,26 +314,77 @@ async function openContact() {
 
 const phoneDigits = (v) => String(v || '').replace(/[^0-9]/g, '');
 
-async function submitPhone() {
-  const err = $('cErr');
-  err.textContent = '';
+/** Step 2a: collect name, mobile, email — then email a six-digit code. */
+async function sendOtp(isResend) {
+  const err = $('otpErr') || $('cErr');
+  $('cErr').textContent = '';
+  if ($('otpErr')) $('otpErr').textContent = '';
+  const name = ($('cName').value || '').trim();
   const digits = phoneDigits($('cPhone').value);
-  if (digits.length < 9 || digits.length > 15) {
-    err.textContent = 'Enter a valid mobile number, for example +971 50 123 4567.'; return;
-  }
+  const email = ($('cEmail').value || '').trim().toLowerCase();
+
+  if (!name) { $('cErr').textContent = 'Your name is required.'; return; }
+  if (digits.length < 9 || digits.length > 15) { $('cErr').textContent = 'Enter a valid mobile number, for example +971 50 123 4567.'; return; }
+  if (!/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(email)) { $('cErr').textContent = 'Enter a valid email address.'; return; }
+
+  state.name = name;
   state.phone = '+' + digits;
-  $('cPhoneBtn').disabled = true;
+  state.email = email;
+
+  const btn = isResend ? $('otpResend') : $('cPhoneBtn');
+  const label = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  try {
+    await api('/api/otp/request', { method: 'POST', body: { email, name, phone: state.phone } });
+    $('otpBlock').classList.remove('hidden');
+    $('cPhoneBtn').classList.add('hidden');
+    $('otpNote').textContent = `Code sent to ${email}. It expires in 10 minutes.`;
+    $('cOtp').value = '';
+    setTimeout(() => $('cOtp').focus(), 150);
+  } catch (e) {
+    $('cErr').textContent = e.message;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = label;
+  }
+}
+
+/** Step 2b: prove the address, then reveal the first price. */
+async function verifyOtp() {
+  const err = $('otpErr');
+  err.textContent = '';
+  const code = String($('cOtp').value || '').replace(/\D/g, '');
+  if (code.length !== 6) { err.textContent = 'Enter the six digits from the email.'; return; }
+  const btn = $('otpBtn');
+  btn.disabled = true;
+  btn.textContent = 'Checking…';
+  try {
+    const out = await api('/api/otp/verify', { method: 'POST', body: { email: state.email, code } });
+    state.otpToken = out.token;
+    $('otpBlock').classList.add('hidden');
+    $('cPhoneBtn').classList.remove('hidden');
+    await showFirstPrice();
+  } catch (e) {
+    err.textContent = e.message;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Verify and see my price';
+  }
+}
+
+/** The first price: top of the range, and the lead is created here. */
+async function showFirstPrice() {
   try {
     const qs = await api('/api/questions?category=' + state.category);
-    // the first price is the top of the range: every question answered at its best
     const best = {};
     qs.forEach((q) => { best[q.code] = q.options[0].code; });
     const top = await api('/api/quote', { method: 'POST',
       body: { variantId: state.variant.id, category: state.category, answers: best } });
 
-    // a lead, not an order — the customer has not committed to anything yet
     try {
-      await api('/api/leads', { method: 'POST', body: { phone: state.phone, variantId: state.variant.id,
+      await api('/api/leads', { method: 'POST', body: { phone: state.phone, name: state.name,
+        email: state.email, variantId: state.variant.id,
         device: `${state.brand.name} ${state.model.name} ${state.variant.variant}`,
         firstQuoteMinor: top.estimate.minor, source: location.hostname } });
     } catch (e) { /* never block a price on lead capture */ }
@@ -339,11 +392,9 @@ async function submitPhone() {
     if ($('fpDevice')) $('fpDevice').textContent = `${state.brand.name} ${state.model.name} ${state.variant.variant}`;
     $('fpRange').textContent = top.range.text;
     $('firstPrice').classList.remove('hidden');
-    $('cPhoneBtn').classList.add('hidden');
     setTimeout(() => $('firstPrice').scrollIntoView({ block: 'center', behavior: 'smooth' }), 80);
   } catch (e) {
-    err.textContent = e.message;
-    $('cPhoneBtn').disabled = false;
+    $('cErr').textContent = e.message;
   }
 }
 
@@ -465,6 +516,7 @@ async function confirmBooking() {
     pickup: { date: $('fPickup').value === 'store' ? null : $('fDate').value, slot: $('fSlot').value,
       branchId: $('fPickup').value === 'store' ? Number($('fBranch').value) : (cfg.branches[0] && cfg.branches[0].id) },
     ownershipDeclared: $('fOwn').checked,
+    emailVerificationToken: state.otpToken || undefined,
     dataHandling: (document.querySelector('input[name="fHandling"]:checked') || {}).value || 'reuse',
   };
   if (!body.customer.name) { err.textContent = 'Your name is required.'; return; }

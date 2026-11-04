@@ -118,6 +118,22 @@ CREATE TABLE IF NOT EXISTS leads (
   ip TEXT
 );
 
+-- ---------- email one-time codes (valuation gate) ----------
+CREATE TABLE IF NOT EXISTS email_verifications (
+  id INTEGER PRIMARY KEY,
+  email TEXT NOT NULL,
+  name TEXT,
+  phone TEXT,
+  code_hash TEXT NOT NULL,
+  token TEXT,
+  attempts INTEGER NOT NULL DEFAULT 0,
+  created_at TEXT NOT NULL,
+  expires_at TEXT NOT NULL,
+  verified_at TEXT,
+  used_at TEXT,
+  ip TEXT
+);
+
 -- ---------- condition questions (drive both estimate + inspection) ----------
 CREATE TABLE IF NOT EXISTS questions (
   id INTEGER PRIMARY KEY,

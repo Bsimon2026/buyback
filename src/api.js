@@ -1,6 +1,7 @@
 'use strict';
 const { all, one, run, now, audit, verifyPassword, hashPassword, getSetting, getSettings, setSetting, slug } = require('./db');
 const { siteConfigFor } = require('./sites');
+const otp = require('./otp');
 const money = require('./money');
 const { valuate, questionsFor, variantWithModel } = require('./pricing');
 const docs = require('./docs');
@@ -118,6 +119,16 @@ function createOrder(body, ip) {
     body.pickup && body.pickup.branchId ? Number(body.pickup.branchId) : null,
     'created');
   const orderId = Number(r.lastInsertRowid);
+
+  // the emailed code, if one was verified for this address, is recorded and burned
+  const verifyToken = body.emailVerificationToken ? String(body.emailVerificationToken) : null;
+  if (verifyToken) {
+    const ev = one('SELECT * FROM email_verifications WHERE token = ? AND used_at IS NULL', verifyToken);
+    if (ev && ev.email === String(customer.email || '').toLowerCase()) {
+      run('UPDATE email_verifications SET used_at = ? WHERE id = ?', now(), ev.id);
+      run('UPDATE buyback_orders SET email_verified = 1 WHERE id = ?', orderId);
+    }
+  }
 
   if (body.kyc && body.kyc.idNumber) {
     run('INSERT INTO kyc_records (order_id,id_type,id_number,doc_ref,status) VALUES (?,?,?,?,?)',
@@ -458,9 +469,10 @@ async function handle(req, res, url, body, ip, auth) {
     if (digits.length < 9 || digits.length > 15) throw httpError(400, 'Enter a valid mobile number');
     const phone = '+' + digits;
     const v = body.variantId ? variantWithModel(Number(body.variantId)) : null;
-    run(`INSERT INTO leads (phone,name,device,variant_id,first_quote_minor,currency,source,created_at,ip)
-         VALUES (?,?,?,?,?,?,?,?,?)`,
+    run(`INSERT INTO leads (phone,name,email,device,variant_id,first_quote_minor,currency,source,created_at,ip)
+         VALUES (?,?,?,?,?,?,?,?,?,?)`,
       phone, body.name ? String(body.name).slice(0, 80) : null,
+      body.email ? String(body.email).trim().toLowerCase().slice(0, 160) : null,
       v ? `${v.brand} ${v.model} ${v.variant}` : (body.device ? String(body.device).slice(0, 120) : null),
       v ? v.id : null,
       body.firstQuoteMinor != null ? Math.round(Number(body.firstQuoteMinor)) : null,
@@ -468,6 +480,51 @@ async function handle(req, res, url, body, ip, auth) {
       body.source ? String(body.source).slice(0, 60) : 'valuation',
       now(), ip);
     return { ok: true, phone };
+  }
+
+  // --- email verification (one-time code via Resend) ---
+  if (p === '/api/otp/request' && m === 'POST') {
+    const email = String(body.email || '').trim().toLowerCase();
+    if (!otp.validEmail(email)) throw httpError(400, 'Enter a valid email address');
+    const recentEmail = one(`SELECT count(*) n FROM email_verifications
+                             WHERE email = ? AND created_at > datetime('now','-15 minutes')`).n;
+    if (recentEmail >= otp.PER_EMAIL_15MIN) {
+      throw httpError(429, 'Several codes were already sent to that address. Try again in a few minutes.');
+    }
+    const recentIp = ip ? one(`SELECT count(*) n FROM email_verifications
+                               WHERE ip = ? AND created_at > datetime('now','-1 hour')`, ip).n : 0;
+    if (recentIp >= otp.PER_IP_HOUR) throw httpError(429, 'Too many codes from this connection. Try again later.');
+
+    const code = otp.newCode();
+    const expires = new Date(Date.now() + otp.CODE_TTL_MIN * 60000).toISOString().slice(0, 19).replace('T', ' ');
+    // send first: a provider failure should not consume a rate-limit slot or leave a dead code
+    await otp.sendCode(email, code, body.name);
+    run(`INSERT INTO email_verifications (email,name,phone,code_hash,created_at,expires_at,ip)
+         VALUES (?,?,?,?,?,?,?)`, email, body.name || null, body.phone || null, otp.hash(email, code), now(), expires, ip);
+    return { ok: true, sentTo: email, expiresInSeconds: otp.CODE_TTL_MIN * 60 };
+  }
+
+  if (p === '/api/otp/verify' && m === 'POST') {
+    const email = String(body.email || '').trim().toLowerCase();
+    const code = String(body.code || '').replace(/\D/g, '');
+    if (!otp.validEmail(email)) throw httpError(400, 'Enter a valid email address');
+    if (code.length !== 6) throw httpError(400, 'Enter the six-digit code from the email');
+    const row = one(`SELECT * FROM email_verifications
+                     WHERE email = ? AND verified_at IS NULL ORDER BY id DESC LIMIT 1`, email);
+    if (!row) throw httpError(400, 'No code was requested for that email. Send a new one.');
+    if (row.attempts >= otp.MAX_ATTEMPTS) throw httpError(429, 'Too many wrong attempts. Send a new code.');
+    if (row.expires_at < now()) throw httpError(400, 'That code has expired. Send a new one.');
+    if (row.code_hash !== otp.hash(email, code)) {
+      run('UPDATE email_verifications SET attempts = attempts + 1 WHERE id = ?', row.id);
+      const left = otp.MAX_ATTEMPTS - row.attempts - 1;
+      throw httpError(400, `That code is not right. ${left} attempt${left === 1 ? '' : 's'} left.`);
+    }
+    const token = otp.newToken();
+    run('UPDATE email_verifications SET verified_at = ?, token = ? WHERE id = ?', now(), token, row.id);
+    if (row.phone) {
+      run(`UPDATE leads SET email = ?, verified = 1 WHERE phone = ?`, email, row.phone);
+    }
+    return { ok: true, token, email };
   }
 
   if (p === '/api/quote' && m === 'POST') {

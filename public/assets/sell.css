@@ -1,3 +1,42 @@
+
+/* ==========================================================================
+   sell for money — its own palette, taken from the logo:
+   navy #001A44, a single bright blue #007DFB, and cool paper.
+   Every component reads these tokens, so one block re-themes the whole page.
+   ========================================================================== */
+body.sfm-sell{
+  --ink:#001A44;
+  --ink-2:#062552;
+  --ink-3:#123A6E;
+  --muted:#4B5D7A;
+  --dim:#7C8CA6;
+  --rule:#D2DEF0;
+  --rule-ink:#0A2A55;
+  --red:#007DFB;          /* the accent slot the rest of the system uses */
+  --red-dark:#0059C4;
+  --paper:#FFFFFF;
+  --paper-2:#F1F6FD;
+  --paper-3:#FFFFFF;
+  --bg:#FFFFFF;
+  --sheet:#FFFFFF;
+  --sand:#E8F0FB;
+  --line-2:rgba(0,26,68,.07);
+  --shadow-2:0 2px 8px rgba(0,26,68,.06), 0 40px 80px -46px rgba(0,26,68,.38);
+}
+body.sfm-sell .cta{background:#007DFB;border-color:#007DFB;color:#fff}
+body.sfm-sell .cta:hover{background:#0059C4;border-color:#0059C4}
+body.sfm-sell .opt.sel{background:#001A44;color:#fff;border-color:#001A44}
+body.sfm-sell .badge.ok{background:#E4F1E6;color:#1F6B33}
+body.sfm-sell .qpager-bar i{background:#007DFB}
+
+/* brand lockup in the header and footer */
+.sfm-brand img{height:38px;width:auto;border-radius:0}
+.sfm-brand b{font-family:var(--display);font-size:17px;letter-spacing:-.02em;color:#001A44;text-transform:none}
+.sfm-brand b em{font-style:normal;color:#007DFB}
+.sfm-foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.sfm-foot-brand .sfm-logo-box{background:#fff;border-radius:10px;padding:8px 12px;display:inline-block}
+.sfm-foot-brand img{height:34px;width:auto;display:block}
+
 /* sell for money — its own layout: centred hero, the valuation card sits under the
    headline rather than beside it, and the page runs as a single column of blocks. */
 
@@ -10,7 +49,7 @@
 /* centred hero */
 .sfm-hero{padding:74px 0 58px;text-align:center;position:relative;overflow:hidden;
   /* the valuation card is white — the hero has to be tinted or the card disappears into the page */
-  background:linear-gradient(180deg,#F2EDE4 0%,#F6F1E8 46%,#FBF7F0 100%)}
+  background:linear-gradient(180deg,#E9F1FC 0%,#F2F7FE 48%,#FBFCFF 100%)}
 .sfm-hero .wrap{max-width:920px}
 .sfm-hero h1{font-size:clamp(34px,5.4vw,64px);line-height:1.02;letter-spacing:-.045em;margin:20px auto 0;max-width:19ch}
 .sfm-hero h1 em{font-style:normal;color:var(--red)}
@@ -18,7 +57,7 @@
 .sfm-facts{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:22px;
   font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--dim)}
 .sfm-facts span::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
-  background:var(--red);vertical-align:2px;margin-right:7px}
+  background:#007DFB;vertical-align:2px;margin-right:7px}
 
 /* the valuation card, centred and wider than on the other site */
 .sfm-vwrap{max-width:760px;margin:38px auto 0;text-align:left}
@@ -61,3 +100,12 @@
 .sfm-foot-brand b{font-family:var(--sans);font-size:16px;font-weight:600;letter-spacing:-.02em;color:var(--paper)}
 .sfm-foot-brand b em{font-style:normal;color:#E4402F}
 .foot .foot-logo{display:none}
+
+body.sfm-sell .sfm-hero .eyebrow{color:#3E5474;opacity:1!important;font-weight:500}
+body.sfm-sell .sfm-hero .eyebrow .pulse{background:#007DFB}
+body.sfm-sell .sfm-steps{background:#F4F8FE;border-color:#D8E4F5}
+body.sfm-sell .sfm-step{border-color:#D8E4F5}
+body.sfm-sell .sfm-step .n{color:#007DFB}
+body.sfm-sell .sfm-vwrap .vcard{border-color:rgba(0,26,68,.10)}
+body.sfm-sell .foot{background:#001A44}
+body.sfm-sell .first-price{border-top-color:#001A44}

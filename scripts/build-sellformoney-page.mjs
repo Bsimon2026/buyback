@@ -32,7 +32,7 @@ let tail = src.slice(src.indexOf('<!-- ============ FLOW ============ -->'));
 // footer belongs to this site: its brand, its wording, no environmental sources
 tail = tail
   .replace('<img class="foot-logo" src="/assets/img/logo-light.png" alt="in Dubai City">',
-    '<div class="sfm-foot-brand"><img src="/assets/img/sfm-mark.svg" alt=""><b>sell <em>for</em> money</b></div>')
+    '<div class="sfm-foot-brand"><span class="sfm-logo-box"><img src="/assets/img/sfm-logo.png" alt="Sell for Money — Trade Your Device. Get Paid."></span></div>')
   .replace(/Devices bought, erased, refurbished and resold across the UAE\.<br>\s*Cash on collection\. Nothing to general landfill\./,
     'We buy phones and laptops across the UAE. Free pickup, cash or bank<br>\n        transfer on collection, and a receipt for every sale.')
   // this page has no #data / #method / #impact sections, so those links were dead
@@ -74,8 +74,8 @@ const page = `<!doctype html>
 <header class="hdr sfm-hdr" id="hdr">
   <div class="hdr-in">
     <a class="sfm-brand" href="#" onclick="go('home');return false" aria-label="sell for money — home">
-      <img src="/assets/img/sfm-mark.svg" alt="">
-      <b>sell <em>for</em> money</b>
+      <img src="/assets/img/sfm-icon.png" alt="">
+      <b>Sell <em>for</em> Money</b>
     </a>
     <nav class="nvl" aria-label="Sections">
       <a href="#prices">Prices</a>

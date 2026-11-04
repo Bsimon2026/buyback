@@ -1,4 +1,20 @@
 'use strict';
+// Load .env in development. Values already in the environment (e.g. Hostinger's panel) win.
+(function loadEnv() {
+  try {
+    const fs = require('node:fs');
+    const path = require('node:path');
+    const file = path.join(__dirname, '.env');
+    if (!fs.existsSync(file)) return;
+    const raw = fs.readFileSync(file, 'utf8').split(String.fromCharCode(10));
+    for (const line of raw) {
+      const m = line.match(/^\s*([A-Za-z0-9_]+)\s*=\s*(.*)\s*$/);
+      if (!m) continue;
+      const value = m[2].replace(/^["']|["']$/g, '');
+      if (process.env[m[1]] === undefined) process.env[m[1]] = value;
+    }
+  } catch (e) { /* a missing .env is normal in production */ }
+})();
 const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');

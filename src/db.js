@@ -66,6 +66,9 @@ const SETTING_DEFAULTS = {
   support_email: 'connect@indubaicity.com',
 };
 
+ensureColumn('leads', 'email', 'TEXT');
+ensureColumn('leads', 'verified', 'INTEGER NOT NULL DEFAULT 0');
+ensureColumn('buyback_orders', 'email_verified', 'INTEGER NOT NULL DEFAULT 0');
 ensureColumn('sales', 'vat_minor', 'INTEGER NOT NULL DEFAULT 0');
 ensureColumn('sales', 'vat_rate_bp', 'INTEGER NOT NULL DEFAULT 0');
 ensureColumn('sales', 'buyer_trn', 'TEXT');
