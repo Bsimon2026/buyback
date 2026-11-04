@@ -554,6 +554,21 @@ async function handle(req, res, url, body, ip, auth) {
   if (seg[0] === 'api' && seg[1] === 'admin') {
     const sub = seg[2];
 
+    if (sub === 'leads' && m === 'GET') {
+      need(...canOps);
+      const rows = all(`SELECT l.*, v.variant AS variant_label, m.name AS model_name
+                        FROM leads l
+                        LEFT JOIN device_variants v ON v.id = l.variant_id
+                        LEFT JOIN device_models m ON m.id = v.model_id
+                        ORDER BY l.id DESC LIMIT 300`);
+      const total = one('SELECT count(*) n FROM leads').n;
+      const verified = one('SELECT count(*) n FROM leads WHERE verified = 1').n;
+      return { total, verified, leads: rows.map((r) => ({
+        id: r.id, phone: r.phone, name: r.name, email: r.email, device: r.device || (r.model_name ? `${r.model_name} ${r.variant_label || ''}`.trim() : null),
+        firstQuote: money.fmt(r.first_quote_minor, r.currency || 'AED'), verified: !!r.verified,
+        source: r.source, createdAt: r.created_at,
+      })) };
+    }
     if (sub === 'dashboard') { need(...ROLES_ALL); return dashboard(); }
     if (sub === 'orders' && !seg[3]) { need(...canInspect); return listOrders(q); }
     if (sub === 'orders' && seg[3]) {

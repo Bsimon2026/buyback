@@ -61,6 +61,7 @@ function logout() { api('/api/auth/logout', { method: 'POST' }).catch(() => {});
 // ---------- render ----------
 const TITLES = {
   dashboard: ['Dashboard', "Today's business at a glance"],
+  leads: ['Leads', 'People who asked for a price before they booked'],
   orders: ['Orders', 'Buyback pipeline: pickup → inspection → offer → payment'],
   inventory: ['Inventory', 'Purchased devices, repair cost and resale profit'],
   prices: ['Price master', 'Base buy prices. Every change is versioned and audited.'],
@@ -77,6 +78,7 @@ async function render() {
   $('view').innerHTML = '<div class="muted" style="padding:20px">Loading…</div>';
   try {
     if (TAB === 'dashboard') return await dashboard();
+    if (TAB === 'leads') return await leadsList();
     if (TAB === 'orders') return OPEN_ORDER ? await orderDetail(OPEN_ORDER) : await ordersList();
     if (TAB === 'inventory') return OPEN_STOCK ? await itemDetail(OPEN_STOCK) : await inventoryList();
     if (TAB === 'prices') return await prices();
@@ -87,6 +89,40 @@ async function render() {
   } catch (e) {
     $('view').innerHTML = `<div class="card panel"><div class="err">${esc(e.message)}</div></div>`;
   }
+}
+
+// ---------- leads ----------
+async function leadsList() {
+  const d = await api('/api/admin/leads');
+  if (!d.leads.length) {
+    $('view').innerHTML = `<div class="card panel"><div class="muted">No leads yet. A lead is
+      created the moment someone gives their number and sees a first price.</div></div>`;
+    return;
+  }
+  const rows = d.leads.map((l) => `
+    <tr>
+      <td class="mono">${esc(l.phone)}</td>
+      <td>${esc(l.name || '—')}</td>
+      <td>${esc(l.email || '—')}${l.verified ? ' <span class="pill ok">verified</span>' : ''}</td>
+      <td>${esc(l.device || '—')}</td>
+      <td class="num">${esc(l.firstQuote)}</td>
+      <td>${esc(l.source || '—')}</td>
+      <td class="muted">${esc((l.createdAt || '').slice(0, 16))}</td>
+    </tr>`).join('');
+  $('view').innerHTML = `
+    <div class="kpis" style="margin-bottom:14px">
+      <div class="card kpi"><div class="lab">Leads captured</div><div class="val">${d.total}</div>
+        <div class="foot">asked for a price, no booking yet</div></div>
+      <div class="card kpi"><div class="lab">Email verified</div><div class="val green">${d.verified}</div>
+        <div class="foot">code confirmed from the inbox</div></div>
+    </div>
+    <div class="card panel">
+      <table class="tbl">
+        <thead><tr><th>Mobile</th><th>Name</th><th>Email</th><th>Device</th>
+          <th class="num">First price</th><th>Source</th><th>When</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
 }
 
 // ---------- dashboard ----------
