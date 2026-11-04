@@ -27,7 +27,30 @@ const cash = between('<!-- ============ CASH', '<!-- ============ BRANCHES')
 const branches = between('<!-- ============ BRANCHES', '<!-- ============ FAQ')
   .replace('<span class="snum">06 &mdash; Coverage</span>', '<span class="snum">04 &mdash; Pickup and counters</span>');
 const track = between('<!-- ============ TRACK', '<!-- ============ FLOW');
-const tail = src.slice(src.indexOf('<!-- ============ FLOW ============ -->'));
+let tail = src.slice(src.indexOf('<!-- ============ FLOW ============ -->'));
+
+// footer belongs to this site: its brand, its wording, no environmental sources
+tail = tail
+  .replace('<img class="foot-logo" src="/assets/img/logo-light.png" alt="in Dubai City">',
+    '<div class="sfm-foot-brand"><img src="/assets/img/sfm-mark.svg" alt=""><b>sell <em>for</em> money</b></div>')
+  .replace(/Devices bought, erased, refurbished and resold across the UAE\.<br>\s*Cash on collection\. Nothing to general landfill\./,
+    'We buy phones and laptops across the UAE. Free pickup, cash or bank<br>\n        transfer on collection, and a receipt for every sale.')
+  // this page has no #data / #method / #impact sections, so those links were dead
+  .replace(/<h5>Data<\/h5>[\s\S]*?<\/div>/, `<h5>Your order</h5>
+        <a href="#" onclick="go('home');scrollToQuote();return false">Value a device</a>
+        <a href="#track">Track an order</a>
+        <a href="#branches">Pickup points</a>
+      </div>`)
+  .replace(/<h5>Company<\/h5>[\s\S]*?<\/div>/, `<h5>Company</h5>
+        <a href="/terms">Terms &amp; conditions</a>
+        <a href="/privacy">Privacy policy</a>
+      </div>`)
+  // the e-waste sources block has no place on a cash-for-phones page
+  .replace(/<div class="foot-src">[\s\S]*?<\/div>/, '')
+  // no stock photography is used here
+  .replace(/<span>Photography: <a[\s\S]*?<\/span>/, '');
+
+if (tail.includes('Global E-waste Monitor')) throw new Error('footer sources block still present');
 
 const page = `<!doctype html>
 <html lang="en">
