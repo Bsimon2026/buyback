@@ -9,13 +9,18 @@
 const SITES = {
   // page = landing page folder under public/sites/  |  phone = shown on that domain
   'sellformoney.com': { page: 'sellformoney', phone: '+971 52 399 2468',
-    brand: { name: 'Sell for Money', emphasis: 'for', accent: '#007DFB' } },
+    brand: { name: 'Sell for Money', emphasis: 'for', accent: '#007DFB',
+      from: 'Sell for Money <code@notification.sellformoney.com>' } },
   'www.sellformoney.com': { page: 'sellformoney', phone: '+971 52 399 2468',
-    brand: { name: 'Sell for Money', emphasis: 'for', accent: '#007DFB' } },
+    brand: { name: 'Sell for Money', emphasis: 'for', accent: '#007DFB',
+      from: 'Sell for Money <code@notification.sellformoney.com>' } },
 };
 
 // the house brand, used when no site claims the host
-const DEFAULT_BRAND = { name: 'in Dubai City', emphasis: 'Dubai', accent: '#C0392B' };
+// Until notification.indubaicity.com is verified in Resend, the house site sends through the
+// verified sellformoney subdomain (the display name is still the recycling brand).
+const DEFAULT_BRAND = { name: 'in Dubai City', emphasis: 'Dubai', accent: '#C0392B',
+  from: 'in Dubai City <code@notification.sellformoney.com>' };
 
 /** Config overrides for a hostname, or null. */
 function siteConfigFor(host) {

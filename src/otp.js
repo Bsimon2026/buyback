@@ -17,8 +17,11 @@ const newCode = () => String(crypto.randomInt(0, 1000000)).padStart(6, '0');
 const newToken = () => crypto.randomBytes(24).toString('hex');
 const validEmail = (e) => /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(String(e || '').trim());
 
-function fromAddress() {
-  return process.env.OTP_FROM || 'Sell for Money <onboarding@resend.dev>';
+function fromAddress(brand) {
+  // The site map wins: each host must send from a domain verified for it, and OTP_FROM set in the
+  // panel is shared by every host, which would put the wrong brand on one of them. Env is the
+  // fallback for a host with no declared sender.
+  return (brand && brand.from) || process.env.OTP_FROM || 'Sell for Money <onboarding@resend.dev>';
 }
 
 function brandMark(brand) {
@@ -58,7 +61,7 @@ async function sendCode(email, code, name, brand) {
     method: 'POST',
     headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
     body: JSON.stringify({
-      from: fromAddress(),
+      from: fromAddress(brand),
       to: [email],
       subject: `${code} is your ${(brand && brand.name) || 'in Dubai City'} code`,
       html: emailHtml(code, name, brand),
