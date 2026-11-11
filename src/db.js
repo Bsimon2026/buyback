@@ -64,6 +64,9 @@ const SETTING_DEFAULTS = {
   vat_rate_bp: '500',          // 5% UAE VAT on resale invoices; set 0 if not VAT-registered
   support_phone: '+971 56 163 8612',
   support_email: 'connect@indubaicity.com',
+  // A note the owner keeps for whoever signs in next. Readable by super admins only —
+  // every other role gets the settings without it.
+  signin_note: '',
 };
 
 ensureColumn('leads', 'email', 'TEXT');

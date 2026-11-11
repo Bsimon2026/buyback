@@ -639,7 +639,23 @@ async function settings() {
   const s = await api('/api/admin/settings');
   const audit = await api('/api/admin/audit?limit=8');
   const cur = CFG.currencies.map((c) => `<option value="${c.code}" ${c.code === s.base_currency ? 'selected' : ''}>${c.code} — ${esc(c.name)} (${esc(c.symbol)})</option>`).join('');
-  $('view').innerHTML = `
+  const signinCard = ME && ME.role === 'super_admin' ? `
+    <div class="sec-title">Sign-in</div>
+    <div class="card panel">
+      <h3 style="font-size:16px">Your account</h3>
+      <p class="muted" style="font-size:13.5px;margin:6px 0 14px">
+        Signed in as <b>${esc(ME.email)}</b> &middot; ${esc(String(ME.role).replace(/_/g, ' '))}.
+        The password is stored hashed, so the panel cannot display it &mdash; change it under <b>Users</b>.</p>
+      <label class="field" style="margin:0"><span>Sign-in note &mdash; super admins only</span>
+        <textarea id="sSignin" rows="3"
+          placeholder="Login details, who to call, anything the next person needs">${esc(s.signin_note || '')}</textarea></label>
+      <button class="btn primary" style="margin-top:14px" onclick="saveSignin()">Save note</button>
+      <p class="muted" style="font-size:12.5px;margin:10px 0 16px;line-height:1.6">
+        Never printed on the sign-in page. Only super admins can read it &mdash; the API does not serve it to any other role.
+      </p>
+    </div>` : '';
+
+  $('view').innerHTML = signinCard + `
     <div class="card panel">
       <h3 style="font-size:16px">Currency</h3>
       <p class="muted" style="font-size:13.5px;margin:6px 0 16px">
@@ -705,6 +721,13 @@ async function saveCurrency() {
     $('curBadge').textContent = 'Prices in ' + CFG.currency;
     toast(`Currency now ${r.currency}${r.pricesConverted ? ` · ${r.pricesConverted} prices converted` : ''}`);
     render();
+  } catch (e) { toast(e.message, true); }
+}
+
+async function saveSignin() {
+  try {
+    await api('/api/admin/settings', { method: 'POST', body: { signin_note: $('sSignin').value } });
+    toast('Sign-in note saved');
   } catch (e) { toast(e.message, true); }
 }
 

@@ -707,7 +707,13 @@ async function handle(req, res, url, body, ip, auth) {
     }
     if (sub === 'questions' && m === 'GET') { need(...canOps); return questionsFor(q.category === 'laptop' ? 'laptop' : 'mobile'); }
 
-    if (sub === 'settings' && m === 'GET') { need(...ROLES_ALL); return getSettings(); }
+    if (sub === 'settings' && m === 'GET') {
+      const a = need(...ROLES_ALL);
+      const out = getSettings();
+      // the owner's sign-in note is for super admins; do not hand it to other roles
+      if (a.role !== 'super_admin') delete out.signin_note;
+      return out;
+    }
     if (sub === 'settings' && m === 'POST') {
       const a = need('super_admin');
       const changed = {};
@@ -812,6 +818,15 @@ async function handle(req, res, url, body, ip, auth) {
       if (body.name !== undefined && String(body.name).trim()) {
         run('UPDATE users SET name = ? WHERE id = ?', String(body.name).trim(), id);
         audit('users', String(id), 'update', 'name', u.name, body.name, reason, a.id, a.name, ip);
+      }
+      if (body.email !== undefined) {
+        const email = String(body.email).trim().toLowerCase();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw httpError(400, 'That is not a valid email address');
+        if (one('SELECT id FROM users WHERE email = ? AND id <> ?', email, id)) {
+          throw httpError(409, 'Another account already uses that email');
+        }
+        run('UPDATE users SET email = ? WHERE id = ?', email, id);
+        audit('users', String(id), 'update', 'email', u.email, email, reason, a.id, a.name, ip);
       }
       if (body.role !== undefined) {
         if (!ROLES_ALL.includes(body.role)) throw httpError(400, 'Unknown role');
