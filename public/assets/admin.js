@@ -51,8 +51,16 @@ async function boot() {
 async function login() {
   $('lErr').textContent = '';
   try {
-    const r = await api('/api/auth/login', { method: 'POST', body: { email: $('lEmail').value.trim(), password: $('lPass').value } });
-    TOKEN = r.token; localStorage.setItem('bb_admin_token', TOKEN);
+    // Posted directly, not through api(): a 401 here is "wrong password", not an
+    // expired session, and api() would replace the real message with "Session expired".
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ email: $('lEmail').value.trim(), password: $('lPass').value }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || `Sign-in failed (${res.status})`);
+    TOKEN = data.token; localStorage.setItem('bb_admin_token', TOKEN);
     boot();
   } catch (e) { $('lErr').textContent = e.message; }
 }

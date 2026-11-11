@@ -3,25 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BuyBack — Admin</title>
+<title>SellforMoney.com — Admin</title>
 <link rel="stylesheet" href="/assets/styles.css">
 <style>
   /* admin runs dark on the new palette */
   :root{
     --bg:var(--ink); --bg-2:var(--ink-2); --card:var(--ink-2); --card-2:var(--ink-3);
-    --line:#232C3A; --line-2:#2E3949; --text:var(--on-ink); --muted:var(--on-ink-muted); --dim:#7C8695;
+    --line:#232C3A; --line-2:#2E3949; --fg:var(--on-ink); --muted:var(--on-ink-muted); --dim:#7C8695;
     --accent:var(--gold-2); --radius:16px; --radius-sm:10px; --shadow:0 18px 44px rgba(0,0,0,.35);
     --on-ink:var(--paper); --on-ink-muted:#A9A498; --gold-2:#D8B25C;
-    --font:var(--sans);
+    /* NOTE: do not redefine --text here. styles.css uses it as the font stack,
+       and shadowing it with a colour silently drops the whole admin to serif. */
   }
   /* dark primitives re-stated for the admin surface */
   .card{background:var(--card);border:1px solid var(--line);box-shadow:none;color:var(--on-ink)}
   .kpi .val{color:var(--on-ink)}
   .kpi .val.green{color:#8FE3AE}
   .kpi .val.blue{color:var(--gold-2)}
-  input,select,textarea{background:var(--bg-2);color:var(--text);border-color:var(--line)}
+  input,select,textarea{background:var(--bg-2);color:var(--fg);border-color:var(--line)}
   input:focus,select:focus{border-color:var(--gold-2);box-shadow:0 0 0 3px rgba(216,178,92,.14)}
-  .btn{background:var(--card-2);color:var(--text);border:1px solid var(--line-2)}
+  .btn{background:var(--card-2);color:var(--fg);border:1px solid var(--line-2)}
   .btn:hover{background:#222C3A}
   .btn.primary{background:var(--gold-2);border-color:var(--gold-2);color:#171207}
   .btn.primary:hover{filter:brightness(1.05)}
@@ -42,13 +43,14 @@
   .app{display:grid;grid-template-columns:222px 1fr;min-height:100vh}
   @media(max-width:860px){.app{grid-template-columns:1fr}.side{display:none}}
   .side{border-right:1px solid var(--line);background:var(--bg-2);padding:18px 12px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px}
-  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px;padding:6px 10px 18px}
-  .brand span.dot{width:24px;height:24px;border-radius:7px;background:linear-gradient(140deg,#22c55e,#0ea5e9);
-    display:grid;place-items:center;color:#04140a;font-weight:900;font-size:13px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;letter-spacing:-.02em;padding:6px 10px 18px}
+  .brand span.dot{width:26px;height:26px;border-radius:8px;flex:0 0 auto;
+    background:linear-gradient(145deg,#F2D493,#C99A3E);
+    display:grid;place-items:center;color:#171104;font-weight:800;font-size:13px}
   .nav{display:block;text-align:left;padding:10px 12px;border-radius:10px;border:1px solid transparent;background:none;
     color:var(--muted);font-weight:600;font-size:14px;width:100%}
-  .nav:hover{background:rgba(255,255,255,.03);color:var(--text)}
-  .nav.on{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.25);color:#c9f7da}
+  .nav:hover{background:rgba(255,255,255,.03);color:var(--fg)}
+  .nav.on{background:rgba(216,178,92,.12);border-color:rgba(216,178,92,.3);color:var(--gold-2)}
   .main{padding:22px 26px 60px;max-width:1400px;width:100%}
   .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px;flex-wrap:wrap}
   .kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
@@ -71,8 +73,70 @@
   .seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
   .seg button{background:var(--bg-2);border:0;color:var(--muted);padding:7px 13px;font-size:13px;font-weight:600}
   .seg button.on{background:rgba(56,189,248,.16);color:#bfeaff}
-  .login{min-height:100vh;display:grid;place-items:center;padding:20px}
-  .login .card{width:100%;max-width:380px;padding:26px}
+  /* ---------- sign-in ---------- */
+  .login{min-height:100dvh;display:grid;grid-template-columns:1.02fr .98fr;background:#080B10;
+    position:relative;overflow:hidden;padding:0}
+  .login:before{content:'';position:absolute;left:-16%;top:-34%;width:80vw;height:80vw;max-width:880px;max-height:880px;
+    background:radial-gradient(circle,rgba(216,178,92,.15),rgba(216,178,92,.04) 44%,transparent 68%);pointer-events:none}
+  .login:after{content:'';position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 80% at 84% 118%,rgba(72,116,255,.10),transparent 58%)}
+  .login-side{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between;gap:36px;
+    padding:clamp(28px,4.4vw,62px);border-right:1px solid rgba(255,255,255,.06)}
+  .login-main{position:relative;z-index:1;display:grid;place-items:center;padding:clamp(24px,4vw,56px)}
+  .login-main:before{content:'';position:absolute;width:min(620px,86vw);aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle,rgba(216,178,92,.11),rgba(216,178,92,.03) 46%,transparent 68%);pointer-events:none}
+  .brandmark{display:inline-flex;align-items:center;gap:12px;font-size:17px;font-weight:700;letter-spacing:-.022em;
+    color:#F3F1EC;font-family:var(--text)}
+  .brandmark .tile{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-weight:800;font-size:17px;
+    color:#171104;background:linear-gradient(145deg,#F2D493,#C99A3E);
+    box-shadow:0 12px 26px -14px rgba(216,178,92,.85),inset 0 1px 0 rgba(255,255,255,.55)}
+  .brandmark .nm{display:block;line-height:1.05}
+  .brandmark .nm i{font-style:normal;color:var(--gold-2)}
+  .brandmark small{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+    color:#6A7482;font-weight:500;margin-top:5px}
+  .login-lede{margin:0;max-width:24ch;font-family:var(--display);font-size:clamp(26px,3vw,40px);line-height:1.05;
+    letter-spacing:-.038em;font-weight:600;color:#F3F1EC}
+  .login-lede em{font-style:normal;color:var(--gold-2)}
+  .login-points{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:13px;max-width:42ch}
+  .login-points li{display:flex;gap:11px;font-size:14px;line-height:1.5;color:#98A1AE}
+  .login-points li:before{content:'';flex:0 0 auto;width:6px;height:6px;border-radius:50%;
+    background:var(--gold-2);margin-top:7px}
+  .login-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#59626E}
+  .auth{position:relative;width:100%;max-width:406px;border-radius:22px;padding:30px 28px 26px;
+    background:linear-gradient(180deg,rgba(28,33,42,.92),rgba(14,18,24,.94));
+    border:1px solid rgba(255,255,255,.11);
+    box-shadow:0 50px 100px -50px rgba(0,0,0,1),0 2px 8px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.09)}
+  .auth h1{margin:0;font-family:var(--display);font-size:23px;font-weight:600;letter-spacing:-.03em;color:#F3F1EC}
+  .auth .sub{margin:8px 0 22px;font-size:13.5px;line-height:1.55;color:#8B94A1}
+  .auth .sub b{color:#D8B25C;font-weight:600}
+  .auth-field{display:block;margin-bottom:14px}
+  .auth-field > span{display:block;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:#8C95A2;margin-bottom:7px}
+  .auth input{width:100%;height:48px;padding:0 14px;border-radius:12px;background:#0E141C;color:#F3F1EC;
+    border:1px solid rgba(255,255,255,.09);font-size:15px;font-family:var(--text);
+    transition:border-color .2s,box-shadow .2s,background .2s}
+  .auth input::placeholder{color:#5A6470}
+  .auth input:focus{outline:none;background:#111924;border-color:rgba(216,178,92,.62);
+    box-shadow:0 0 0 4px rgba(216,178,92,.12)}
+  .auth-btn{width:100%;height:50px;margin-top:8px;border:0;border-radius:12px;cursor:pointer;
+    background:linear-gradient(180deg,#F0D496,#CDA146);color:#1B1407;font-size:15px;font-weight:700;letter-spacing:-.01em;
+    font-family:var(--text);box-shadow:0 12px 26px -14px rgba(216,178,92,.55),inset 0 1px 0 rgba(255,255,255,.5);
+    transition:filter .18s,transform .18s}
+  .auth-btn:hover{filter:brightness(1.05)}
+  .auth-btn:active{transform:translateY(1px) scale(.996)}
+  .auth-err:not(:empty){margin-top:12px;padding:9px 11px;border-radius:10px;font-size:13px;color:#FFB0B0;
+    background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.28)}
+  .auth-foot{margin:18px 0 0;text-align:center;font-size:12.5px;line-height:1.5;color:#6E7885}
+  .auth-foot b{color:#9AA3B0;font-weight:600}
+  @media(max-width:900px){
+    .login{grid-template-columns:1fr}
+    .login-side{border-right:0;border-bottom:1px solid rgba(255,255,255,.06);
+      padding:22px 20px 26px;gap:26px;justify-content:flex-start}
+    .login-lede{font-size:23px;max-width:22ch}
+    .login-points,.login-meta{display:none}
+    .login-main{padding:24px 20px 44px;align-items:start}
+    .auth{padding:24px 20px 22px;border-radius:18px}
+  }
   .money{font-variant-numeric:tabular-nums;font-weight:600}
   .tag{font-size:11.5px;color:var(--dim)}
   .sec-title{font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--dim);font-weight:700;margin:22px 0 10px}
@@ -84,20 +148,42 @@
 
 <!-- LOGIN -->
 <div id="loginWrap" class="login hidden">
-  <div class="card">
-    <div class="brand" style="padding-left:0"><span class="dot">in</span> Dubai City — staff</div>
-    <p class="muted" style="font-size:13.5px;margin:0 0 18px">Staff sign-in. Access is role-scoped and audit-logged.</p>
-    <label class="field"><span>Email</span><input id="lEmail" type="email" autocomplete="username" placeholder="you@company.ae"></label>
-    <label class="field"><span>Password</span><input id="lPass" type="password" autocomplete="current-password" placeholder="Your password"></label>
-    <button class="btn primary" style="width:100%" onclick="login()">Sign in</button>
-    <div id="lErr" class="err"></div>
-    <p class="tag" style="margin-top:16px">No password? Ask a super admin to reset it under Users.</p>
+  <div class="login-side">
+    <div class="brandmark">
+      <span class="tile" aria-hidden="true">S</span>
+      <span class="nm">SellforMoney<i>.com</i><small>Staff console</small></span>
+    </div>
+    <div>
+      <p class="login-lede">Every device bought. Every dirham <em>accounted for</em>.</p>
+      <ul class="login-points">
+        <li>Quotes, inspections, offers and payments on one record.</li>
+        <li>Every price change versioned — old value, new value, who and when.</li>
+        <li>Only your role's screens. Everything else stays shut.</li>
+      </ul>
+    </div>
+    <div class="login-meta">sellformoney.com / admin</div>
+  </div>
+
+  <div class="login-main">
+    <div class="auth">
+      <h1>Staff sign-in</h1>
+      <p class="sub">Admin for <b>sellformoney.com</b> &middot; role-scoped and audit-logged.</p>
+      <form onsubmit="login();return false">
+        <label class="auth-field"><span>Email</span>
+          <input id="lEmail" type="email" autocomplete="username" placeholder="you@sellformoney.com"></label>
+        <label class="auth-field"><span>Password</span>
+          <input id="lPass" type="password" autocomplete="current-password" placeholder="Your password"></label>
+        <button class="auth-btn" type="submit">Sign in</button>
+        <div id="lErr" class="auth-err"></div>
+      </form>
+      <p class="auth-foot">No password? A super admin resets it under <b>Users</b>.</p>
+    </div>
   </div>
 </div>
 
 <div id="appWrap" class="app hidden">
   <aside class="side">
-    <div class="brand"><span class="dot">in</span> Dubai City</div>
+    <div class="brand"><span class="dot">S</span> SellforMoney.com</div>
     <button class="nav on" data-tab="dashboard">Dashboard</button>
     <button class="nav" data-tab="leads">Leads</button>
     <button class="nav" data-tab="orders">Orders</button>
